@@ -1,0 +1,86 @@
+name: Standalone Build
+
+on:
+  workflow_call:
+
+env:
+  DOTNET_VERSION: 8.0.x
+  CONFIGURATION: Release
+  DIST_PATH: /tmp/dist
+  OUTPUT_PATH: /tmp/out
+
+jobs:
+  standalone:
+    name: Build ${{ matrix.runtime }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        runtime: [linux-x64, linux-arm64, linux-musl-arm64, osx-x64, osx-arm64, win-x64, win-arm64]
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Nerdbank.GitVersioning
+      uses: dotnet/nbgv@v0.4.1
+      id: nbgv
+
+    - name: Build (${{ matrix.runtime }})
+      run: |
+        dotnet publish ./src/neoxp \
+        --framework net8.0 \
+        --configuration ${{ env.CONFIGURATION }} \
+        --runtime ${{ matrix.runtime }} \
+        --self-contained true \
+        --output ${{ env.OUTPUT_PATH }}/${{ matrix.runtime }} \
+        --verbosity normal \
+        -p:RuntimeIdentifier=${{ matrix.runtime }} \
+        -p:SelfContained=true \
+        -p:IncludeNativeLibrariesForSelfExtract=false \
+        -p:PublishTrimmed=false \
+        -p:PublishSingleFile=true \
+        -p:PublishReadyToRun=true \
+        -p:PublishReadyToRunComposite=true \
+        -p:EnableCompressionInSingleFile=true \
+        -p:DebugType=embedded \
+        -p:ServerGarbageCollection=true \
+        -p:PublicRelease=true
+
+    - name: Create Distribution Directory
+      run: |
+        mkdir -p ${{ env.DIST_PATH }}
+
+    - name: Tarball (osx)
+      if: ${{ startsWith(matrix.runtime, 'osx') }}
+      working-directory: ${{ env.OUTPUT_PATH }}/${{ matrix.runtime }}
+      env:
+        TAR_FILE: ${{ format('{0}/Neo.Express-{1}-{2}.tar.xz', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
+      run: tar -cJf ${{ env.TAR_FILE }} .
+
+    - name: Tarball (linux)
+      if: ${{ startsWith(matrix.runtime, 'linux') }}
+      working-directory: ${{ env.OUTPUT_PATH }}/${{ matrix.runtime }}
+      env:
+        TAR_FILE: ${{ format('{0}/Neo.Express-{1}-{2}.tar.gz', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
+      run: tar -czvf ${{ env.TAR_FILE }} .
+
+    - name: Zipball (win)
+      if: ${{ startsWith(matrix.runtime, 'win') }}
+      working-directory: ${{ env.OUTPUT_PATH }}/${{ matrix.runtime }}
+      env:
+        ZIP_FILE: ${{ format('{0}/Neo.Express-{1}-{2}.zip', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
+      run: zip ${{ env.ZIP_FILE }} -r *
+
+    - name: Cache Files
+      id: cache
+      uses: actions/cache/save@v3
+      with:
+        path: ${{ env.DIST_PATH }}/*
+        key: ${{ matrix.runtime }}

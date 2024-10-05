@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>neo-assertions</AssemblyName>
+        <Nullable>enable</Nullable>
+        <PackageId>Neo.Assertions</PackageId>
+        <RootNamespace>Neo.Assertions</RootNamespace>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="6.12.0" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\bctklib\bctklib.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+name: On Push
+
+on:
+  push:
+    branches:
+      - master
+      - development
+      - release/*
+    paths:
+      - '**.cs'
+      - '**.csproj'
+
+jobs:
+  test:
+    name: Test Application
+    uses: ./.github/workflows/test.yml

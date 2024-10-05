@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <AssemblyName>neoxp</AssemblyName>
+        <Description>neo-express is a Neo developer blockchain tool</Description>
+        <OutputType>Exe</OutputType>
+        <PackageId>Neo.Express</PackageId>
+        <PackAsTool>true</PackAsTool>
+        <RootNamespace>NeoExpress</RootNamespace>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <ApplicationIcon>neo-express.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Nito.Disposables" Version="2.5.0" />
+        <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.1.1" />
+        <PackageReference Include="Neo.Consensus.DBFT" Version="$(NeoVersion)" />
+        <PackageReference Include="Neo.Plugins.RpcServer" Version="$(NeoVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\bctklib\bctklib.csproj" />
+    </ItemGroup>
+</Project>

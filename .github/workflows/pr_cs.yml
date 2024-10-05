@@ -1,0 +1,15 @@
+name: On Pull Request (*.cs/ *.csproj Files)
+
+on:
+  pull_request:
+    branches:
+      - master
+      - development
+      - release/*
+    paths:
+      - '**.cs'
+      - '**.csproj'
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
