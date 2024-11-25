@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Hash160.cs file belongs to neo-express project and is free
+// Hash160.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -13,7 +13,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace Neo.Collector.Models
+namespace EpicChain.Collector.Models
 {
     public struct Hash160 : IComparable<Hash160>, IEquatable<Hash160>
     {

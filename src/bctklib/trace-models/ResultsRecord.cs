@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ResultsRecord.cs file belongs to neo-express project and is free
+// ResultsRecord.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,11 +10,11 @@
 // modifications are permitted.
 
 using MessagePack;
-using Neo.VM;
+using EpicChain.VM;
 using System.Buffers;
-using StackItem = Neo.VM.Types.StackItem;
+using StackItem = EpicChain.VM.Types.StackItem;
 
-namespace Neo.BlockchainToolkit.TraceDebug
+namespace EpicChain.BlockchainToolkit.TraceDebug
 {
     [MessagePackObject]
     public class ResultsRecord : ITraceDebugRecord

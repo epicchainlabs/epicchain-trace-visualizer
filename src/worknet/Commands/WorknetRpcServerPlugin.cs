@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// WorknetRpcServerPlugin.cs file belongs to neo-express project and is free
+// WorknetRpcServerPlugin.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,12 +9,12 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit.Plugins;
-using Neo.Json;
-using Neo.Network.RPC;
-using Neo.Plugins;
-using Neo.SmartContract.Native;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Plugins;
+using EpicChain.Json;
+using EpicChain.Network.RPC;
+using EpicChain.Plugins;
+using EpicChain.SmartContract.Native;
 
 namespace NeoWorkNet.Commands;
 
@@ -62,7 +62,7 @@ class WorknetRpcServerPlugin : Plugin
         var response = new JObject();
         response["process-id"] = proc.Id;
 
-        Neo.Utility.Log(nameof(WorknetRpcServerPlugin), LogLevel.Info, $"ExpressShutdown requested. Shutting down in {SHUTDOWN_TIME} seconds");
+        EpicChain.Utility.Log(nameof(WorknetRpcServerPlugin), LogLevel.Info, $"ExpressShutdown requested. Shutting down in {SHUTDOWN_TIME} seconds");
         cancellationToken.CancelAfter(TimeSpan.FromSeconds(SHUTDOWN_TIME));
         return response;
     }
@@ -122,7 +122,7 @@ class WorknetRpcServerPlugin : Plugin
 
         return new JObject
         {
-            ["address"] = Neo.Wallets.Helper.ToAddress(address, neoSystem.Settings.AddressVersion),
+            ["address"] = EpicChain.Wallets.Helper.ToAddress(address, neoSystem.Settings.AddressVersion),
             ["balance"] = jsonBalances
         };
     }
@@ -163,7 +163,7 @@ class WorknetRpcServerPlugin : Plugin
 
         return new JObject
         {
-            ["address"] = Neo.Wallets.Helper.ToAddress(address, neoSystem.Settings.AddressVersion),
+            ["address"] = EpicChain.Wallets.Helper.ToAddress(address, neoSystem.Settings.AddressVersion),
             ["balance"] = jsonBalances
         };
     }
@@ -193,6 +193,6 @@ class WorknetRpcServerPlugin : Plugin
 
     static UInt160 ParseScriptHash(string text, ProtocolSettings settings)
         => text.Length < 40
-            ? Neo.Wallets.Helper.ToScriptHash(text, settings.AddressVersion)
+            ? EpicChain.Wallets.Helper.ToScriptHash(text, settings.AddressVersion)
             : UInt160.Parse(text);
 }

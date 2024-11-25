@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// NugetPackageVersion.cs file belongs to neo-express project and is free
+// NugetPackageVersion.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -12,7 +12,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Neo.BuildTasks
+namespace EpicChain.BuildTasks
 {
     // https://docs.microsoft.com/en-us/nuget/concepts/package-versioning#version-basics
     public readonly struct NugetPackageVersion : IComparable<NugetPackageVersion>

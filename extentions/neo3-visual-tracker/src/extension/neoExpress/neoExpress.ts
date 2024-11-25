@@ -37,7 +37,7 @@ export default class NeoExpress {
       "tools",
       "net6.0",
       "any",
-      "neoxp.dll"
+      "epicchain.dll"
     );
     this.dotnetPath = which.sync("dotnet", { nothrow: true }) || "dotnet";
     this.runLock = false;
@@ -54,7 +54,7 @@ export default class NeoExpress {
 
     const hasStarted: Promise<void> = new Promise((resolve) => {
       pty.onDidWrite((data) => {
-        if (data.indexOf("Neo express is running") !== -1) {
+        if (data.indexOf("EpicChain express is running") !== -1) {
           resolve();
         }
       });
@@ -111,7 +111,7 @@ export default class NeoExpress {
     ...options: string[]
   ): Promise<{ message: string; isError?: boolean }> {
     if (!this.checkForDotNet()) {
-      return { message: "Could not launch Neo Express", isError: true };
+      return { message: "Could not launch EpicChain Express", isError: true };
     }
     const dotNetArguments = [
       this.binaryPath,
@@ -133,7 +133,7 @@ export default class NeoExpress {
             } catch (e : any) {
               Log.error(
                 LOG_PREFIX,
-                `Could not kill timed out neoxp command: ${command} (${e.message})`
+                `Could not kill timed out epicchain command: ${command} (${e.message})`
               );
             }
             reject("Operation timed out");

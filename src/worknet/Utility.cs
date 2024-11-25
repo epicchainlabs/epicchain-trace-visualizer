@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Utility.cs file belongs to neo-express project and is free
+// Utility.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,15 +10,15 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
-using Neo.Wallets;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.Wallets;
 using NeoWorkNet.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO.Abstractions;
 using static Crayon.Output;
-using static Neo.BlockchainToolkit.Constants;
+using static EpicChain.BlockchainToolkit.Constants;
 
 namespace NeoWorkNet;
 

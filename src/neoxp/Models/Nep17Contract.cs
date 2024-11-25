@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Nep17Contract.cs file belongs to neo-express project and is free
+// Nep17Contract.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.Json;
-using Neo.Persistence;
-using Neo.SmartContract.Native;
+using EpicChain;
+using EpicChain.Json;
+using EpicChain.Persistence;
+using EpicChain.SmartContract.Native;
 
 namespace NeoExpress.Models
 {
@@ -39,7 +39,7 @@ namespace NeoExpress.Models
 
         public static bool TryLoad(ProtocolSettings settings, DataCache snapshot, UInt160 scriptHash, out Nep17Contract contract)
         {
-            if (scriptHash == NativeContract.NEO.Hash)
+            if (scriptHash == NativeContract.EpicChain.Hash)
             {
                 contract = Nep17Contract.Create(NativeContract.NEO);
                 return true;

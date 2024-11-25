@@ -2,7 +2,7 @@
 
 # NeoExpress Quickstart
 
-This article is divided into the following sections: 
+This article is divided into the following sections:
 
 [Setting up a private chain using NeoExpress](#setting-up-a-private-chain-using-neoexpress)
 
@@ -18,42 +18,42 @@ The following steps are applicable to multiple system platforms, such as Windows
 
 1. Download the latest release package from [neo-express releases](https://github.com/neo-project/neo-express/releases) for your operating system.
 2. Unzip the package on your local machine.
-3. Run the `neoxp.exe` command in the terminal from the directory where you unzipped the package
+3. Run the `epicchain.exe` command in the terminal from the directory where you unzipped the package
 
 ### Usage Guide
 
-- Create a new local Neo network:
+- Create a new local EpicChain network:
 
   ```shell
-  .\neoxp create
+  .\epicchain create
   ```
 
-  Use this command to create a single node private chain (local blockchain network) creating both genesis wallet and node1 wallet. 
+  Use this command to create a single node private chain (local blockchain network) creating both genesis wallet and node1 wallet.
 
 - List all wallets:
 
   ```shell
-  .\neoxp wallet list
+  .\epicchain wallet list
   ```
 
-  The `wallet list` command writes out a list of all the wallets - including consensus node wallets - 
+  The `wallet list` command writes out a list of all the wallets - including consensus node wallets -
   along with their account addresses, private and public keys.
 
 - Show genesis account balance:
 
-  `genesis` to use the consensus node multi-sig account which holds the genesis NEO and GAS.
+  `genesis` to use the consensus node multi-sig account which holds the genesis EpicChain and GAS.
 
   ```shell
-  .\neoxp show balances genesis
+  .\epicchain show balances genesis
   ```
 
 - Send 1 gas from genesis account to node1 account:
 
   ```shell
-  .\neoxp transfer 1 gas genesis node1
+  .\epicchain transfer 1 gas genesis node1
   ```
 
-Please review the [Command Reference](command-reference.md) to get an understanding of Neo-Express capabilities.
+Please review the [Command Reference](command-reference.md) to get an understanding of EpicChain-Express capabilities.
 
 ## Writing and compiling smart contracts with NeoDevpackDotnet
 
@@ -75,7 +75,7 @@ Download and install [Visual Studio Code](https://code.visualstudio.com/Download
 
 ## Installing contract template
 
-[Neo.SmartContract.Template](https://www.nuget.org/packages/Neo.SmartContract.Template) is a project template used when developing Neo smart contracts. After installing the template, you can create a Neo smart contract project using either the Terminal or Visual Studio.
+[Neo.SmartContract.Template](https://www.nuget.org/packages/Neo.SmartContract.Template) is a project template used when developing EpicChain smart contracts. After installing the template, you can create a EpicChain smart contract project using either the Terminal or Visual Studio.
 
 Install the template
 
@@ -93,21 +93,21 @@ These default templates are available after installing [Neo.SmartContract.Templa
 
 - neocontractowner - Standard contract template with the Owner, including the GetOwner and SetOwner methods.
 - neocontractoracle - A contract template using OracleRequest.
-- neocontractnep17 - NEP-17 contract template, including the Mint and Burn methods.
+- neocontractnep17 - XEP-17 contract template, including the Mint and Burn methods.
 
 More Neo.SmartContract.Template information can be found [here](https://developers.neo.org/docs/n3/develop/write/dotnet#neosmartcontracttemplate).
 
 ### Create a project using templates with Terminal
 
 ```shell
-dotnet new neocontractnep17 
+dotnet new neocontractnep17
 ```
 
 The project name defaults to the name of the current directory. You can also specify the project name with `-n, --name <name>`, e.g. `dotnet new neocontractnep17 -n MyFirstContract`.
 
 ## Neo.Compiler.CSharp
 
-[Neo.Compiler.CSharp](https://www.nuget.org/packages/Neo.Compiler.CSharp) (nccs) is the Neo smart contract compiler that compiles the C# language into NeoVM executable OpCodes.
+[Neo.Compiler.CSharp](https://www.nuget.org/packages/Neo.Compiler.CSharp) (nccs) is the EpicChain smart contract compiler that compiles the C# language into NeoVM executable OpCodes.
 
 ### Install the compiler
 
@@ -135,39 +135,39 @@ More Neo.Compiler.CSharp information can be found [here](https://developers.neo.
 
 ## Deploying and invoking smart contracts using NeoExpress
 
-Copy the smart contract file, include `*.nef` and `*.manifest.json` to the neoxp directory.
+Copy the smart contract file, include `*.nef` and `*.manifest.json` to the epicchain directory.
 
 ### Deploy
 
 Run the following command. Note: please replace `hello.nef` with the name of your contract file.
 
 ```shell
-> .\neoxp contract deploy hello.nef genesis
+> .\epicchain contract deploy hello.nef genesis
 Deployment of hello (0x4e97b0370712bf9f5f0bbb7beb5e4127fac55040) Transaction 0x5933870616f13ceb41462fbae1d460edf998defda9d5c3f074ad785465130cf7 submitted
 ```
 
 ### Invoke
 
-To invoke a smart contract, use the `neoxp` run command, see [here](command-reference.md#neoxp-contract-run).
+To invoke a smart contract, use the `epicchain` run command, see [here](command-reference.md#epicchain-contract-run).
 
 The --results option indicates a trial run, which queries the results of the execution without sending a contract.
 
 ```
-> .\neoxp contract run 0x4e97b0370712bf9f5f0bbb7beb5e4127fac55040 symbol --results
+> .\epicchain contract run 0x4e97b0370712bf9f5f0bbb7beb5e4127fac55040 symbol --results
 VM State:     HALT
 Gas Consumed: 1364220
 Result Stack:
   4558414d504c45(EXAMPLE)
 ```
 
-"EXAMPLE" is the symbol of our test contract. 
+"EXAMPLE" is the symbol of our test contract.
 
 4558414d504c45 is hexadecimal little-endian string of "EXAMPLE".
 
 If we want to call the contract and send the transaction, we can execute it:
 
 ```shell
-> .\neoxp contract run 0x4e97b0370712bf9f5f0bbb7beb5e4127fac55040 symbol --account genesis
+> .\epicchain contract run 0x4e97b0370712bf9f5f0bbb7beb5e4127fac55040 symbol --account genesis
 Invocation Transaction 0x1bf5b40cf217c278c331e915f6fc0e0164c7ae84113375947a529e3f2ae8411b submitted
 ```
 

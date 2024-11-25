@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// NodeUtility.cs file belongs to neo-express project and is free
+// NodeUtility.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,24 +9,24 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit.Models;
-using Neo.Cryptography;
-using Neo.Cryptography.ECC;
-using Neo.IO;
-using Neo.Json;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Manifest;
-using Neo.SmartContract.Native;
-using Neo.VM;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.Cryptography;
+using EpicChain.Cryptography.ECC;
+using EpicChain.IO;
+using EpicChain.Json;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Manifest;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
+using EpicChain.Wallets;
 using NeoExpress.Commands;
 using NeoExpress.Models;
 using System.Numerics;
-using static Neo.BlockchainToolkit.Utility;
+using static EpicChain.BlockchainToolkit.Utility;
 
 namespace NeoExpress.Node
 {
@@ -46,7 +46,7 @@ namespace NeoExpress.Node
                     MerkleRoot = MerkleTree.ComputeRoot(transactions.Select(t => t.Hash).ToArray()),
                     Timestamp = timestamp > prevHeader.Timestamp
                         ? timestamp
-                        : Math.Max(Neo.Helper.ToTimestampMS(DateTime.UtcNow), prevHeader.Timestamp + 1),
+                        : Math.Max(EpicChain.Helper.ToTimestampMS(DateTime.UtcNow), prevHeader.Timestamp + 1),
                     Index = blockHeight,
                     PrimaryIndex = 0,
                     NextConsensus = prevHeader.NextConsensus
@@ -79,7 +79,7 @@ namespace NeoExpress.Node
             if (blockCount == 0)
                 return;
 
-            var timestamp = Math.Max(Neo.Helper.ToTimestampMS(DateTime.UtcNow), prevHeader.Timestamp + 1);
+            var timestamp = Math.Max(EpicChain.Helper.ToTimestampMS(DateTime.UtcNow), prevHeader.Timestamp + 1);
             var delta = (ulong)timestampDelta.TotalMilliseconds;
 
             if (blockCount == 1)
@@ -189,20 +189,20 @@ namespace NeoExpress.Node
             var engine = ApplicationEngine.Create(TriggerType.Verification, tx, snapshot.CreateSnapshot(), settings: settings);
             ContractMethodDescriptor md = oracleContract.Manifest.Abi.GetMethod("verify", -1);
             engine.LoadContract(oracleContract, md, CallFlags.None);
-            if (engine.Execute() != Neo.VM.VMState.HALT)
+            if (engine.Execute() != EpicChain.VM.VMState.HALT)
                 return null;
             tx.NetworkFee += engine.GasConsumed;
 
             var executionFactor = NativeContract.Policy.GetExecFeeFactor(snapshot);
-            var networkFee = executionFactor * Neo.SmartContract.Helper.MultiSignatureContractCost(m, n);
+            var networkFee = executionFactor * EpicChain.SmartContract.Helper.MultiSignatureContractCost(m, n);
             tx.NetworkFee += networkFee;
 
             // Base size for transaction: includes const_header + signers + script + hashes + witnesses, except attributes
 
             int size_inv = 66 * m;
             int size = Transaction.HeaderSize + tx.Signers.GetVarSize() + tx.Script.GetVarSize()
-                + Neo.IO.Helper.GetVarSize(hashes.Length) + witnessDict[NativeContract.Oracle.Hash].Size
-                + Neo.IO.Helper.GetVarSize(size_inv) + size_inv + oracleSignContract.Script.GetVarSize();
+                + EpicChain.IO.Helper.GetVarSize(hashes.Length) + witnessDict[NativeContract.Oracle.Hash].Size
+                + EpicChain.IO.Helper.GetVarSize(size_inv) + size_inv + oracleSignContract.Script.GetVarSize();
 
             var feePerByte = NativeContract.Policy.GetFeePerByte(snapshot);
             if (response.Result.Length > OracleResponse.MaxResultSize)

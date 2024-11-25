@@ -27,16 +27,16 @@ export default class NeoCommands {
     if (!identifier) {
       return;
     }
-    if (identifier.name === "Neo N3 MainNet") {
+    if (identifier.name === "EpicChain MainNet") {
       vscode.window.showErrorMessage(
-        "Contract Deployment to Neo N3 MainNet is not supported."
+        "Contract Deployment to EpicChain MainNet is not supported."
       );
       return;
     }
     const wallets = walletDetector.wallets;
     if (!wallets.length) {
       vscode.window.showErrorMessage(
-        "No NEP-6 wallets were found in the current workspace."
+        "No XEP-6 wallets were found in the current workspace."
       );
       return;
     }

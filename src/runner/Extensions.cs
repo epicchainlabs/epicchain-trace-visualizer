@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Extensions.cs file belongs to neo-express project and is free
+// Extensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,14 +9,14 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
-using Neo.Persistence;
-using Neo.SmartContract.Native;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.Persistence;
+using EpicChain.SmartContract.Native;
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 
-namespace Neo.Test.Runner
+namespace EpicChain.Test.Runner
 {
     static class Extensions
     {
@@ -32,7 +32,7 @@ namespace Neo.Test.Runner
                 {
                     if (chain.TryGetDefaultAccount(name, out var account))
                     {
-                        scriptHash = Neo.Wallets.Helper.ToScriptHash(account.ScriptHash, chain.AddressVersion);
+                        scriptHash = EpicChain.Wallets.Helper.ToScriptHash(account.ScriptHash, chain.AddressVersion);
                         return true;
                     }
 

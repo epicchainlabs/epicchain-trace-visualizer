@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressRpcServerPlugin.cs file belongs to neo-express project and is free
+// ExpressRpcServerPlugin.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,25 +9,25 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.IO;
-using Neo.Json;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.Persistence;
-using Neo.Plugins;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
-using Neo.VM;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.IO;
+using EpicChain.Json;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.Persistence;
+using EpicChain.Plugins;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
+using EpicChain.Wallets;
 using NeoExpress.Commands;
 using NeoExpress.Models;
 using NeoExpress.Validators;
 using System.Collections.Immutable;
 using System.Numerics;
-using RpcException = Neo.Plugins.RpcException;
-using Utility = Neo.Utility;
+using RpcException = EpicChain.Plugins.RpcException;
+using Utility = EpicChain.Utility;
 
 namespace NeoExpress.Node
 {
@@ -331,7 +331,7 @@ namespace NeoExpress.Node
                     ["event-name"] = notification.EventName,
                     ["inventory-type"] = (byte)notification.InventoryType,
                     ["inventory-hash"] = notification.InventoryHash.ToString(),
-                    ["state"] = Neo.VM.Helper.ToJson(notification.State),
+                    ["state"] = EpicChain.VM.Helper.ToJson(notification.State),
                 };
                 jsonNotifications.Add(jNotification);
             }
@@ -343,7 +343,7 @@ namespace NeoExpress.Node
             };
         }
 
-        // Neo-express uses a custom implementation of GetApplicationLog due to
+        // EpicChain-express uses a custom implementation of GetApplicationLog due to
         // https://github.com/neo-project/neo-modules/issues/614
         [RpcMethod]
         public JObject GetApplicationLog(JArray _params)
@@ -352,13 +352,13 @@ namespace NeoExpress.Node
             return persistencePlugin.Value.GetAppLog(hash) ?? throw new RpcException(new RpcError(-100, "Unknown transaction/blockhash"));
         }
 
-        // Neo-Express uses a custom implementation of TokenTracker RPC methods. Originally, this was
+        // EpicChain-Express uses a custom implementation of TokenTracker RPC methods. Originally, this was
         // because of https://github.com/neo-project/neo-modules/issues/614, but the custom implementation
         // has been maintained after TokenTracker was introduced (TokenTracker does not have the same
         // issue #614 that the older RpcNep17Tracker had) for compatibility w/ 3.0.x versions of neo-express.
-        // Additionally, this implementation allows neo-express to introduce new RPC methods that depend
+        // Additionally, this implementation allowsepicchain-express to introduce new RPC methods that depend
         // on notification processing (such as GetNep11Balances and GetNep11Transfers) on existing
-        // neo-express blockchain instances.
+        //epicchain-express blockchain instances.
 
         [RpcMethod]
         public JObject GetNep17Balances(JArray @params)
@@ -398,7 +398,7 @@ namespace NeoExpress.Node
                             && (transfer.From == address || transfer.To == address))
                         {
                             // if the specified account was the sender or receiver of the current transfer,
-                            // record the update index. Stop the iteration if indexes for all the assets are 
+                            // record the update index. Stop the iteration if indexes for all the assets are
                             // have been recorded
                             updateIndexes.Add(notification.ScriptHash, blockIndex);
                             if (updateIndexes.Count == addressBalances.Count)
@@ -471,7 +471,7 @@ namespace NeoExpress.Node
             List<(UInt160 scriptHash, ReadOnlyMemory<byte> tokenId, BigInteger balance)> tokens = new();
             foreach (var contract in NativeContract.ContractManagement.ListContracts(snapshot))
             {
-                if (!contract.Manifest.SupportedStandards.Contains("NEP-11"))
+                if (!contract.Manifest.SupportedStandards.Contains("XEP-11"))
                     continue;
                 var balanceOf = contract.Manifest.Abi.GetMethod("balanceOf", -1);
                 if (balanceOf is null)
@@ -567,7 +567,7 @@ namespace NeoExpress.Node
         {
             if (neoSystem is null)
                 throw new NullReferenceException(nameof(neoSystem));
-            // logic replicated from TokenTracker.GetNep11Properties. 
+            // logic replicated from TokenTracker.GetNep11Properties.
             var nep11Hash = AsScriptHash(@params[0]!);
             var tokenId = @params[1]!.AsString().HexToBytes();
 
@@ -580,10 +580,10 @@ namespace NeoExpress.Node
             JObject json = new();
             if (engine.State == VMState.HALT)
             {
-                var map = engine.ResultStack.Pop<Neo.VM.Types.Map>();
+                var map = engine.ResultStack.Pop<EpicChain.VM.Types.Map>();
                 foreach (var keyValue in map)
                 {
-                    if (keyValue.Value is Neo.VM.Types.CompoundType)
+                    if (keyValue.Value is EpicChain.VM.Types.CompoundType)
                         continue;
                     var key = keyValue.Key.GetString() ?? string.Empty;
                     if (nep11PropertyNames.Contains(key))
@@ -727,7 +727,7 @@ namespace NeoExpress.Node
                     ["txhash"] = transfer.Notification.InventoryHash.ToString(),
                 };
 
-                // NEP-11 transfer records include an extra field for the token ID (if present)
+                // XEP-11 transfer records include an extra field for the token ID (if present)
                 if (standard == TokenStandard.Nep11 && transfer.TokenId.Length > 0)
                 {
                     jsonTransfer["tokenid"] = transfer.TokenId.Span.ToHexString();

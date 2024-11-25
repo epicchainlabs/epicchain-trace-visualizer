@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// CodeCoverageCollector.cs file belongs to neo-express project and is free
+// CodeCoverageCollector.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,14 +9,14 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Collector.Models;
+using EpicChain.Collector.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Neo.Collector
+namespace EpicChain.Collector
 {
     // Testable version of CodeCoverageDataCollector
     class CodeCoverageCollector
@@ -46,7 +46,7 @@ namespace Neo.Collector
         {
             if (verboseLog)
                 logger.LogWarning($"LoadDebugInfoSetting {path}");
-            if (NeoDebugInfo.TryLoad(path, out var debugInfo))
+            if (EpicChainDebugInfo.TryLoad(path, out var debugInfo))
             {
                 if (string.IsNullOrEmpty(name))
                 {
@@ -69,7 +69,7 @@ namespace Neo.Collector
                 foreach (var type in asm.DefinedTypes)
                 {
                     if (TryGetContractAttribute(type, out var contractName, out var manifestPath)
-                        && NeoDebugInfo.TryLoadManifestDebugInfo(manifestPath, out var debugInfo))
+                        && EpicChainDebugInfo.TryLoadManifestDebugInfo(manifestPath, out var debugInfo))
                     {
                         TrackContract(contractName, debugInfo);
                     }
@@ -101,7 +101,7 @@ namespace Neo.Collector
             return false;
         }
 
-        public void TrackContract(string contractName, NeoDebugInfo debugInfo)
+        public void TrackContract(string contractName, EpicChainDebugInfo debugInfo)
         {
             if (verboseLog)
                 logger.LogWarning($"TrackContract {contractName}");

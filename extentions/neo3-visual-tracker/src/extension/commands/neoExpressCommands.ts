@@ -86,10 +86,10 @@ export default class NeoExpressCommands {
       .fsPath;
     const configSavePath = await IoHelpers.pickSaveFile(
       "Create",
-      "Neo Express Configurations",
+      "EpicChain Express Configurations",
       "neo-express",
       worksapcePath
-        ? vscode.Uri.file(posixPath(worksapcePath, "default.neo-express"))
+        ? vscode.Uri.file(posixPath(worksapcePath, "default.epicchain-express"))
         : undefined
     );
     if (!configSavePath) {
@@ -150,7 +150,7 @@ export default class NeoExpressCommands {
     } catch {}
     let filename = posixPath(checkpointsFolder, "checkpoint-1");
     let i = 1;
-    while (fs.existsSync(`${filename}.neoxp-checkpoint`)) {
+    while (fs.existsSync(`${filename}.epicchain-checkpoint`)) {
       i++;
       filename = posixPath(checkpointsFolder, `checkpoint-${i}`);
     }
@@ -175,7 +175,7 @@ export default class NeoExpressCommands {
     if (!identifier) {
       return;
     }
-    const command = await IoHelpers.enterString("Enter a neo-express command");
+    const command = await IoHelpers.enterString("Enter aepicchain-express command");
     if (!command) {
       return;
     }

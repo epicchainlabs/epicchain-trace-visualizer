@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Extensions.cs file belongs to neo-express project and is free
+// Extensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,7 +9,7 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Collector.Models;
+using EpicChain.Collector.Models;
 using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 
-namespace Neo.Collector
+namespace EpicChain.Collector
 {
     static class Extensions
     {
@@ -165,13 +165,13 @@ namespace Neo.Collector
             }
         }
 
-        public static decimal CalculateLineRate(this IEnumerable<NeoDebugInfo.SequencePoint> lines, Func<int, bool> hitFunc)
+        public static decimal CalculateLineRate(this IEnumerable<EpicChainDebugInfo.SequencePoint> lines, Func<int, bool> hitFunc)
         {
             var (lineCount, hitCount) = GetLineRate(lines, hitFunc);
             return Utility.CalculateHitRate(lineCount, hitCount);
         }
 
-        public static (uint lineCount, uint hitCount) GetLineRate(this IEnumerable<NeoDebugInfo.SequencePoint> lines, Func<int, bool> hitFunc)
+        public static (uint lineCount, uint hitCount) GetLineRate(this IEnumerable<EpicChainDebugInfo.SequencePoint> lines, Func<int, bool> hitFunc)
         {
             uint lineCount = 0;
             uint hitCount = 0;
@@ -185,13 +185,13 @@ namespace Neo.Collector
         }
 
 
-        public static decimal CalculateBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, IEnumerable<NeoDebugInfo.Method> methods, Func<int, (uint, uint)> branchHitFunc)
+        public static decimal CalculateBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, IEnumerable<EpicChainDebugInfo.Method> methods, Func<int, (uint, uint)> branchHitFunc)
         {
             var (branchCount, branchHit) = instructionMap.GetBranchRate(methods, branchHitFunc);
             return Utility.CalculateHitRate(branchCount, branchHit);
         }
 
-        public static (uint branchCount, uint branchHit) GetBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, IEnumerable<NeoDebugInfo.Method> methods, Func<int, (uint, uint)> branchHitFunc)
+        public static (uint branchCount, uint branchHit) GetBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, IEnumerable<EpicChainDebugInfo.Method> methods, Func<int, (uint, uint)> branchHitFunc)
         {
             uint branchCount = 0u, branchHit = 0u;
             foreach (var method in methods)
@@ -203,13 +203,13 @@ namespace Neo.Collector
             return (branchCount, branchHit);
         }
 
-        public static decimal CalculateBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, NeoDebugInfo.Method method, Func<int, (uint, uint)> branchHitFunc)
+        public static decimal CalculateBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, EpicChainDebugInfo.Method method, Func<int, (uint, uint)> branchHitFunc)
         {
             var (branchCount, branchHit) = instructionMap.GetBranchRate(method, branchHitFunc);
             return Utility.CalculateHitRate(branchCount, branchHit);
         }
 
-        public static (uint branchCount, uint branchHit) GetBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, NeoDebugInfo.Method method, Func<int, (uint, uint)> branchHitFunc)
+        public static (uint branchCount, uint branchHit) GetBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, EpicChainDebugInfo.Method method, Func<int, (uint, uint)> branchHitFunc)
         {
             uint branchCount = 0u, branchHit = 0u;
             for (int i = 0; i < method.SequencePoints.Count; i++)
@@ -221,13 +221,13 @@ namespace Neo.Collector
             return (branchCount, branchHit);
         }
 
-        public static decimal CalculateBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, NeoDebugInfo.Method method, int index, Func<int, (uint, uint)> branchHitFunc)
+        public static decimal CalculateBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, EpicChainDebugInfo.Method method, int index, Func<int, (uint, uint)> branchHitFunc)
         {
             var (branchCount, branchHit) = instructionMap.GetBranchRate(method, index, branchHitFunc);
             return Utility.CalculateHitRate(branchCount, branchHit);
         }
 
-        public static (uint branchCount, uint branchHit) GetBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, NeoDebugInfo.Method method, int index, Func<int, (uint, uint)> branchHitFunc)
+        public static (uint branchCount, uint branchHit) GetBranchRate(this IReadOnlyDictionary<int, Instruction> instructionMap, EpicChainDebugInfo.Method method, int index, Func<int, (uint, uint)> branchHitFunc)
         {
             return instructionMap
                 .GetBranchInstructions(method, index)
@@ -249,7 +249,7 @@ namespace Neo.Collector
             return (branchCount, branchHit);
         }
 
-        public static IEnumerable<(int address, OpCode opCode)> GetBranchInstructions(this IReadOnlyDictionary<int, Instruction> instructionMap, NeoDebugInfo.Method method, int index)
+        public static IEnumerable<(int address, OpCode opCode)> GetBranchInstructions(this IReadOnlyDictionary<int, Instruction> instructionMap, EpicChainDebugInfo.Method method, int index)
         {
             var address = method.SequencePoints[index].Address;
             var last = instructionMap.GetLineLastAddress(method, index);
@@ -271,7 +271,7 @@ namespace Neo.Collector
             }
         }
 
-        public static int GetLineLastAddress(this IReadOnlyDictionary<int, Instruction> instructionMap, NeoDebugInfo.Method method, int index)
+        public static int GetLineLastAddress(this IReadOnlyDictionary<int, Instruction> instructionMap, EpicChainDebugInfo.Method method, int index)
         {
             var point = method.SequencePoints[index];
             var nextIndex = index + 1;

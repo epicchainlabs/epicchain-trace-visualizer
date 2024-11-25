@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// CreateCommand.cs file belongs to neo-express project and is free
+// CreateCommand.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,13 +10,13 @@
 // modifications are permitted.
 
 using System.IO.Abstractions;
-using static Neo.BlockchainToolkit.Constants;
+using static EpicChain.BlockchainToolkit.Constants;
 
 namespace NeoExpress.Commands
 {
     using McMaster.Extensions.CommandLineUtils;
 
-    [Command("create", Description = "Create new neo-express instance")]
+    [Command("create", Description = "Create newepicchain-express instance")]
     internal class CreateCommand
     {
         readonly ExpressChainManagerFactory chainManagerFactory;
@@ -30,7 +30,7 @@ namespace NeoExpress.Commands
             this.txExecutorFactory = txExecutorFactory;
         }
 
-        [Option(Description = $"Name of {EXPRESS_EXTENSION} file to create\nDefault location is home directory as:\nLinux: $HOME/.neo-express/{DEFAULT_EXPRESS_FILENAME}\nWindows: %UserProfile%\\.neo-express\\{DEFAULT_EXPRESS_FILENAME}")]
+        [Option(Description = $"Name of {EXPRESS_EXTENSION} file to create\nDefault location is home directory as:\nLinux: $HOME/.epicchain-express/{DEFAULT_EXPRESS_FILENAME}\nWindows: %UserProfile%\\.epicchain-express\\{DEFAULT_EXPRESS_FILENAME}")]
         internal string Output { get; set; } = string.Empty;
 
         [Option(Description = "Number of consensus nodes to create (Default: 1)")]
@@ -62,7 +62,7 @@ namespace NeoExpress.Commands
                     try
                     {
                         if (PrivateKey.StartsWith('L'))
-                            priKey = Neo.Wallets.Wallet.GetPrivateKeyFromWIF(PrivateKey);
+                            priKey = EpicChain.Wallets.Wallet.GetPrivateKeyFromWIF(PrivateKey);
                         else
                             priKey = Convert.FromHexString(PrivateKey);
                     }

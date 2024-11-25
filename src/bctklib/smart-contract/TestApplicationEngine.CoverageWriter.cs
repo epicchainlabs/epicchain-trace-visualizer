@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TestApplicationEngine.CoverageWriter.cs file belongs to neo-express project and is free
+// TestApplicationEngine.CoverageWriter.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.SmartContract;
+using EpicChain.SmartContract;
 using System.IO.Abstractions;
 using BinaryWriter = System.IO.BinaryWriter;
-using ExecutionContext = Neo.VM.ExecutionContext;
+using ExecutionContext = EpicChain.VM.ExecutionContext;
 using FileAccess = System.IO.FileAccess;
 using FileMode = System.IO.FileMode;
 using FileShare = System.IO.FileShare;
@@ -21,7 +21,7 @@ using Stream = System.IO.Stream;
 using StreamWriter = System.IO.StreamWriter;
 using TextWriter = System.IO.TextWriter;
 
-namespace Neo.BlockchainToolkit.SmartContract
+namespace EpicChain.BlockchainToolkit.SmartContract
 {
     public partial class TestApplicationEngine
     {
@@ -71,10 +71,10 @@ namespace Neo.BlockchainToolkit.SmartContract
                 }
                 else
                 {
-                    // Note, ExecutionContextState.ScriptHash is the contract hash used to invoke the contract. 
+                    // Note, ExecutionContextState.ScriptHash is the contract hash used to invoke the contract.
                     // That value is derived from the raw script hash, the contract name and the account that deployed the contract.
                     // The raw script hash is used in coverage files so that it can be tied back to the original contract
-                    // independently of the deployment account.  
+                    // independently of the deployment account.
 
                     var state = context.GetState<ExecutionContextState>();
                     if (!scriptHashCache.TryGetValue(state.ScriptHash, out var hash))

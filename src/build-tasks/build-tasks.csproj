@@ -8,7 +8,7 @@
         <!-- Suppresses the warnings about the package not having assemblies in lib/*/.dll.-->
         <NoPackageAnalysis>true</NoPackageAnalysis>
         <Nullable>enable</Nullable>
-        <PackageId>Neo.BuildTasks</PackageId>
+        <PackageId>Chain.BuildTasks</PackageId>
         <ImplicitUsings>disable</ImplicitUsings>
         <TargetFramework></TargetFramework>
         <TargetFrameworks>netstandard2.0;net472</TargetFrameworks>

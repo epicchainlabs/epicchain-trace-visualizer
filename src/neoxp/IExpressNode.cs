@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// IExpressNode.cs file belongs to neo-express project and is free
+// IExpressNode.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,15 +9,15 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.Cryptography.ECC;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC.Models;
-using Neo.SmartContract;
-using Neo.SmartContract.Manifest;
-using Neo.SmartContract.Native;
-using Neo.VM;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.Cryptography.ECC;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC.Models;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Manifest;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
+using EpicChain.Wallets;
 using NeoExpress.Commands;
 using NeoExpress.Models;
 using System.Numerics;

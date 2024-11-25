@@ -1,11 +1,11 @@
 <!-- markdownlint-enable -->
-# Neo Express Contract Invocation File
+# EpicChain Express Contract Invocation File
 
 ## Overview
 
-Neo Express uses a JSON file containing contract invocation information, which can be passed by path to the `contract invoke` neo-express command. 
+EpicChain Express uses a JSON file containing contract invocation information, which can be passed by path to the `contract invoke`epicchain-express command.
 
-This document describes the initial format of Neo contract invoke files used by Neo Express V3.0 and later versions .
+This document describes the initial format of EpicChain contract invoke files used by EpicChain Express V3.0 and later versions .
 
 There are several advantages of using a invoke file instead of the command line:
 
@@ -16,7 +16,7 @@ There are several advantages of using a invoke file instead of the command line:
 ## Invocation File Format
 
 A neo-invoke file is a serialized JSON object that contains the information needed
-to invoke a Neo smart contract. The file can have any extension, though it typically
+to invoke a EpicChain smart contract. The file can have any extension, though it typically
 uses `.neo-invoke.json` to both indicate its usage as well as enable JSON syntax
 highlighting in tools.
 
@@ -33,11 +33,11 @@ property is a JSON object with one of two mutually exclusive properties:
 
 ### `operation` Property
 
-For invoking N3 contracts, the operation must be specified by name in the invocation file.
+For invoking contracts, the operation must be specified by name in the invocation file.
 
 ### `args` Property
 
-The `args` property contains an array of contract parameters to be passed to the contact via the invoke script. neo-express generates the invoke script for the contract specified via the `contract` and  `operation` property.
+The `args` property contains an array of contract parameters to be passed to the contact via the invoke script.epicchain-express generates the invoke script for the contract specified via the `contract` and  `operation` property.
 
 The following JSON types are treated as the corresponding Contract parameter type:
 
@@ -60,7 +60,7 @@ parameter types:
 
   For example:
 
-  @genesis 
+  @genesis
 
   @node1
 
@@ -76,13 +76,13 @@ parameter types:
   For example:
 
   #0x558a35116215a65a03eeb156704f34a07404ee96
-  
+
   #0xc401a47c96711a6cf99cc2cbc185c249a935dab0df43bf6886093eacec2010b2
-  
+
   #neo
-  
-  #test-contract 
-  
+
+  #test-contract
+
 ## Example
 
 Following is an example of invocation file:

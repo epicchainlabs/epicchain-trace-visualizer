@@ -93,29 +93,29 @@ jobs:
         files: |
           /tmp/dist/*
 
-    - name: Push Neo.Express Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.Express.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+    - name: Push Chain.Express Nuget.org
+      run: dotnet nuget push ${{ format('./dist/Chain.Express.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
 
-    - name: Push Neo.Trace Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.Trace.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+    - name: Push Chain.Trace Nuget.org
+      run: dotnet nuget push ${{ format('./dist/Chain.Trace.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
 
     - name: Push Blockchain-toolkit-library Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.BlockchainToolkit.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ${{ format('./dist/Chain.BlockchainToolkit.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
 
-    - name: Push Neo.Assertions Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.Assertions.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+    - name: Push Chain.Assertions Nuget.org
+      run: dotnet nuget push ${{ format('./dist/Chain.Assertions.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
 
-    - name: Push Neo.BuildTasks Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.BuildTasks.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+    - name: Push Chain.BuildTasks Nuget.org
+      run: dotnet nuget push ${{ format('./dist/Chain.BuildTasks.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
 
-    - name: Push Neo.Collector Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.Collector.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+    - name: Push Chain.Collector Nuget.org
+      run: dotnet nuget push ${{ format('./dist/Chain.Collector.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
 
-    - name: Push Neo.Test.Runner Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.Test.Runner.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+    - name: Push Chain.Test.Runner Nuget.org
+      run: dotnet nuget push ${{ format('./dist/Chain.Test.Runner.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
 
-    - name: Neo.Test.Harness Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.Test.Harness.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+    - name: Chain.Test.Harness Nuget.org
+      run: dotnet nuget push ${{ format('./dist/Chain.Test.Harness.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
 
-    - name: Push Neo.WorkNet Nuget.org
-      run: dotnet nuget push ${{ format('./dist/Neo.WorkNet.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+    - name: Push Chain.WorkNet Nuget.org
+      run: dotnet nuget push ${{ format('./dist/Chain.WorkNet.{0}.nupkg', steps.nbgv.outputs.NuGetPackageVersion) }} --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json

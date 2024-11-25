@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ContractManifestExtensions.cs file belongs to neo-express project and is free
+// ContractManifestExtensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,8 +10,8 @@
 // modifications are permitted.
 
 using Microsoft.AspNetCore.Diagnostics;
-using Neo.SmartContract;
-using Neo.SmartContract.Manifest;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Manifest;
 
 namespace NeoExpress;
 
@@ -81,27 +81,27 @@ internal static class ContractManifestExtensions
 
 
         if (!symbolValid)
-            errors.Add($"Incomplete or unsafe NEP standard NEP-11 implementation: symbol");
+            errors.Add($"Incomplete or unsafe NEP standard XEP-11 implementation: symbol");
         if (!decimalsValid)
-            errors.Add($"Incomplete or unsafe NEP standard NEP-11 implementation: decimals");
+            errors.Add($"Incomplete or unsafe NEP standard XEP-11 implementation: decimals");
 
         if (!totalSupplyValid)
-            errors.Add($"Incomplete or unsafe NEP standard NEP-11 implementation: totalSupply");
+            errors.Add($"Incomplete or unsafe NEP standard XEP-11 implementation: totalSupply");
 
         if (!balanceOfValid1 && !balanceOfValid2)
-            errors.Add($"Incomplete or unsafe NEP standard NEP-11 implementation: balanceOf");
+            errors.Add($"Incomplete or unsafe NEP standard XEP-11 implementation: balanceOf");
 
         if (!tokensOfValid)
-            errors.Add($"Incomplete or unsafe NEP standard NEP-11 implementation: tokensOf");
+            errors.Add($"Incomplete or unsafe NEP standard XEP-11 implementation: tokensOf");
 
         if (!ownerOfValid1 && !ownerOfValid2)
-            errors.Add($"Incomplete or unsafe NEP standard NEP-11 implementation: ownerOf");
+            errors.Add($"Incomplete or unsafe NEP standard XEP-11 implementation: ownerOf");
 
         if (!transferValid1 && !transferValid2)
-            errors.Add($"Incomplete NEP standard NEP-11 implementation: transfer");
+            errors.Add($"Incomplete NEP standard XEP-11 implementation: transfer");
 
         if (!transferEvent)
-            errors.Add($"Incomplete NEP standard NEP-11 implementation: {nameof(transferEvent)}");
+            errors.Add($"Incomplete NEP standard XEP-11 implementation: {nameof(transferEvent)}");
 
         return errors;
     }
@@ -140,15 +140,15 @@ internal static class ContractManifestExtensions
             s.Parameters[2].Type == ContractParameterType.Integer);
 
         if (!symbolValid)
-            errors.Add("Incomplete or unsafe NEP standard NEP-17 implementation: symbol");
+            errors.Add("Incomplete or unsafe NEP standard XEP-17 implementation: symbol");
         if (!decimalsValid)
-            errors.Add("Incomplete or unsafe NEP standard NEP-17 implementation: decimals");
+            errors.Add("Incomplete or unsafe NEP standard XEP-17 implementation: decimals");
         if (!totalSupplyValid)
-            errors.Add("Incomplete or unsafe NEP standard NEP-17 implementation: totalSupply");
+            errors.Add("Incomplete or unsafe NEP standard XEP-17 implementation: totalSupply");
         if (!balanceOfValid)
-            errors.Add("Incomplete or unsafe NEP standard NEP-17 implementation: balanceOf");
+            errors.Add("Incomplete or unsafe NEP standard XEP-17 implementation: balanceOf");
         if (!transferValid)
-            errors.Add("Incomplete NEP standard NEP-17 implementation: transfer");
+            errors.Add("Incomplete NEP standard XEP-17 implementation: transfer");
 
         return errors;
     }
@@ -166,7 +166,7 @@ internal static class ContractManifestExtensions
                             royaltyInfoMethod.Parameters[2].Type == ContractParameterType.Integer;
 
         if (!royaltyInfoValid)
-            errors.Add("Incomplete or unsafe NEP standard NEP-24 implementation: royaltyInfo");
+            errors.Add("Incomplete or unsafe NEP standard XEP-24 implementation: royaltyInfo");
         return errors;
     }
 
@@ -183,7 +183,7 @@ internal static class ContractManifestExtensions
                                     onNEP11PaymentMethod.Parameters[3].Type == ContractParameterType.Any;
 
         if (!onNEP11PaymentValid)
-            errors.Add("Incomplete NEP standard NEP-26 implementation: onNEP11Payment");
+            errors.Add("Incomplete NEP standard XEP-26 implementation: onNEP11Payment");
         return errors;
     }
 
@@ -199,7 +199,7 @@ internal static class ContractManifestExtensions
                                     onNEP17PaymentMethod.Parameters[2].Type == ContractParameterType.Any;
 
         if (!onNEP17PaymentValid)
-            errors.Add("Incomplete NEP standard NEP-27 implementation: onNEP17Payment");
+            errors.Add("Incomplete NEP standard XEP-27 implementation: onNEP17Payment");
         return errors;
     }
 }

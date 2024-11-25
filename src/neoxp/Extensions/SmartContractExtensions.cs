@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// SmartContractExtensions.cs file belongs to neo-express project and is free
+// SmartContractExtensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,18 +9,18 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.IO;
-using Neo.Persistence;
-using Neo.SmartContract.Iterators;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain;
+using EpicChain.IO;
+using EpicChain.Persistence;
+using EpicChain.SmartContract.Iterators;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using NeoExpress.Models;
 using System.Numerics;
-using ByteString = Neo.VM.Types.ByteString;
-using Integer = Neo.VM.Types.Integer;
-using InteropInterface = Neo.VM.Types.InteropInterface;
-using StackItemType = Neo.VM.Types.StackItemType;
+using ByteString = EpicChain.VM.Types.ByteString;
+using Integer = EpicChain.VM.Types.Integer;
+using InteropInterface = EpicChain.VM.Types.InteropInterface;
+using StackItemType = EpicChain.VM.Types.StackItemType;
 
 namespace NeoExpress
 {
@@ -38,9 +38,9 @@ namespace NeoExpress
 
             static bool TryLoadTokenInfo(UInt160 scriptHash, DataCache snapshot, ProtocolSettings settings, out (string symbol, byte decimals) info)
             {
-                if (scriptHash == NativeContract.NEO.Hash)
+                if (scriptHash == NativeContract.EpicChain.Hash)
                 {
-                    info = (NativeContract.NEO.Symbol, NativeContract.NEO.Decimals);
+                    info = (NativeContract.EpicChain.Symbol, NativeContract.EpicChain.Decimals);
                     return true;
                 }
 
@@ -82,7 +82,7 @@ namespace NeoExpress
                 using var engine = builder.Invoke(settings, snapshot);
                 if (engine.State != VMState.FAULT && engine.ResultStack.Count >= 2)
                 {
-                    var decimals = (byte)engine.ResultStack.Pop<Neo.VM.Types.Integer>().GetInteger();
+                    var decimals = (byte)engine.ResultStack.Pop<EpicChain.VM.Types.Integer>().GetInteger();
                     var symbol = System.Text.Encoding.UTF8.GetString(engine.ResultStack.Pop().GetSpan());
                     details = (contractState.Manifest.Name, symbol, decimals);
                     return true;

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ToolkitWalletTests.cs file belongs to neo-express project and is free
+// ToolkitWalletTests.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,8 +9,8 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit.Models;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -24,12 +24,12 @@ using static Utility;
 public class ToolkitWalletTests
 {
     const string expectedAddress = "NeJ7447Mh3ntyn8mb1mkBgTevgkWoxAhLb";
-    readonly static UInt160 expectedScriptHash = Neo.Wallets.Helper.ToScriptHash(expectedAddress, ProtocolSettings.Default.AddressVersion);
+    readonly static UInt160 expectedScriptHash = EpicChain.Wallets.Helper.ToScriptHash(expectedAddress, ProtocolSettings.Default.AddressVersion);
     readonly static ReadOnlyMemory<byte> expectedScript = Convert.FromHexString("0c21020e220de97ef404352a5fa761b54790ddf554c059198d35314d3721e8679af7604156e7b327");
 
     static ToolkitWallet GetWallet(string name)
     {
-        using var stream = GetResourceStream("default.neo-express.json");
+        using var stream = GetResourceStream("default.epicchain-express.json");
         using var textReader = new StreamReader(stream);
         using var reader = new JsonTextReader(textReader);
         var json = JObject.Load(reader);

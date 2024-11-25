@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <Authors>The Neo Project</Authors>
-        <Company>The Neo Project</Company>
-        <Copyright>2015-2024 The Neo Project</Copyright>
+        <Authors>The EpicChain Project</Authors>
+        <Company>The EpicChain Project</Company>
+        <Copyright>2015-2024 The EpicChain Project</Copyright>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>10</LangVersion>
         <Nullable>enable</Nullable>
         <PackageIcon>neo-logo-72.png</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/neo-project/neo-express</PackageProjectUrl>
-        <PackageTags>Neo;Blockchain;Smart Contract</PackageTags>
+        <PackageTags>EpicChain;Blockchain;Smart Contract</PackageTags>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/neo-project/neo-express.git</RepositoryUrl>
         <IncludeSymbols>true</IncludeSymbols>

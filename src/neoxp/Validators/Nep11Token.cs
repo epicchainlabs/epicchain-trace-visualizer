@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Nep11Token.cs file belongs to neo-express project and is free
+// Nep11Token.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,11 +9,11 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.Network.P2P.Payloads;
-using Neo.Persistence;
-using Neo.SmartContract.Iterators;
-using Neo.VM;
+using EpicChain;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Persistence;
+using EpicChain.SmartContract.Iterators;
+using EpicChain.VM;
 using System.Numerics;
 
 namespace NeoExpress.Validators;
@@ -121,7 +121,7 @@ internal class Nep11Token : TokenBase
         throw appEng.FaultException?.InnerException! ?? appEng.FaultException!;
     }
 
-    public IReadOnlyDictionary<string, Neo.VM.Types.StackItem> Properties(byte[] tokenId)
+    public IReadOnlyDictionary<string, EpicChain.VM.Types.StackItem> Properties(byte[] tokenId)
     {
         ArgumentNullException.ThrowIfNull(tokenId, nameof(tokenId));
         if (tokenId.Length > 64)
@@ -134,7 +134,7 @@ internal class Nep11Token : TokenBase
         if (appEng.State == VMState.HALT)
         {
             var result = appEng.ResultStack.Pop().GetInterface<object>();
-            if (result is Neo.VM.Types.Map map)
+            if (result is EpicChain.VM.Types.Map map)
                 return map.ToDictionary(key => key.Key.GetString()!, value => value.Value);
         }
         throw appEng.FaultException?.InnerException! ?? appEng.FaultException!;

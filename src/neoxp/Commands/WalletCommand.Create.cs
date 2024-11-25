@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// WalletCommand.Create.cs file belongs to neo-express project and is free
+// WalletCommand.Create.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,15 +10,15 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.Wallets;
 using System.ComponentModel.DataAnnotations;
 
 namespace NeoExpress.Commands
 {
     partial class WalletCommand
     {
-        [Command("create", Description = "Create neo-express wallet")]
+        [Command("create", Description = "Createepicchain-express wallet")]
         internal class Create
         {
             readonly ExpressChainManagerFactory chainManagerFactory;
@@ -35,7 +35,7 @@ namespace NeoExpress.Commands
             [Option(Description = "Overwrite existing data")]
             internal bool Force { get; } = false;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
             [Option(Description = "Private key for account (Format: HEX or WIF)\nDefault: Random")]

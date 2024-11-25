@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TraceRecordFormatter.cs file belongs to neo-express project and is free
+// TraceRecordFormatter.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BlockchainToolkit.TraceDebug;
-using VMState = Neo.VM.VMState;
+using EpicChain.BlockchainToolkit.TraceDebug;
+using VMState = EpicChain.VM.VMState;
 
-namespace MessagePack.Formatters.Neo.BlockchainToolkit.TraceDebug
+namespace MessagePack.Formatters.EpicChain.BlockchainToolkit.TraceDebug
 {
     public class TraceRecordFormatter : IMessagePackFormatter<TraceRecord>
     {
@@ -20,7 +20,7 @@ namespace MessagePack.Formatters.Neo.BlockchainToolkit.TraceDebug
 
         public TraceRecord Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
         {
-            // Older trace records (N3 RC3 and before) did not have gas consumed value.
+            // Older trace records (RC3 and before) did not have gas consumed value.
             // When parsing TraceRecords, if there are only two fields in the TraceRecord array, provide a dummy gasConsumed value.
 
             var fieldCount = reader.ReadArrayHeader();

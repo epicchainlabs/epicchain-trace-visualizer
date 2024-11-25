@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// PolicyCommand.Sync.cs file belongs to neo-express project and is free
+// PolicyCommand.Sync.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -16,7 +16,7 @@ namespace NeoExpress.Commands
 {
     partial class PolicyCommand
     {
-        [Command(Name = "sync", Description = "Synchronize local policy values with public Neo network")]
+        [Command(Name = "sync", Description = "Synchronize local policy values with public EpicChain network")]
         internal class Sync
         {
             readonly ExpressChainManagerFactory chainManagerFactory;
@@ -28,7 +28,7 @@ namespace NeoExpress.Commands
                 this.txExecutorFactory = txExecutorFactory;
             }
 
-            [Argument(0, Description = "Source of policy values. Must be local policy settings JSON file or the URL of Neo JSON-RPC Node\nFor Node URL,\"MainNet\" or \"TestNet\" can be specified in addition to a standard HTTP URL")]
+            [Argument(0, Description = "Source of policy values. Must be local policy settings JSON file or the URL of EpicChain JSON-RPC Node\nFor Node URL,\"MainNet\" or \"TestNet\" can be specified in addition to a standard HTTP URL")]
             [Required]
             internal string Source { get; } = string.Empty;
 
@@ -36,10 +36,10 @@ namespace NeoExpress.Commands
             [Required]
             internal string Account { get; init; } = string.Empty;
 
-            [Option(Description = "password to use for NEP-2/NEP-6 sender")]
+            [Option(Description = "password to use for XEP-2/XEP-6 sender")]
             internal string Password { get; init; } = string.Empty;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
             [Option(Description = "Enable contract execution tracing")]

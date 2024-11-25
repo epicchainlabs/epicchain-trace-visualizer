@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressLogPlugin.cs file belongs to neo-express project and is free
+// ExpressLogPlugin.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,13 +10,13 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
-using Neo.Ledger;
-using Neo.Network.P2P.Payloads;
-using Neo.Persistence;
-using Neo.Plugins;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
+using EpicChain;
+using EpicChain.Ledger;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Persistence;
+using EpicChain.Plugins;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
 
 namespace NeoExpress.Node
 {
@@ -31,12 +31,12 @@ namespace NeoExpress.Node
 
             Blockchain.Committing += OnCommitting;
             ApplicationEngine.Log += OnAppEngineLog!;
-            Neo.Utility.Logging += OnNeoUtilityLog;
+            EpicChain.Utility.Logging += OnNeoUtilityLog;
         }
 
         public override void Dispose()
         {
-            Neo.Utility.Logging -= OnNeoUtilityLog;
+            EpicChain.Utility.Logging -= OnNeoUtilityLog;
             ApplicationEngine.Log -= OnAppEngineLog!;
             Blockchain.Committing -= OnCommitting;
         }
@@ -84,9 +84,9 @@ namespace NeoExpress.Node
             }
         }
 
-        void OnApplicationExecuted(Neo.Ledger.Blockchain.ApplicationExecuted applicationExecuted)
+        void OnApplicationExecuted(EpicChain.Ledger.Blockchain.ApplicationExecuted applicationExecuted)
         {
-            if (applicationExecuted.VMState == Neo.VM.VMState.FAULT)
+            if (applicationExecuted.VMState == EpicChain.VM.VMState.FAULT)
             {
                 var logMessage = $"Tx FAULT: hash={applicationExecuted.Transaction.Hash}";
                 if (!string.IsNullOrEmpty(applicationExecuted.Exception.Message))

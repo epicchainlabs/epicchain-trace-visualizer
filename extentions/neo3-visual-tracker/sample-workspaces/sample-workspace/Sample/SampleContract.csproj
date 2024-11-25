@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Neo.SmartContract.Framework" Version="3.0.0-rc3" />
+    <PackageReference Include="Chain.SmartContract.Framework" Version="3.0.0-rc3" />
   </ItemGroup>
 
-  <Target 
-    Name="NccsBuild" 
-    AfterTargets="Build" 
-    Inputs="$(MSBuildProjectFullPath);@(Compile);" 
+  <Target
+    Name="NccsBuild"
+    AfterTargets="Build"
+    Inputs="$(MSBuildProjectFullPath);@(Compile);"
     Outputs="$(TargetDir)/sc/$(TargetName).nef;$(TargetDir)/sc/$(TargetName).nefdbgnfo;$(TargetDir)/sc/$(TargetName).manifest.json;">
     <PropertyGroup>
       <_NccsDebugArguments Condition="'$(Configuration)'=='Debug'">--debug --no-optimize</_NccsDebugArguments>

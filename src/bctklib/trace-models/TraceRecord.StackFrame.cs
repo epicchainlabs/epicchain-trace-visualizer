@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TraceRecord.StackFrame.cs file belongs to neo-express project and is free
+// TraceRecord.StackFrame.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,15 +10,15 @@
 // modifications are permitted.
 
 using MessagePack;
-using Neo.SmartContract;
-using ExecutionContext = Neo.VM.ExecutionContext;
-using StackItem = Neo.VM.Types.StackItem;
+using EpicChain.SmartContract;
+using ExecutionContext = EpicChain.VM.ExecutionContext;
+using StackItem = EpicChain.VM.Types.StackItem;
 
-namespace Neo.BlockchainToolkit.TraceDebug
+namespace EpicChain.BlockchainToolkit.TraceDebug
 {
     public partial class TraceRecord
     {
-        // Note, Neo 3 calculates the script hash used to identify a contract from the script binary at initial deployment + the address of the contract deployer
+        // Note, EpicChain 3 calculates the script hash used to identify a contract from the script binary at initial deployment + the address of the contract deployer
         // This enables a stable contract identifier, even as the contract is later updated.
         // However, debugging requires the SHA 256 hash of the script binary to tie a specific contract version to its associated debug info.
 
@@ -81,7 +81,7 @@ namespace Neo.BlockchainToolkit.TraceDebug
                 stackItemCollectionFormatter.Serialize(ref writer, Coalese(context.StaticFields), options);
                 stackItemCollectionFormatter.Serialize(ref writer, Coalese(context.Arguments), options);
 
-                static IReadOnlyCollection<StackItem> Coalese(Neo.VM.Slot? slot) => (slot == null) ? Array.Empty<StackItem>() : slot;
+                static IReadOnlyCollection<StackItem> Coalese(EpicChain.VM.Slot? slot) => (slot == null) ? Array.Empty<StackItem>() : slot;
             }
         }
     }

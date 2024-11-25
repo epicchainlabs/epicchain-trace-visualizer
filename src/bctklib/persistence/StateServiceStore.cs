@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// StateServiceStore.cs file belongs to neo-express project and is free
+// StateServiceStore.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,15 +9,15 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BlockchainToolkit.Models;
-using Neo.BlockchainToolkit.Utilities;
-using Neo.IO;
-using Neo.Network.RPC;
-using Neo.Network.RPC.Models;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.BlockchainToolkit.Utilities;
+using EpicChain.IO;
+using EpicChain.Network.RPC;
+using EpicChain.Network.RPC.Models;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using OneOf;
 using OneOf.Types;
 using RocksDbSharp;
@@ -25,7 +25,7 @@ using System.Buffers;
 using System.Buffers.Binary;
 using System.Diagnostics;
 
-namespace Neo.BlockchainToolkit.Persistence
+namespace EpicChain.BlockchainToolkit.Persistence
 {
     public sealed partial class StateServiceStore : IReadOnlyStore, IDisposable
     {
@@ -44,7 +44,7 @@ namespace Neo.BlockchainToolkit.Persistence
             void Commit();
         }
 
-        public const string LoggerCategory = "Neo.BlockchainToolkit.Persistence.StateServiceStore";
+        public const string LoggerCategory = "EpicChain.BlockchainToolkit.Persistence.StateServiceStore";
         readonly static DiagnosticSource logger = new DiagnosticListener(LoggerCategory);
 
         const byte ContractMgmt_Prefix_Contract = 8;
@@ -64,7 +64,7 @@ namespace Neo.BlockchainToolkit.Persistence
         static readonly IReadOnlyDictionary<int, IReadOnlyList<byte>> contractSeekMap = new Dictionary<int, IReadOnlyList<byte>>()
         {
             { NativeContract.ContractManagement.Id, new [] { ContractMgmt_Prefix_Contract, ContractMgmt_Prefix_ContractHash } },
-            { NativeContract.NEO.Id, new [] { NEO_Prefix_Candidate, NEO_Prefix_GasPerBlock } },
+            { NativeContract.EpicChain.Id, new [] { NEO_Prefix_Candidate, NEO_Prefix_GasPerBlock } },
             { NativeContract.Oracle.Id, new [] { Oracle_Prefix_Request } },
             { NativeContract.RoleManagement.Id, new [] { RoleMgmt_Prefix_NeoFSAlphabetNode, RoleMgmt_Prefix_Oracle, RoleMgmt_Prefix_StateValidator } }
         };
@@ -286,12 +286,12 @@ namespace Neo.BlockchainToolkit.Persistence
                     $"{nameof(StateServiceStore)} does not support TryGet method for {nameof(LedgerContract)} with {Convert.ToHexString(key.Span)} key");
             }
 
-            if (contractId == NativeContract.NEO.Id
+            if (contractId == NativeContract.EpicChain.Id
                 && key.Span[0] == NEO_Prefix_VoterRewardPerCommittee)
             {
-                // as of Neo 3.4, the NeoToken contract only seeks over VoterRewardPerCommittee data.
+                // as of EpicChain 3.4, the NeoToken contract only seeks over VoterRewardPerCommittee data.
                 // This exception will never be triggered unless a future NeoToken contract update uses does a keyed read
-                // for a record with this prefix 
+                // for a record with this prefix
                 throw new NotSupportedException(
                     $"{nameof(StateServiceStore)} does not support TryGet method for {nameof(NeoToken)} with {Convert.ToHexString(key.Span)} key");
             }
@@ -317,7 +317,7 @@ namespace Neo.BlockchainToolkit.Persistence
                     }
                 }
 
-                // otherwise, retrieve and cache the keyed value 
+                // otherwise, retrieve and cache the keyed value
                 return GetStorage(contractHash, key,
                     () => rpcClient.GetProvenState(branchInfo.RootHash, contractHash, key.Span));
             }
@@ -355,8 +355,8 @@ namespace Neo.BlockchainToolkit.Persistence
             }
             catch (RpcException ex) when (ex.HResult == -100)
             {
-                // if the getstorage method throws an RPC Exception w/ HResult == -100, it means the 
-                // storage key could not be found. At the storage layer, this means returning a null byte arrray. 
+                // if the getstorage method throws an RPC Exception w/ HResult == -100, it means the
+                // storage key could not be found. At the storage layer, this means returning a null byte arrray.
                 return null;
             }
             finally
@@ -381,7 +381,7 @@ namespace Neo.BlockchainToolkit.Persistence
             if (contractId == NativeContract.Ledger.Id)
             {
                 // Because the state service does not store ledger contract data, the seek method cannot
-                // be implemented for the ledger contract. As of Neo 3.4, the Ledger contract only 
+                // be implemented for the ledger contract. As of EpicChain 3.4, the Ledger contract only
                 // uses Seek in the Initialized method to check for the existence of any value with a
                 // Prefix_Block prefix. In order to support this single scenario, return a single empty
                 // byte array enumerable. This will enable .Any() LINQ method to return true, but will
@@ -397,17 +397,17 @@ namespace Neo.BlockchainToolkit.Persistence
                 throw new NotSupportedException($"{nameof(StateServiceStore)} does not support Seek method for {nameof(LedgerContract)} with {prefix} prefix");
             }
 
-            if (contractId == NativeContract.NEO.Id
+            if (contractId == NativeContract.EpicChain.Id
                 && key.Span[0] == NEO_Prefix_VoterRewardPerCommittee)
             {
                 // For committee members, a new VoterRewardPerCommittee record is created every epoch
-                // (21 blocks / 5 minutes). Since the number of committee members == the number of 
-                // blocks in an epoch, this averages one record per block. Given that mainnet is 2.2 
+                // (21 blocks / 5 minutes). Since the number of committee members == the number of
+                // blocks in an epoch, this averages one record per block. Given that mainnet is 2.2
                 // million blocks as of Sept 2022, downloading all these records is not feasible.
 
-                // VoterRewardPerCommittee records are used to determine GAS token rewards for committee 
+                // VoterRewardPerCommittee records are used to determine GAS token rewards for committee
                 // members. Since GAS reward calculation for committee members is not a relevant scenario
-                // for Neo contract developers, StateServiceStore simply returns an empty array
+                // for EpicChain contract developers, StateServiceStore simply returns an empty array
 
                 return Array.Empty<(byte[], byte[])>();
             }

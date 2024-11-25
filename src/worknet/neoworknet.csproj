@@ -3,7 +3,7 @@
         <AssemblyName>neo-worknet</AssemblyName>
         <Description></Description>
         <OutputType>Exe</OutputType>
-        <PackageId>Neo.WorkNet</PackageId>
+        <PackageId>EpicChain.WorkNet</PackageId>
         <PackAsTool>true</PackAsTool>
         <RootNamespace>NeoWorkNet</RootNamespace>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -12,8 +12,8 @@
     <ItemGroup>
         <PackageReference Include="Crayon" Version="2.0.69" />
         <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.1.1" />
-        <PackageReference Include="Neo.Consensus.DBFT" Version="$(NeoVersion)" />
-        <PackageReference Include="Neo.Plugins.RpcServer" Version="$(NeoVersion)" />
+        <PackageReference Include="EpicChain.Consensus.DBFT" Version="$(NeoVersion)" />
+        <PackageReference Include="EpicChain.Plugins.RpcServer" Version="$(NeoVersion)" />
     </ItemGroup>
 
     <ItemGroup>

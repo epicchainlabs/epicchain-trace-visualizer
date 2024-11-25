@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressChainManager.cs file belongs to neo-express project and is free
+// ExpressChainManager.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -11,11 +11,11 @@
 
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Configuration;
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
-using Neo.BlockchainToolkit.Persistence;
-using Neo.Plugins;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.BlockchainToolkit.Persistence;
+using EpicChain.Plugins;
 using NeoExpress.Models;
 using NeoExpress.Node;
 using Nito.Disposables;
@@ -27,7 +27,7 @@ namespace NeoExpress
     internal class ExpressChainManager
     {
         private const string GLOBAL_PREFIX = "Global\\";
-        private const string CHECKPOINT_EXTENSION = ".neoxp-checkpoint";
+        private const string CHECKPOINT_EXTENSION = ".epicchain-checkpoint";
 
         private readonly IFileSystem fileSystem;
         private readonly ExpressChain chain;
@@ -53,7 +53,7 @@ namespace NeoExpress
 
         private static bool IsNodeRunning(ExpressConsensusNode node)
         {
-            // Check to see if there's a neo-express blockchain currently running by
+            // Check to see if there's aepicchain-express blockchain currently running by
             // attempting to open a mutex with the multisig account address for a name
 
             var account = node.Wallet.Accounts.Single(a => a.IsDefault);
@@ -193,7 +193,7 @@ namespace NeoExpress
             if (!IsNodeRunning(node))
                 return false;
 
-            var rpcClient = new Neo.Network.RPC.RpcClient(new Uri($"http://localhost:{node.RpcPort}"), protocolSettings: ProtocolSettings);
+            var rpcClient = new EpicChain.Network.RPC.RpcClient(new Uri($"http://localhost:{node.RpcPort}"), protocolSettings: ProtocolSettings);
             var json = await rpcClient.RpcSendAsync("expressshutdown").ConfigureAwait(false);
             var processId = int.Parse(json["process-id"]!.AsString());
             var process = System.Diagnostics.Process.GetProcessById(processId);
@@ -220,26 +220,26 @@ namespace NeoExpress
                     var multiSigAccount = wallet.GetMultiSigAccounts().Single();
 
                     var storeProvider = new ExpressStoreProvider(expressStorage);
-                    Neo.Persistence.StoreFactory.RegisterProvider(storeProvider);
+                    EpicChain.Persistence.StoreFactory.RegisterProvider(storeProvider);
                     if (enableTrace)
-                    { Neo.SmartContract.ApplicationEngine.Provider = new ExpressApplicationEngineProvider(); }
+                    { EpicChain.SmartContract.ApplicationEngine.Provider = new ExpressApplicationEngineProvider(); }
 
                     using var persistencePlugin = new ExpressPersistencePlugin();
                     using var logPlugin = new ExpressLogPlugin(console);
-                    using var dbftPlugin = new Neo.Consensus.DBFTPlugin(GetConsensusSettings(chain));
+                    using var dbftPlugin = new EpicChain.Consensus.DBFTPlugin(GetConsensusSettings(chain));
                     using var rpcServerPlugin = new ExpressRpcServerPlugin(GetRpcServerSettings(chain, node),
                         expressStorage, multiSigAccount.ScriptHash);
-                    using var neoSystem = new Neo.NeoSystem(ProtocolSettings, storeProvider.Name);
+                    using var neoSystem = new EpicChain.NeoSystem(ProtocolSettings, storeProvider.Name);
 
-                    neoSystem.StartNode(new Neo.Network.P2P.ChannelsConfig
+                    neoSystem.StartNode(new EpicChain.Network.P2P.ChannelsConfig
                     {
                         Tcp = new IPEndPoint(IPAddress.Loopback, node.TcpPort)
                     });
                     dbftPlugin.Start(wallet);
 
-                    // DevTracker looks for a string that starts with "Neo express is running" to confirm that the instance has started
+                    // DevTracker looks for a string that starts with "EpicChain express is running" to confirm that the instance has started
                     // Do not remove or re-word this console output:
-                    console.Out.WriteLine($"Neo express is running ({expressStorage.Name})");
+                    console.Out.WriteLine($"EpicChain express is running ({expressStorage.Name})");
 
                     var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(token, rpcServerPlugin.CancellationToken);
                     linkedToken.Token.WaitHandle.WaitOne();
@@ -255,7 +255,7 @@ namespace NeoExpress
             });
             await tcs.Task.ConfigureAwait(false);
 
-            static Neo.Consensus.Settings GetConsensusSettings(ExpressChain chain)
+            static EpicChain.Consensus.Settings GetConsensusSettings(ExpressChain chain)
             {
                 var settings = new Dictionary<string, string>()
                 {
@@ -264,7 +264,7 @@ namespace NeoExpress
                 };
 
                 var config = new ConfigurationBuilder().AddInMemoryCollection(settings!).Build();
-                return new Neo.Consensus.Settings(config.GetSection("PluginConfiguration"));
+                return new EpicChain.Consensus.Settings(config.GetSection("PluginConfiguration"));
             }
 
             static RpcServerSettings GetRpcServerSettings(ExpressChain chain, ExpressConsensusNode node)
@@ -355,7 +355,7 @@ namespace NeoExpress
 
         public IExpressNode GetExpressNode(bool offlineTrace = false)
         {
-            // Check to see if there's a neo-express blockchain currently running by
+            // Check to see if there's aepicchain-express blockchain currently running by
             // attempting to open a mutex with the multisig account address for a name
 
             for (int i = 0; i < chain.ConsensusNodes.Count; i++)
@@ -394,7 +394,7 @@ namespace NeoExpress
                 try
                 {
                     if (privateKey.StartsWith('L'))
-                        priKey = Neo.Wallets.Wallet.GetPrivateKeyFromWIF(privateKey);
+                        priKey = EpicChain.Wallets.Wallet.GetPrivateKeyFromWIF(privateKey);
                     else
                         priKey = Convert.FromHexString(privateKey);
                 }

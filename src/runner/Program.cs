@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Program.cs file belongs to neo-express project and is free
+// Program.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -11,23 +11,23 @@
 
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
-using Neo.BlockchainToolkit.Persistence;
-using Neo.BlockchainToolkit.SmartContract;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.BlockchainToolkit.Persistence;
+using EpicChain.BlockchainToolkit.SmartContract;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using Newtonsoft.Json;
 using Nito.Disposables;
 using System.ComponentModel.DataAnnotations;
 using System.IO.Abstractions;
 using System.Numerics;
 
-namespace Neo.Test.Runner
+namespace EpicChain.Test.Runner
 {
-    [Command("neo-test-runner", Description = "Neo N3 smart contract runner for unit testing", UsePagerForHelpText = false)]
+    [Command("neo-test-runner", Description = "EpicChain smart contract runner for unit testing", UsePagerForHelpText = false)]
     [VersionOption(ThisAssembly.AssemblyInformationalVersion)]
     class Program
     {
@@ -59,7 +59,7 @@ namespace Neo.Test.Runner
         [Option("-n|--nef-file")]
         internal string NefFile { get; set; } = string.Empty;
 
-        [Option("-e|--express", Description = "Path to neo-express file")]
+        [Option("-e|--express", Description = "Path toepicchain-express file")]
         internal string NeoExpressFile { get; set; } = string.Empty;
 
         [Option("-i|--iterator-count")]

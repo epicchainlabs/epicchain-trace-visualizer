@@ -1,6 +1,6 @@
 ---
 name: Questions
-about: Questions about Neo Express
+about: Questions about Chain Express
 title: ''
 labels: 'question'
 assignees: ''

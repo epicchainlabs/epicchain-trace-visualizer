@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// JsonWriterExtensions.cs file belongs to neo-express project and is free
+// JsonWriterExtensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,14 +9,14 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Iterators;
-using Neo.SmartContract.Native;
-using Neo.VM.Types;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Iterators;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM.Types;
 using Newtonsoft.Json;
 
-namespace Neo.Test.Runner
+namespace EpicChain.Test.Runner
 {
     static class JsonWriterExtensions
     {
@@ -82,7 +82,7 @@ namespace Neo.Test.Runner
             await writer.WritePropertyNameAsync("value");
             switch (item)
             {
-                case Neo.VM.Types.Array array:
+                case EpicChain.VM.Types.Array array:
                     {
                         context ??= new(ReferenceEqualityComparer.Instance);
                         if (!context.Add(array))
@@ -95,17 +95,17 @@ namespace Neo.Test.Runner
                         await writer.WriteEndArrayAsync();
                         break;
                     }
-                case Neo.VM.Types.Boolean _:
+                case EpicChain.VM.Types.Boolean _:
                     await writer.WriteValueAsync(item.GetBoolean());
                     break;
-                case Neo.VM.Types.Buffer _:
+                case EpicChain.VM.Types.Buffer _:
                 case ByteString _:
                     {
                         var value = Convert.ToBase64String(item.GetSpan());
                         await writer.WriteValueAsync(value);
                         break;
                     }
-                case Neo.VM.Types.Integer _:
+                case EpicChain.VM.Types.Integer _:
                     await writer.WriteValueAsync($"{item.GetInteger()}");
                     break;
                 case Map map:

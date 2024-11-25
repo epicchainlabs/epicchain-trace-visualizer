@@ -22,7 +22,7 @@
             ]
         },
         {
-            "id": "DevHawk.Contracts.DomainStorage.Put(string, Neo.UInt160)",
+            "id": "DevHawk.Contracts.DomainStorage.Put(string, Chain.UInt160)",
             "name": "DevHawk.Contracts.DomainStorage,Put",
             "range": "79-92",
             "params": [
@@ -92,7 +92,7 @@
             ]
         },
         {
-            "id": "DevHawk.Contracts.Registrar.Register(string, Neo.UInt160)",
+            "id": "DevHawk.Contracts.Registrar.Register(string, Chain.UInt160)",
             "name": "DevHawk.Contracts.Registrar,Register",
             "range": "261-404",
             "params": [
@@ -125,7 +125,7 @@
             ]
         },
         {
-            "id": "DevHawk.Contracts.Registrar.Transfer(string, Neo.UInt160)",
+            "id": "DevHawk.Contracts.Registrar.Transfer(string, Chain.UInt160)",
             "name": "DevHawk.Contracts.Registrar,Transfer",
             "range": "411-629",
             "params": [
@@ -219,7 +219,7 @@
             ]
         },
         {
-            "id": "DevHawk.Contracts.Registrar.Update(Neo.SmartContract.Framework.ByteString, string)",
+            "id": "DevHawk.Contracts.Registrar.Update(Chain.SmartContract.Framework.ByteString, string)",
             "name": "DevHawk.Contracts.Registrar,Update",
             "range": "841-959",
             "params": [

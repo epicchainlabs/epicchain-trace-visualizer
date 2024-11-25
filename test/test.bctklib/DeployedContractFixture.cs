@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// DeployedContractFixture.cs file belongs to neo-express project and is free
+// DeployedContractFixture.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,16 +9,16 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit.SmartContract;
-using Neo.Cryptography.ECC;
-using Neo.IO;
-using Neo.Network.P2P.Payloads;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Manifest;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain;
+using EpicChain.BlockchainToolkit.SmartContract;
+using EpicChain.Cryptography.ECC;
+using EpicChain.IO;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Manifest;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using System;
 using System.Linq;
 using System.Numerics;
@@ -78,7 +78,7 @@ public class DeployedContractFixture : IDisposable
     {
         var nefFile = GetResourceNef("registrar.nef");
         var manifest = GetResourceManifest("registrar.manifest.json");
-        var address = Neo.Wallets.Helper.ToScriptHash("NSGh7RQqCV7arpJjijqqHnT9cH6rJTGvYh", ProtocolSettings.Default.AddressVersion);
+        var address = EpicChain.Wallets.Helper.ToScriptHash("NSGh7RQqCV7arpJjijqqHnT9cH6rJTGvYh", ProtocolSettings.Default.AddressVersion);
         var signer = new Signer() { Account = address };
 
         using var store = new MemoryStore();
@@ -159,9 +159,9 @@ public class DeployedContractFixture : IDisposable
         {
             const byte Prefix_Contract = 8;
 
-            Neo.SmartContract.Helper.Check(nefFile.Script, manifest.Abi);
+            EpicChain.SmartContract.Helper.Check(nefFile.Script, manifest.Abi);
 
-            var hash = Neo.SmartContract.Helper.GetContractHash(deploySigner.Account, nefFile.CheckSum, manifest.Name);
+            var hash = EpicChain.SmartContract.Helper.GetContractHash(deploySigner.Account, nefFile.CheckSum, manifest.Name);
             var key = new KeyBuilder(NativeContract.ContractManagement.Id, Prefix_Contract).Add(hash);
 
             if (snapshot.Contains(key))
@@ -193,9 +193,9 @@ public class DeployedContractFixture : IDisposable
                 using (var engine = ApplicationEngine.Create(TriggerType.Application, tx, snapshot, null, settings))
                 {
                     var context = engine.LoadContract(contract, deployMethod, CallFlags.All);
-                    context.EvaluationStack.Push(Neo.VM.Types.StackItem.Null);
-                    context.EvaluationStack.Push(update ? Neo.VM.Types.StackItem.True : Neo.VM.Types.StackItem.False);
-                    if (engine.Execute() != Neo.VM.VMState.HALT)
+                    context.EvaluationStack.Push(EpicChain.VM.Types.StackItem.Null);
+                    context.EvaluationStack.Push(update ? EpicChain.VM.Types.StackItem.True : EpicChain.VM.Types.StackItem.False);
+                    if (engine.Execute() != EpicChain.VM.VMState.HALT)
                         throw new InvalidOperationException("_deploy operation failed", engine.FaultException);
                 }
             }

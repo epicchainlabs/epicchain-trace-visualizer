@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TestApplicationEngine.cs file belongs to neo-express project and is free
+// TestApplicationEngine.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,18 +9,18 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Network.P2P.Payloads;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using OneOf;
 using System.Collections.Immutable;
 using System.IO.Abstractions;
 using System.Reflection;
-using ExecutionContext = Neo.VM.ExecutionContext;
+using ExecutionContext = EpicChain.VM.ExecutionContext;
 
-namespace Neo.BlockchainToolkit.SmartContract
+namespace EpicChain.BlockchainToolkit.SmartContract
 {
     using WitnessChecker = Func<byte[], bool>;
 
@@ -74,7 +74,7 @@ namespace Neo.BlockchainToolkit.SmartContract
                 Account = signerAccount,
                 Scopes = witnessScope,
                 AllowedContracts = Array.Empty<UInt160>(),
-                AllowedGroups = Array.Empty<Neo.Cryptography.ECC.ECPoint>()
+                AllowedGroups = Array.Empty<EpicChain.Cryptography.ECC.ECPoint>()
             });
 
         public static Transaction CreateTestTransaction(Signer? signer = null) => new()

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressApplicationEngineProvider.cs file belongs to neo-express project and is free
+// ExpressApplicationEngineProvider.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,13 +9,13 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit.SmartContract;
-using Neo.BlockchainToolkit.TraceDebug;
-using Neo.Network.P2P.Payloads;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.VM;
+using EpicChain;
+using EpicChain.BlockchainToolkit.SmartContract;
+using EpicChain.BlockchainToolkit.TraceDebug;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.VM;
 
 namespace NeoExpress.Node
 {

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Program.cs file belongs to neo-express project and is free
+// Program.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,23 +10,23 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
-using Neo.BlockchainToolkit.Persistence;
-using Neo.BlockchainToolkit.SmartContract;
-using Neo.BlockchainToolkit.TraceDebug;
-using Neo.IO;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.VM;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Persistence;
+using EpicChain.BlockchainToolkit.SmartContract;
+using EpicChain.BlockchainToolkit.TraceDebug;
+using EpicChain.IO;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.VM;
 using NeoTrace.Commands;
 using OneOf;
 using SysIO = System.IO;
 
 namespace NeoTrace
 {
-    [Command("neotrace", Description = "Generates .neo-trace files for transactions on a public Neo N3 blockchains", UsePagerForHelpText = false)]
+    [Command("neotrace", Description = "Generates .neo-trace files for transactions on a public EpicChain blockchains", UsePagerForHelpText = false)]
     [VersionOption(ThisAssembly.AssemblyInformationalVersion)]
     [Subcommand(typeof(BlockCommand), typeof(TransactionCommand))]
     class Program

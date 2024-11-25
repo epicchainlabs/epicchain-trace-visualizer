@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// BatchCommand.BatchFileCommands.cs file belongs to neo-express project and is free
+// BatchCommand.BatchFileCommands.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,7 +9,7 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Network.P2P.Payloads;
+using EpicChain.Network.P2P.Payloads;
 using NeoExpress.Models;
 using System.ComponentModel.DataAnnotations;
 
@@ -53,7 +53,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Account { get; init; } = string.Empty;
 
-                    [Option(Description = "password to use for NEP-2/NEP-6 account")]
+                    [Option(Description = "password to use for XEP-2/XEP-6 account")]
                     internal string Password { get; init; } = string.Empty;
 
                     [Option(Description = "Witness Scope to use for transaction signer (Default: CalledByEntry)")]
@@ -74,7 +74,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Contract { get; init; } = string.Empty;
 
-                    [Argument(1, Description = "URL of Neo JSON-RPC Node\nSpecify MainNet (default), TestNet or JSON-RPC URL")]
+                    [Argument(1, Description = "URL of EpicChain JSON-RPC Node\nSpecify MainNet (default), TestNet or JSON-RPC URL")]
                     [Required]
                     internal string RpcUri { get; } = string.Empty;
 
@@ -98,7 +98,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Account { get; init; } = string.Empty;
 
-                    [Option(Description = "password to use for NEP-2/NEP-6 account")]
+                    [Option(Description = "password to use for XEP-2/XEP-6 account")]
                     internal string Password { get; init; } = string.Empty;
 
                     [Option(Description = "Witness Scope to use for transaction signer (Default: CalledByEntry)")]
@@ -124,7 +124,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Account { get; init; } = string.Empty;
 
-                    [Option(Description = "password to use for NEP-2/NEP-6 account")]
+                    [Option(Description = "password to use for XEP-2/XEP-6 account")]
                     internal string Password { get; init; } = string.Empty;
 
                     [Option(Description = "Witness Scope to use for transaction signer (Default: CalledByEntry)")]
@@ -151,7 +151,7 @@ namespace NeoExpress.Commands
                     [AllowedValues(StringComparison.OrdinalIgnoreCase, "None", "CalledByEntry", "Global")]
                     internal WitnessScope WitnessScope { get; init; } = WitnessScope.CalledByEntry;
 
-                    [Option(Description = "Password to use for NEP-2/NEP-6 account")]
+                    [Option(Description = "Password to use for XEP-2/XEP-6 account")]
                     internal string Password { get; init; } = string.Empty;
                 }
             }
@@ -178,7 +178,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Account { get; init; } = string.Empty;
 
-                    [Option(Description = "password to use for NEP-2/NEP-6 account")]
+                    [Option(Description = "password to use for XEP-2/XEP-6 account")]
                     internal string Password { get; init; } = string.Empty;
                 }
 
@@ -213,7 +213,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Account { get; init; } = string.Empty;
 
-                    [Option(Description = "password to use for NEP-2/NEP-6 sender")]
+                    [Option(Description = "password to use for XEP-2/XEP-6 sender")]
                     internal string Password { get; init; } = string.Empty;
                 }
 
@@ -232,7 +232,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Account { get; init; } = string.Empty;
 
-                    [Option(Description = "password to use for NEP-2/NEP-6 sender")]
+                    [Option(Description = "password to use for XEP-2/XEP-6 sender")]
                     internal string Password { get; init; } = string.Empty;
                 }
 
@@ -247,7 +247,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Account { get; init; } = string.Empty;
 
-                    [Option(Description = "password to use for NEP-2/NEP-6 sender")]
+                    [Option(Description = "password to use for XEP-2/XEP-6 sender")]
                     internal string Password { get; init; } = string.Empty;
                 }
 
@@ -262,7 +262,7 @@ namespace NeoExpress.Commands
                     [Required]
                     internal string Account { get; init; } = string.Empty;
 
-                    [Option(Description = "password to use for NEP-2/NEP-6 sender")]
+                    [Option(Description = "password to use for XEP-2/XEP-6 sender")]
                     internal string Password { get; init; } = string.Empty;
                 }
             }
@@ -289,7 +289,7 @@ namespace NeoExpress.Commands
                 [Option(Description = "Optional data parameter to pass to transfer operation")]
                 internal string Data { get; init; } = string.Empty;
 
-                [Option(Description = "password to use for NEP-2/NEP-6 sender")]
+                [Option(Description = "password to use for XEP-2/XEP-6 sender")]
                 internal string Password { get; init; } = string.Empty;
             }
             [Command("transfernft")]
@@ -314,7 +314,7 @@ namespace NeoExpress.Commands
                 [Option(Description = "Optional data parameter to pass to transfer operation")]
                 internal string Data { get; init; } = string.Empty;
 
-                [Option(Description = "password to use for NEP-2/NEP-6 sender")]
+                [Option(Description = "password to use for XEP-2/XEP-6 sender")]
                 internal string Password { get; init; } = string.Empty;
             }
 

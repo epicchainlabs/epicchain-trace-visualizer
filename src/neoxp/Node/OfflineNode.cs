@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// OfflineNode.cs file belongs to neo-express project and is free
+// OfflineNode.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,26 +10,26 @@
 // modifications are permitted.
 
 using Akka.Actor;
-using Neo;
-using Neo.BlockchainToolkit.Models;
-using Neo.BlockchainToolkit.SmartContract;
-using Neo.Cryptography.ECC;
-using Neo.IO;
-using Neo.Ledger;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.Network.RPC.Models;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Manifest;
-using Neo.SmartContract.Native;
-using Neo.VM;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.BlockchainToolkit.SmartContract;
+using EpicChain.Cryptography.ECC;
+using EpicChain.IO;
+using EpicChain.Ledger;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.Network.RPC.Models;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Manifest;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
+using EpicChain.Wallets;
 using NeoExpress.Commands;
 using NeoExpress.Models;
 using NeoExpress.Validators;
 using System.Numerics;
-using static Neo.Ledger.Blockchain;
+using static EpicChain.Ledger.Blockchain;
 
 namespace NeoExpress.Node
 {
@@ -109,7 +109,7 @@ namespace NeoExpress.Node
         public Task<IExpressNode.CheckpointMode> CreateCheckpointAsync(string checkPointPath)
             => MakeAsync(() => CreateCheckpoint(checkPointPath));
 
-        RpcInvokeResult Invoke(Neo.VM.Script script, Signer? signer = null)
+        RpcInvokeResult Invoke(EpicChain.VM.Script script, Signer? signer = null)
         {
             var tx = TestApplicationEngine.CreateTestTransaction(signer);
             using var engine = script.Invoke(neoSystem.Settings, neoSystem.StoreView, tx);
@@ -125,10 +125,10 @@ namespace NeoExpress.Node
             };
         }
 
-        public Task<RpcInvokeResult> InvokeAsync(Neo.VM.Script script, Signer? signer = null)
+        public Task<RpcInvokeResult> InvokeAsync(EpicChain.VM.Script script, Signer? signer = null)
             => MakeAsync(() => Invoke(script, signer));
 
-        public async Task<UInt256> ExecuteAsync(Wallet wallet, UInt160 accountHash, WitnessScope witnessScope, Neo.VM.Script script, decimal additionalGas = 0)
+        public async Task<UInt256> ExecuteAsync(Wallet wallet, UInt160 accountHash, WitnessScope witnessScope, EpicChain.VM.Script script, decimal additionalGas = 0)
         {
             if (disposedValue)
                 throw new ObjectDisposedException(nameof(OfflineNode));

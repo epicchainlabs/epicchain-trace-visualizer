@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressNodeExtensions.cs file belongs to neo-express project and is free
+// ExpressNodeExtensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,21 +9,21 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
-using Neo.Cryptography.ECC;
-using Neo.IO;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.Network.RPC.Models;
-using Neo.SmartContract;
-using Neo.SmartContract.Iterators;
-using Neo.SmartContract.Manifest;
-using Neo.SmartContract.Native;
-using Neo.VM;
-using Neo.VM.Types;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.Cryptography.ECC;
+using EpicChain.IO;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.Network.RPC.Models;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Iterators;
+using EpicChain.SmartContract.Manifest;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
+using EpicChain.VM.Types;
+using EpicChain.Wallets;
 using NeoExpress.Models;
 using OneOf;
 using System.Diagnostics;
@@ -196,7 +196,7 @@ namespace NeoExpress
         {
             if ("neo".Equals(asset, StringComparison.OrdinalIgnoreCase))
             {
-                return NativeContract.NEO.Hash;
+                return NativeContract.EpicChain.Hash;
             }
 
             if ("gas".Equals(asset, StringComparison.OrdinalIgnoreCase))
@@ -229,7 +229,7 @@ namespace NeoExpress
             if (quantity.IsT0)
             {
                 var results = await expressNode.InvokeAsync(asset.MakeScript("decimals")).ConfigureAwait(false);
-                if (results.Stack.Length > 0 && results.Stack[0].Type == Neo.VM.Types.StackItemType.Integer)
+                if (results.Stack.Length > 0 && results.Stack[0].Type == EpicChain.VM.Types.StackItemType.Integer)
                 {
                     var decimals = (byte)(results.Stack[0].GetInteger());
                     var value = quantity.AsT0.ToBigInteger(decimals);
@@ -321,7 +321,7 @@ namespace NeoExpress
         static void CheckNefFile(NefFile nefFile)
         {
             // check for bad opcodes (logic borrowed from neo-cli LoadDeploymentScript)
-            Neo.VM.Script script = nefFile.Script;
+            EpicChain.VM.Script script = nefFile.Script;
             for (var i = 0; i < script.Length;)
             {
                 var instruction = script.GetInstruction(i);
@@ -331,7 +331,7 @@ namespace NeoExpress
                 }
                 else
                 {
-                    if (!Enum.IsDefined(typeof(Neo.VM.OpCode), instruction.OpCode))
+                    if (!Enum.IsDefined(typeof(EpicChain.VM.OpCode), instruction.OpCode))
                     {
                         throw new FormatException($"Invalid opcode found at {i}-{((byte)instruction.OpCode).ToString("x2")}");
                     }
@@ -366,9 +366,9 @@ namespace NeoExpress
             sb.EmitDynamicCall(NativeContract.RoleManagement.Hash, "getDesignatedByRole", role, index);
             var result = await expressNode.InvokeAsync(sb.ToArray()).ConfigureAwait(false);
 
-            if (result.State == Neo.VM.VMState.HALT
+            if (result.State == EpicChain.VM.VMState.HALT
                 && result.Stack.Length >= 1
-                && result.Stack[0] is Neo.VM.Types.Array array)
+                && result.Stack[0] is EpicChain.VM.Types.Array array)
             {
                 var nodes = new ECPoint[array.Count];
                 for (var x = 0; x < array.Count; x++)
@@ -424,7 +424,7 @@ namespace NeoExpress
                 var json = string.IsNullOrEmpty(filter)
                     ? (Newtonsoft.Json.Linq.JContainer)responseJson
                     : new Newtonsoft.Json.Linq.JArray(responseJson.SelectTokens(filter, true));
-                return Neo.Utility.StrictUTF8.GetBytes(json.ToString());
+                return EpicChain.Utility.StrictUTF8.GetBytes(json.ToString());
             }
         }
 
@@ -504,9 +504,9 @@ namespace NeoExpress
         internal static async Task<PolicyValues> GetPolicyAsync(Func<Script, Task<RpcInvokeResult>> invokeAsync)
         {
             using var builder = new ScriptBuilder();
-            builder.EmitDynamicCall(NativeContract.NEO.Hash, "getGasPerBlock");
+            builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "getGasPerBlock");
             builder.EmitDynamicCall(NativeContract.ContractManagement.Hash, "getMinimumDeploymentFee");
-            builder.EmitDynamicCall(NativeContract.NEO.Hash, "getRegisterPrice");
+            builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "getRegisterPrice");
             builder.EmitDynamicCall(NativeContract.Oracle.Hash, "getPrice");
             builder.EmitDynamicCall(NativeContract.Policy.Hash, "getFeePerByte");
             builder.EmitDynamicCall(NativeContract.Policy.Hash, "getStoragePrice");

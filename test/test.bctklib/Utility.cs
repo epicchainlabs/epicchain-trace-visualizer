@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Utility.cs file belongs to neo-express project and is free
+// Utility.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BlockchainToolkit.Persistence;
-using Neo.Cryptography.MPTTrie;
-using Neo.IO;
-using Neo.Persistence;
+using EpicChain.BlockchainToolkit.Persistence;
+using EpicChain.Cryptography.MPTTrie;
+using EpicChain.IO;
+using EpicChain.Persistence;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -48,8 +48,8 @@ static class Utility
 
     public static IStore CreateNeoRocksDb(string path)
     {
-        const string storeTypeName = "Neo.Plugins.Storage.Store";
-        var storeType = typeof(Neo.Plugins.Storage.RocksDBStore).Assembly.GetType(storeTypeName);
+        const string storeTypeName = "EpicChain.Plugins.Storage.Store";
+        var storeType = typeof(EpicChain.Plugins.Storage.RocksDBStore).Assembly.GetType(storeTypeName);
         var storeCtor = storeType?.GetConstructor(new[] { typeof(string) });
         var store = storeCtor?.Invoke(new object[] { path }) as IStore;
         if (store == null)
@@ -123,14 +123,14 @@ static class Utility
         }
     }
 
-    public static Trie GetTestTrie(Neo.Persistence.IStore store, uint count = 100)
+    public static Trie GetTestTrie(EpicChain.Persistence.IStore store, uint count = 100)
     {
         using var snapshot = store.GetSnapshot();
         var trie = new Trie(snapshot, null);
         for (var i = 0; i < count; i++)
         {
             var key = BitConverter.GetBytes(i);
-            var value = Neo.Utility.StrictUTF8.GetBytes($"{i}");
+            var value = EpicChain.Utility.StrictUTF8.GetBytes($"{i}");
             trie.Put(key, value);
         }
         trie.Commit();
@@ -153,7 +153,7 @@ static class Utility
     public static byte[] SerializeProof(byte[] key, HashSet<byte[]> proof)
     {
         using MemoryStream ms = new();
-        using BinaryWriter writer = new(ms, Neo.Utility.StrictUTF8);
+        using BinaryWriter writer = new(ms, EpicChain.Utility.StrictUTF8);
 
         writer.WriteVarBytes(key);
         writer.WriteVarInt(proof.Count);

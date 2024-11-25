@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// FileSystemExtensions.cs file belongs to neo-express project and is free
+// FileSystemExtensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BlockchainToolkit.Models;
-using Neo.IO;
-using Neo.SmartContract;
-using Neo.SmartContract.Manifest;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.IO;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Manifest;
 using System.IO.Abstractions;
 
 namespace NeoExpress
@@ -56,7 +56,7 @@ namespace NeoExpress
             var account = node.Wallet.Accounts.Single(a => a.IsDefault);
 
             var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile, Environment.SpecialFolderOption.DoNotVerify);
-            var expressBlockchainDir = fileSystem.Path.Combine(homeDir, ".neo-express", "blockchain-nodes", account.ScriptHash);
+            var expressBlockchainDir = fileSystem.Path.Combine(homeDir, ".epicchain-express", "blockchain-nodes", account.ScriptHash);
 
             var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.DoNotVerify);
             var expressOldBlockchainDir = fileSystem.Path.Combine(appData, "Neo-Express", "blockchain-nodes", account.ScriptHash);

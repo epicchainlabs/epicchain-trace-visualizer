@@ -238,7 +238,7 @@ export async function addFees(
 
 /**
  * Deploy a smart contract
- * @param nef - A smart contract in Neo executable file format. Commonly created by a NEO compiler and stored as .NEF on disk
+ * @param nef - A smart contract in Chain executable file format. Commonly createda EpicChain compiler and stored as .NEF on disk
  * @param manifest - the manifest corresponding to the smart contract
  * @param config -
  */
@@ -282,7 +282,7 @@ export async function deployContract(
 /**
  * Get the hash that identifies the contract on the chain matching the specified NEF
  * @param sender - The sender of the transaction
- * @param nefChecksum - The checksum of the Neo Executable File. A NEF file is a smart contract commonly created by a NEO compiler and stored as .NEF on disk
+ * @param nefChecksum - The checksum of the Chain Executable File. A NEF file is a smart contract commonly createda EpicChain compiler and stored as .NEF on disk
  * @param contractName - The name as indicated in the manifest
  */
 export function getContractHash(

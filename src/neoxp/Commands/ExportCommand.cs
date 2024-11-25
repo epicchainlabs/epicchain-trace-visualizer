@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExportCommand.cs file belongs to neo-express project and is free
+// ExportCommand.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,15 +10,15 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
-using Neo.BlockchainToolkit.Models;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Models;
 using NeoExpress.Models;
 using Newtonsoft.Json;
 using System.IO.Abstractions;
 
 namespace NeoExpress.Commands
 {
-    [Command("export", Description = "Export neo-express protocol, config and wallet files")]
+    [Command("export", Description = "Exportepicchain-express protocol, config and wallet files")]
     class ExportCommand
     {
         readonly ExpressChainManagerFactory chainManagerFactory;
@@ -30,7 +30,7 @@ namespace NeoExpress.Commands
             this.fileSystem = fileSystem;
         }
 
-        [Option(Description = "Path to neo-express data file")]
+        [Option(Description = "Path toepicchain-express data file")]
         internal string Input { get; init; } = string.Empty;
 
         internal void Execute(System.IO.TextWriter writer)
@@ -115,7 +115,7 @@ namespace NeoExpress.Commands
 
         void WriteProtocolConfiguration(JsonTextWriter writer, ProtocolSettings settings, ExpressChain chain)
         {
-            // use neo defaults for MillisecondsPerBlock
+            // use EpicChain defaults for MillisecondsPerBlock
 
             writer.WritePropertyName("ProtocolConfiguration");
             writer.WriteStartObject();

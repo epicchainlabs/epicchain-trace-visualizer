@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// StopCommand.cs file belongs to neo-express project and is free
+// StopCommand.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -13,7 +13,7 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace NeoExpress.Commands
 {
-    [Command("stop", Description = "Stop Neo-Express instance node")]
+    [Command("stop", Description = "Stopepicchain-express instance node")]
     class StopCommand
     {
         readonly ExpressChainManagerFactory chainManagerFactory;
@@ -26,7 +26,7 @@ namespace NeoExpress.Commands
         [Option(Description = "Index of node to stop")]
         internal int? NodeIndex { get; }
 
-        [Option(Description = "Path to neo-express data file")]
+        [Option(Description = "Path toepicchain-express data file")]
         internal string Input { get; init; } = string.Empty;
 
         [Option(Description = "Stop all nodes")]

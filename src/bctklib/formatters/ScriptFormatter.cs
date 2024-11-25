@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ScriptFormatter.cs file belongs to neo-express project and is free
+// ScriptFormatter.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BlockchainToolkit;
-using Neo.VM;
+using EpicChain.BlockchainToolkit;
+using EpicChain.VM;
 
-namespace MessagePack.Formatters.Neo.BlockchainToolkit
+namespace MessagePack.Formatters.EpicChain.BlockchainToolkit
 {
     public class ScriptFormatter : IMessagePackFormatter<Script>
     {

@@ -1,6 +1,6 @@
 import DetectorBase from "./detectorBase";
 
-const SEARCH_PATTERN = "**/*.neoxp-checkpoint";
+const SEARCH_PATTERN = "**/*.epicchain-checkpoint";
 
 export default class CheckpointDetector extends DetectorBase {
   get checkpointFiles() {

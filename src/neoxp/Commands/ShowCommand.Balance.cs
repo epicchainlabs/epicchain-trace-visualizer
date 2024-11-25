@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ShowCommand.Balance.cs file belongs to neo-express project and is free
+// ShowCommand.Balance.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -34,7 +34,7 @@ namespace NeoExpress.Commands
             [Required]
             internal string Account { get; init; } = string.Empty;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
             internal async Task<int> OnExecuteAsync(CommandLineApplication app, IConsole console)

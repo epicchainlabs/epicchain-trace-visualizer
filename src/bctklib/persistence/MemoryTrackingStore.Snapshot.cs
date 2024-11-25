@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// MemoryTrackingStore.Snapshot.cs file belongs to neo-express project and is free
+// MemoryTrackingStore.Snapshot.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,12 +9,12 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BlockchainToolkit.Utilities;
-using Neo.Persistence;
+using EpicChain.BlockchainToolkit.Utilities;
+using EpicChain.Persistence;
 using OneOf;
 using System.Collections.Immutable;
 using None = OneOf.Types.None;
-namespace Neo.BlockchainToolkit.Persistence
+namespace EpicChain.BlockchainToolkit.Persistence
 {
     using TrackingMap = ImmutableDictionary<ReadOnlyMemory<byte>, OneOf<ReadOnlyMemory<byte>, None>>;
 

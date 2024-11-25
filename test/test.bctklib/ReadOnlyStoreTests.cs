@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ReadOnlyStoreTests.cs file belongs to neo-express project and is free
+// ReadOnlyStoreTests.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,9 +10,9 @@
 // modifications are permitted.
 
 using FluentAssertions;
-using Neo.BlockchainToolkit.Persistence;
-using Neo.BlockchainToolkit.Utilities;
-using Neo.Persistence;
+using EpicChain.BlockchainToolkit.Persistence;
+using EpicChain.BlockchainToolkit.Utilities;
+using EpicChain.Persistence;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -64,7 +64,7 @@ public class ReadOnlyStoreTests : IClassFixture<CheckpointFixture>, IClassFixtur
     public void checkpoint_store_throws_on_incorrect_metadata()
     {
         Assert.Throws<Exception>(() => new CheckpointStore(checkpointFixture.CheckpointPath, addressVersion: 0));
-        Assert.Throws<Exception>(() => new CheckpointStore(checkpointFixture.CheckpointPath, scriptHash: Neo.UInt160.Zero));
+        Assert.Throws<Exception>(() => new CheckpointStore(checkpointFixture.CheckpointPath, scriptHash: EpicChain.UInt160.Zero));
     }
 
     [Fact]

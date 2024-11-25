@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TraceDebugStream.cs file belongs to neo-express project and is free
+// TraceDebugStream.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -11,17 +11,17 @@
 
 using MessagePack;
 using MessagePack.Resolvers;
-using Neo.SmartContract;
-using Neo.VM;
+using EpicChain.SmartContract;
+using EpicChain.VM;
 using Nerdbank.Streams;
 using System.Buffers;
-using ExecutionContext = Neo.VM.ExecutionContext;
-using StackItem = Neo.VM.Types.StackItem;
+using ExecutionContext = EpicChain.VM.ExecutionContext;
+using StackItem = EpicChain.VM.Types.StackItem;
 
-namespace Neo.BlockchainToolkit.TraceDebug
+namespace EpicChain.BlockchainToolkit.TraceDebug
 {
     // The trace methods in this class are designed to write out MessagePack messages
-    // that can be deserialized into types defined in the Neo.BlockchainToolkit.TraceDebug
+    // that can be deserialized into types defined in the EpicChain.BlockchainToolkit.TraceDebug
     // package. However, this code replicates the MessagePack serialization logic
     // in order to avoid having to create garbage during serialization.
 

@@ -105,17 +105,17 @@ export default class ActiveConnection {
       } else {
         this.statusBarItem.text = `${STATUS_PREFIX} Connecting to ${connection.blockchainIdentifier.friendlyName}...`;
         this.statusBarItem.tooltip =
-          "A connection cannot currently be established to the Neo blockchain RPC server";
+          "A connection cannot currently be established to the EpicChain blockchain RPC server";
         this.statusBarItem.color = new vscode.ThemeColor(
           "statusBarItem.remoteForeground"
         );
       }
-      this.statusBarItem.command = "neo3-visual-devtracker.disconnect";
+      this.statusBarItem.command = "epicchain-visual-devtracker.disconnect";
     } else {
       this.statusBarItem.text = `${STATUS_PREFIX} Not connected`;
-      this.statusBarItem.tooltip = "Click to connect to a Neo blockchain";
+      this.statusBarItem.tooltip = "Click to connect to a EpicChain blockchain";
       this.statusBarItem.color = new vscode.ThemeColor("statusBar.foreground");
-      this.statusBarItem.command = "neo3-visual-devtracker.connect";
+      this.statusBarItem.command = "epicchain-visual-devtracker.connect";
     }
     if (!this.visible) {
       this.statusBarItem.show();

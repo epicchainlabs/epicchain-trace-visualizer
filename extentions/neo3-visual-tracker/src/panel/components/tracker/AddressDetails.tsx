@@ -28,7 +28,7 @@ export default function AddressDetails({
         )}
       </p>
       <p style={{ marginBottom: 5 }}>
-        <small>NEO balance:</small>
+        <small>Chain balance:</small>
       </p>
       <p style={{ fontWeight: "bold", fontSize: "1.25rem", marginTop: 0 }}>
         {addressInfo.neoBalance.toLocaleString()} NEO

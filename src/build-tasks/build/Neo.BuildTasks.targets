@@ -8,9 +8,9 @@
     <CleanDependsOn>$(CleanDependsOn);CleanNeoCsc;CleanNeoExpressBatch</CleanDependsOn>
   </PropertyGroup>
 
-  <UsingTask AssemblyFile="$(_NeoBuildTasksAssemblyPath)" TaskName="Neo.BuildTasks.NeoContractInterface"/>
-  <UsingTask AssemblyFile="$(_NeoBuildTasksAssemblyPath)" TaskName="Neo.BuildTasks.NeoCsc"/>
-  <UsingTask AssemblyFile="$(_NeoBuildTasksAssemblyPath)" TaskName="Neo.BuildTasks.NeoExpressBatch"/>
+  <UsingTask AssemblyFile="$(_NeoBuildTasksAssemblyPath)" TaskName="EpicChain.BuildTasks.NeoContractInterface"/>
+  <UsingTask AssemblyFile="$(_NeoBuildTasksAssemblyPath)" TaskName="EpicChain.BuildTasks.NeoCsc"/>
+  <UsingTask AssemblyFile="$(_NeoBuildTasksAssemblyPath)" TaskName="EpicChain.BuildTasks.NeoExpressBatch"/>
 
   <Target Name="ConfigureNeoCsc">
     <PropertyGroup>
@@ -35,12 +35,12 @@
     </ItemGroup>
   </Target>
 
-  <Target Name="ExecuteNeoCsc" AfterTargets="Compile" 
+  <Target Name="ExecuteNeoCsc" AfterTargets="Compile"
     DependsOnTargets="ConfigureNeoCsc"
     Condition="'$(NeoContractName)'!=''"
     Inputs="$(MSBuildProjectFullPath);@(Compile);" Outputs="@(NeoCscOutput)">
 
-    <NeoCsc 
+    <NeoCsc
       Assembly="$(NeoContractAssembly)"
       BaseFileName="$(NeoContractName)"
       Debug="$(NeoCscDebugInfo)"
@@ -66,13 +66,13 @@
 
   <Target Name="ConfigureNeoExpressBatch">
     <PropertyGroup>
-      <NeoExpressTouchFile>$([MSBuild]::NormalizePath($(IntermediateOutputPath), '$(NeoExpressBatchFile).neoxp.touch'))</NeoExpressTouchFile>
+      <NeoExpressTouchFile>$([MSBuild]::NormalizePath($(IntermediateOutputPath), '$(NeoExpressBatchFile).epicchain.touch'))</NeoExpressTouchFile>
       <NeoExpressNormalizedBatchFile>$([MSBuild]::NormalizePath($(MSBuildProjectDirectory), $(NeoExpressBatchFile)))</NeoExpressNormalizedBatchFile>
     </PropertyGroup>
   </Target>
 
   <Target Name="ExecuteNeoExpressBatch"
-    AfterTargets="Build" 
+    AfterTargets="Build"
     DependsOnTargets="ConfigureNeoExpressBatch;ExecuteNeoCsc"
     Condition="'$(NeoExpressBatchFile)'!=''"
     Inputs="@(NeoCscOutput);$(NeoExpressBatchFile);$(NeoExpressTouchFile)" Outputs="$(NeoExpressTouchFile)">
@@ -82,8 +82,8 @@
       <NeoExpressBatchReset Condition="'$(NeoExpressBatchNoReset)'=='true'">false</NeoExpressBatchReset>
     </PropertyGroup>
 
-    <NeoExpressBatch 
-      BatchFile="$(NeoExpressNormalizedBatchFile)" 
+    <NeoExpressBatch
+      BatchFile="$(NeoExpressNormalizedBatchFile)"
       InputFile="$(NeoExpressBatchInputFile)"
       Reset="$(NeoExpressBatchReset)"
       Checkpoint="$(NeoExpressBatchCheckpoint)"
@@ -95,7 +95,7 @@
     <Message Importance="High" Text="NeoExpress Batch -> $(NeoExpressNormalizedBatchFile)" />
   </Target>
 
-  <!-- 
+  <!--
     dotnet build happens in two phases: Restore and Build
 
     Restore phase
@@ -149,10 +149,10 @@
 
   </Target>
 
-  <Target Name="GenerateNeoContractInterface" 
+  <Target Name="GenerateNeoContractInterface"
           AfterTargets="ResolveProjectReferences"
           DependsOnTargets="PrepareNeoContractGeneration"
-          Inputs="%(NeoContractGeneration.ManifestPath)" 
+          Inputs="%(NeoContractGeneration.ManifestPath)"
           Outputs="%(NeoContractGeneration.OutputPath)">
 
     <Message Importance="High" Text="Generating %(NeoContractGeneration.OutputPath)" />
@@ -169,7 +169,7 @@
 
   </Target>
 
-  <Target Name="CleanNeoCsc" 
+  <Target Name="CleanNeoCsc"
     DependsOnTargets="ConfigureNeoCsc"
     Condition="'$(NeoContractName)'!=''">
 

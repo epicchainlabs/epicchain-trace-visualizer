@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Utility.cs file belongs to neo-express project and is free
+// Utility.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -14,12 +14,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 
-namespace Neo.Collector
+namespace EpicChain.Collector
 {
     static class Utility
     {
-        // Note, some file systems are case sensitive. 
-        // Using StringComparison.OrdinalIgnoreCase could lead to incorrect base names on such systems. 
+        // Note, some file systems are case sensitive.
+        // Using StringComparison.OrdinalIgnoreCase could lead to incorrect base names on such systems.
         public static string GetBaseName(string path, string suffix, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
         {
             if (string.IsNullOrEmpty(path))

@@ -1,4 +1,4 @@
-using Neo.SmartContract.Framework;
+using Chain.SmartContract.Framework;
 
 public class TestContract : TokenContract
 {

@@ -10,7 +10,7 @@ import ContractDetector from "./fileDetectors/contractDetector";
 import dedupeAndSort from "./util/dedupeAndSort";
 import Log from "./util/log";
 import NeoExpress from "./neoExpress/neoExpress";
-import NeoExpressDetector from "./fileDetectors/neoExpressDetector";
+import NeoExpressDetector from "./fileDetectors/epicchainExpressDetector";
 import NeoExpressIo from "./neoExpress/neoExpressIo";
 import WalletDetector from "./fileDetectors/walletDetector";
 
@@ -42,7 +42,7 @@ export default class AutoComplete {
     private readonly activeConnection: ActiveConnection,
     private readonly contractDetector: ContractDetector,
     private readonly walletDetector: WalletDetector,
-    neoExpressDetector: NeoExpressDetector
+    epicchainExpressDetector: NeoExpressDetector
   ) {
     this.latestData = {
       contractManifests: {},
@@ -66,8 +66,8 @@ export default class AutoComplete {
     );
     contractDetector.onChange(() => this.update("contracts changed"));
     walletDetector.onChange(() => this.update("wallets changed"));
-    neoExpressDetector.onChange(() =>
-      this.update("neo-express instances changed")
+    epicchainExpressDetector.onChange(() =>
+      this.update("epicchain-express instances changed")
     );
     this.update("initial population required");
   }
@@ -79,7 +79,7 @@ export default class AutoComplete {
   private async initializeWellKnownManifests() {
     Log.log(LOG_PREFIX, "Initializing well-known manifests...");
     const tempFile = await new Promise<temp.OpenFile>((resolve, reject) =>
-      temp.open({ suffix: ".neo-express" }, (err, result) =>
+      temp.open({ suffix: ".epicchain-express" }, (err, result) =>
         err ? reject(err) : resolve(result)
       )
     );
@@ -90,7 +90,7 @@ export default class AutoComplete {
       const versionResult = await this.neoExpress.run("-v");
       let cacheKey = "";
       if (versionResult.isError) {
-        Log.error(LOG_PREFIX, "Could not determine neo-express version");
+        Log.error(LOG_PREFIX, "Could not determineepicchain-express version");
       } else {
         const version = versionResult.message.trim().substring(256);
         cacheKey = `wellKnownContracts_${version}`;
@@ -118,7 +118,7 @@ export default class AutoComplete {
         if (!identifier || result.isError) {
           Log.error(
             LOG_PREFIX,
-            "Could not create temporary neo-express instance, built-in contract manifests will be unavailable",
+            "Could not create temporaryepicchain-express instance, built-in contract manifests will be unavailable",
             identifier,
             result.message
           );
@@ -249,7 +249,7 @@ export default class AutoComplete {
       } catch (e : any) {
         Log.warn(
           LOG_PREFIX,
-          "Could not list neo-express contracts",
+          "Could not listepicchain-express contracts",
           connection.blockchainIdentifier.configPath,
           e.message
         );

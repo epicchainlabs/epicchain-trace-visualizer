@@ -5,7 +5,7 @@
     "neo.express": {
       "version": "3.5.19",
       "commands": [
-        "neoxp"
+        "epicchain"
       ]
     },
     "neo.compiler.csharp": {

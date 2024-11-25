@@ -364,7 +364,7 @@ export default class InvokeFilePanelController extends PanelControllerBase<
     } else {
       // showWarningMessage is not await'ed so that the loading spinner does not hang:
       vscode.window.showWarningMessage(
-        "You must be connected to a Neo Express blockchain to invoke contracts. Support for TestNet and MainNet contract invocation is coming soon."
+        "You must be connected to a Chain Express blockchain to invoke contracts. Support for TestNet and MainNet contract invocation is coming soon."
       );
     }
   }

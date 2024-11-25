@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ShowCommand.Transaction.cs file belongs to neo-express project and is free
+// ShowCommand.Transaction.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -31,7 +31,7 @@ namespace NeoExpress.Commands
             [Required]
             internal string TransactionHash { get; init; } = string.Empty;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
             internal async Task<int> OnExecuteAsync(CommandLineApplication app, IConsole console)
@@ -40,7 +40,7 @@ namespace NeoExpress.Commands
                 {
                     var (chainManager, _) = chainManagerFactory.LoadChain(Input);
                     using var expressNode = chainManager.GetExpressNode();
-                    var (tx, log) = await expressNode.GetTransactionAsync(Neo.UInt256.Parse(TransactionHash));
+                    var (tx, log) = await expressNode.GetTransactionAsync(EpicChain.UInt256.Parse(TransactionHash));
 
                     using var writer = new JsonTextWriter(console.Out) { Formatting = Formatting.Indented };
                     await writer.WriteStartObjectAsync();

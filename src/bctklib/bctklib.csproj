@@ -2,8 +2,8 @@
     <PropertyGroup>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <PackageId>Neo.BlockchainToolkit</PackageId>
-        <RootNamespace>Neo.BlockchainToolkit</RootNamespace>
+        <PackageId>EpicChain.BlockchainToolkit</PackageId>
+        <RootNamespace>EpicChain.BlockchainToolkit</RootNamespace>
         <DebugType>portable</DebugType>
     </PropertyGroup>
 
@@ -21,7 +21,7 @@
         <PackageReference Include="OneOf" Version="3.0.271" />
         <PackageReference Include="rocksdb" Version="9.4.0.50294" />
         <PackageReference Include="System.IO.Abstractions" Version="21.0.26" />
-        <PackageReference Include="Neo.Cryptography.MPT" Version="$(NeoVersion)" />
-        <PackageReference Include="Neo.Network.RPC.RpcClient" Version="$(NeoVersion)" />
+        <PackageReference Include="EpicChain.Cryptography.MPT" Version="$(NeoVersion)" />
+        <PackageReference Include="EpicChain.Network.RPC.RpcClient" Version="$(NeoVersion)" />
     </ItemGroup>
 </Project>

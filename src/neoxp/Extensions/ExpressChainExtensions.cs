@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressChainExtensions.cs file belongs to neo-express project and is free
+// ExpressChainExtensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.Wallets;
 using NeoExpress.Models;
 using System.Collections.Immutable;
 using System.Diagnostics;
@@ -74,7 +74,7 @@ namespace NeoExpress
             if (!string.IsNullOrEmpty(password))
                 return password;
 
-            // if the name is a valid Neo Express account name, no password is needed
+            // if the name is a valid EpicChain Express account name, no password is needed
             if (chain.IsReservedName(name))
                 return password;
             if (chain.Wallets.Any(w => name.Equals(w.Name, StringComparison.OrdinalIgnoreCase)))
@@ -89,7 +89,7 @@ namespace NeoExpress
             ArgumentNullException.ThrowIfNull(@this);
 
             var keyPair = new KeyPair(@this.PrivateKey.HexToBytes());
-            var contract = Neo.SmartContract.Contract.CreateSignatureContract(keyPair.PublicKey);
+            var contract = EpicChain.SmartContract.Contract.CreateSignatureContract(keyPair.PublicKey);
             return contract.ScriptHash;
         }
 
@@ -125,7 +125,7 @@ namespace NeoExpress
                     .Select(n => n.Wallet.DefaultAccount ?? throw new Exception())
                     .Select(a => new KeyPair(a.PrivateKey.HexToBytes()).PublicKey)
                     .ToArray();
-                var contract = Neo.SmartContract.Contract.CreateMultiSigContract((keys.Length * 2 / 3) + 1, keys);
+                var contract = EpicChain.SmartContract.Contract.CreateMultiSigContract((keys.Length * 2 / 3) + 1, keys);
                 accountHash = contract.ScriptHash;
                 return true;
             }

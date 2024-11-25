@@ -19,7 +19,7 @@ def manifest_metadata() -> NeoMetadata:
     Defines this smart contract's metadata information
     """
     meta = NeoMetadata()
-    meta.supported_standards = ['NEP-17']
+    meta.supported_standards = ['XEP-17']
     meta.author = "Your name"
     meta.email = "your@email.address"
     meta.description = 'A description of the $_CLASSNAME_$...'
@@ -216,7 +216,7 @@ def _deploy(data: Any, update: bool):
 @public
 def onNEP17Payment(from_address: UInt160, amount: int, data: Any):
     """
-    NEP-17 affirms :"if the receiver is a deployed contract, the function MUST call onNEP17Payment method on receiver
+    XEP-17 affirms :"if the receiver is a deployed contract, the function MUST call onNEP17Payment method on receiver
     contract with the data parameter from transfer AFTER firing the Transfer event. If the receiver doesn't want to
     receive this transfer it MUST call ABORT." Therefore, since this is a smart contract, onNEP17Payment must exist.
 

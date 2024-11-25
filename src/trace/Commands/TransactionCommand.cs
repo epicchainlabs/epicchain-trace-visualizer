@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TransactionCommand.cs file belongs to neo-express project and is free
+// TransactionCommand.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,9 +10,9 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
+using EpicChain;
 using System.ComponentModel.DataAnnotations;
-using static Neo.BlockchainToolkit.Utility;
+using static EpicChain.BlockchainToolkit.Utility;
 
 namespace NeoTrace.Commands
 {
@@ -23,7 +23,7 @@ namespace NeoTrace.Commands
         [Required]
         internal string TransactionHash { get; } = string.Empty;
 
-        [Option(Description = "URL of Neo JSON-RPC Node\nSpecify MainNet (default), TestNet or JSON-RPC URL")]
+        [Option(Description = "URL of EpicChain JSON-RPC Node\nSpecify MainNet (default), TestNet or JSON-RPC URL")]
         internal string RpcUri { get; } = string.Empty;
 
         internal async Task<int> OnExecuteAsync(CommandLineApplication app, IConsole console)

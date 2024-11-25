@@ -55,7 +55,7 @@ export default class BlockchainIdentifier {
     } catch (e : any) {
       Log.log(
         LOG_PREFIX,
-        "Error parsing neo-express config",
+        "Error parsingress config",
         configPath,
         e.message
       );
@@ -130,7 +130,7 @@ export default class BlockchainIdentifier {
     } catch (e : any) {
       Log.log(
         LOG_PREFIX,
-        "Error parsing neo-express wallets",
+        "Error parsingress wallets",
         this.configPath,
         e.message
       );

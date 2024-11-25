@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ContractParameterParser.cs file belongs to neo-express project and is free
+// ContractParameterParser.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,19 +9,19 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Cryptography.ECC;
-using Neo.IO;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
-using Neo.VM;
-using Neo.Wallets;
+using EpicChain.Cryptography.ECC;
+using EpicChain.IO;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
+using EpicChain.Wallets;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 using System.Numerics;
 
-namespace Neo.BlockchainToolkit
+namespace EpicChain.BlockchainToolkit
 {
     public class ContractParameterParser
     {
@@ -111,60 +111,60 @@ namespace Neo.BlockchainToolkit
                 _ => new[] { ParseParameter(json) }
             };
 
-        public static ContractParameter ConvertStackItem(Neo.VM.Types.StackItem item)
+        public static ContractParameter ConvertStackItem(EpicChain.VM.Types.StackItem item)
         {
             return item switch
             {
-                // Neo.VM.Types.Struct value handled by Array branch
-                Neo.VM.Types.Array value => new ContractParameter()
+                // EpicChain.VM.Types.Struct value handled by Array branch
+                EpicChain.VM.Types.Array value => new ContractParameter()
                 {
                     Type = ContractParameterType.Array,
                     Value = value.Select(ConvertStackItem).ToList()
                 },
-                Neo.VM.Types.Boolean value => new ContractParameter()
+                EpicChain.VM.Types.Boolean value => new ContractParameter()
                 {
                     Type = ContractParameterType.Boolean,
                     Value = value.GetBoolean()
                 },
-                Neo.VM.Types.Buffer value => new ContractParameter()
+                EpicChain.VM.Types.Buffer value => new ContractParameter()
                 {
                     Type = ContractParameterType.ByteArray,
                     Value = value.InnerBuffer
                 },
-                Neo.VM.Types.ByteString value => new ContractParameter()
+                EpicChain.VM.Types.ByteString value => new ContractParameter()
                 {
                     Type = ContractParameterType.ByteArray,
                     Value = value.GetSpan().ToArray()
                 },
-                Neo.VM.Types.Integer value => new ContractParameter()
+                EpicChain.VM.Types.Integer value => new ContractParameter()
                 {
                     Type = ContractParameterType.Integer,
                     Value = value.GetInteger()
                 },
-                Neo.VM.Types.Map value => new ContractParameter()
+                EpicChain.VM.Types.Map value => new ContractParameter()
                 {
                     Type = ContractParameterType.Map,
                     Value = value.Select(kvp => KeyValuePair.Create(ConvertStackItem(kvp.Key), ConvertStackItem(kvp.Value))).ToList()
                 },
-                Neo.VM.Types.Null value => new ContractParameter
+                EpicChain.VM.Types.Null value => new ContractParameter
                 {
                     Type = ContractParameterType.Any,
                     Value = null
                 },
-                Neo.VM.Types.InteropInterface _ => throw new NotSupportedException("InteropInterface instances cannot be converted into a ContractParameter"),
-                Neo.VM.Types.Pointer _ => throw new NotSupportedException("Pointer instances cannot be converted into a ContractParameter"),
+                EpicChain.VM.Types.InteropInterface _ => throw new NotSupportedException("InteropInterface instances cannot be converted into a ContractParameter"),
+                EpicChain.VM.Types.Pointer _ => throw new NotSupportedException("Pointer instances cannot be converted into a ContractParameter"),
                 _ => throw new ArgumentException($"Unknown Stack Item Type {item.GetType().Name}", nameof(item)),
             };
         }
 
-        // logic for ConvertObject borrowed from Neo.VM.Helper.EmitPush(ScriptBuilder, object)
+        // logic for ConvertObject borrowed from EpicChain.VM.Helper.EmitPush(ScriptBuilder, object)
         // but extended to support converting more types to ContractParameter (StackItem types in particular)
         public static ContractParameter ConvertObject(object? obj)
         {
             return obj switch
             {
                 ContractParameter value => value,
-                Neo.VM.Types.StackItem value => ConvertStackItem(value),
+                EpicChain.VM.Types.StackItem value => ConvertStackItem(value),
                 bool value => new ContractParameter()
                 {
                     Type = ContractParameterType.Boolean,

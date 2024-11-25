@@ -4,7 +4,7 @@ import { setBlockExpiry, addFees } from "../helpers";
 
 export class Nep17Contract {
   /**
-   * Base class for communicating with NEP-5 contracts on the block chain.
+   * Base class for communicating with XEP-5 contracts on the block chain.
    */
   public contractHash: u.HexString;
   protected config: CommonConfig;
@@ -20,11 +20,11 @@ export class Nep17Contract {
   }
 
   /**
-   * Get the number of tokens owned by NEO address
+   * Get the number of tokens owned by EpicChain address
    */
   public async balanceOf(address: string): Promise<number> {
     if (!wallet.isAddress(address)) {
-      throw new Error("Address is not a valid NEO address");
+      throw new Error("Address is not a valid EpicChain address");
     }
     try {
       const response = await this.rpcClient.invokeFunction(
@@ -137,8 +137,8 @@ export class Nep17Contract {
 
   /**
    * Move tokens from one address to another
-   * @param from - source NEO address
-   * @param to - destination NEO address
+   * @param from - source EpicChain address
+   * @param to - destination EpicChain address
    * @param amount - quantity of tokens to send
    */
   public async transfer(
@@ -147,10 +147,10 @@ export class Nep17Contract {
     amount: number
   ): Promise<string> {
     if (!wallet.isAddress(from)) {
-      throw new Error("From address is not a valid NEO address");
+      throw new Error("From address is not a valid EpicChain address");
     }
     if (!wallet.isAddress(to)) {
-      throw new Error("To address is not a valid NEO address");
+      throw new Error("To address is not a valid EpicChain address");
     }
     if (amount <= 0) {
       throw new Error("Invalid amount");
@@ -204,7 +204,7 @@ export class Nep17Contract {
 
 export class NEOContract extends Nep17Contract {
   /**
-   * Convenience class initializing a Nep17Contract to the NEO token
+   * Convenience class initializing a Nep17Contract to the EpicChain token
    * exposing additional claim functions
    * @param config -
    */
@@ -215,8 +215,8 @@ export class NEOContract extends Nep17Contract {
 
   /**
    * Move tokens from one address to another
-   * @param from - source NEO address
-   * @param to - destination NEO address
+   * @param from - source EpicChain address
+   * @param to - destination EpicChain address
    * @param amount - quantity of tokens to send
    */
   public async transfer(
@@ -233,12 +233,12 @@ export class NEOContract extends Nep17Contract {
 
   /**
    * Claim gas for address
-   * @param address - NEO address
+   * @param address - EpicChain address
    * @returns transaction id
    */
   public async claimGas(address: string): Promise<string> {
     if (!wallet.isAddress(address)) {
-      throw new Error("From address is not a valid NEO address");
+      throw new Error("From address is not a valid EpicChain address");
     }
 
     const unclaimed = await this.rpcClient.getUnclaimedGas(address);
@@ -252,11 +252,11 @@ export class NEOContract extends Nep17Contract {
 
   /**
    * Get the available bonus GAS for address
-   * @param address - NEO address
+   * @param address - EpicChain address
    */
   public async getUnclaimedGas(address: string): Promise<number> {
     if (!wallet.isAddress(address)) {
-      throw new Error("From address is not a valid NEO address");
+      throw new Error("From address is not a valid EpicChain address");
     }
     return parseFloat(await this.rpcClient.getUnclaimedGas(address));
   }

@@ -1,8 +1,8 @@
 # Compiling your Python smart contract with neo3-boa
 
-To compile python scripts into smart contracts for the Neo blockchain it will be necessary to utilize neo3-boa.
+To compile python scripts into smart contracts for the EpicChain blockchain it will be necessary to utilize neo3-boa.
 
-If you don't have it installed, installing it is quite easy: 
+If you don't have it installed, installing it is quite easy:
 - Download and install Python (if you don't have it yet);
 - Install neo3-boa using pip:
 ```shell
@@ -13,8 +13,8 @@ For more information about neo3-boa check the documentation [here](https://dojo.
 
 ## `src` folder
 
-If you already had neo3-boa installed, your smart contract should already be compiled. 
-Inside `src` you will find the original python script together with the files needed for debugging and deploying to the blockchain: 
+If you already had neo3-boa installed, your smart contract should already be compiled.
+Inside `src` you will find the original python script together with the files needed for debugging and deploying to the blockchain:
 - `$_CLASSNAME_$.manifest.json`
 - `$_CLASSNAME_$.nef`
 - `$_CLASSNAME_$.nefdbgnfo`
@@ -30,9 +30,9 @@ After changing the smart contract, you'll need to compile it again using neo3-bo
 
 ## `test` folder
 
-If you want to test your smart contract before deploying it to MainNet or TestNet, a private chain should already have been created inside the `test` folder. 
+If you want to test your smart contract before deploying it to MainNet or TestNet, a private chain should already have been created inside the `test` folder.
 Inside it you'll see the following files:
-- `$_CONTRACTNAME_$Tests.neo-express`
+- `$_CONTRACTNAME_$Tests.epicchain-express`
     - The private chain itself, you should find it by its name on the visual tracker.
 - `setup-test-chain.batch`
     - This batch was used to transfer some GAS to alice, bob and owner's accounts in the private chain.

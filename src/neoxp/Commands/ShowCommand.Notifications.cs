@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ShowCommand.Notifications.cs file belongs to neo-express project and is free
+// ShowCommand.Notifications.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,7 +10,7 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
+using EpicChain;
 using Newtonsoft.Json;
 
 namespace NeoExpress.Commands
@@ -36,7 +36,7 @@ namespace NeoExpress.Commands
             [Option(Description = "Limit shown notifications to specified event name")]
             internal string EventName { get; init; } = string.Empty;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
             internal async Task<int> OnExecuteAsync(CommandLineApplication app, IConsole console)
@@ -94,7 +94,7 @@ namespace NeoExpress.Commands
                         writer.WritePropertyName("event-name");
                         writer.WriteValue(notification.EventName);
                         writer.WritePropertyName("state");
-                        writer.WriteJson(Neo.VM.Helper.ToJson(notification.State)["value"]);
+                        writer.WriteJson(EpicChain.VM.Helper.ToJson(notification.State)["value"]);
                         writer.WriteEndObject();
                     }
                     writer.WriteEndArray();

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TransferNotificationRecord.cs file belongs to neo-express project and is free
+// TransferNotificationRecord.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,8 +9,8 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.VM.Types;
+using EpicChain;
+using EpicChain.VM.Types;
 using System.Numerics;
 
 namespace NeoExpress.Models
@@ -57,7 +57,7 @@ namespace NeoExpress.Models
             return notification.State.Count switch
             {
                 3 => new TransferNotificationRecord(asset, from, to, amount, default, notification),
-                4 when (notification.State[3] is Neo.VM.Types.ByteString tokenId)
+                4 when (notification.State[3] is EpicChain.VM.Types.ByteString tokenId)
                     => new TransferNotificationRecord(asset, from, to, amount, tokenId, notification),
                 _ => null
             };

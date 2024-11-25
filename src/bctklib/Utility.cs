@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Utility.cs file belongs to neo-express project and is free
+// Utility.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,14 +9,14 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Cryptography.MPTTrie;
-using Neo.IO;
-using Neo.SmartContract;
+using EpicChain.Cryptography.MPTTrie;
+using EpicChain.IO;
+using EpicChain.SmartContract;
 using System.Buffers.Binary;
 using System.Diagnostics.CodeAnalysis;
-using static Neo.BlockchainToolkit.Constants;
+using static EpicChain.BlockchainToolkit.Constants;
 
-namespace Neo.BlockchainToolkit
+namespace EpicChain.BlockchainToolkit
 {
     public static class Utility
     {
@@ -47,7 +47,7 @@ namespace Neo.BlockchainToolkit
             var proofs = new HashSet<byte[]>();
 
             using MemoryStream stream = new(proof, false);
-            using BinaryReader reader = new(stream, Neo.Utility.StrictUTF8);
+            using BinaryReader reader = new(stream, EpicChain.Utility.StrictUTF8);
 
             var keyBuffer = reader.ReadVarBytes(Node.MaxKeyLength);
 
@@ -61,7 +61,7 @@ namespace Neo.BlockchainToolkit
             if (value is null)
                 throw new Exception("Verification failed");
 
-            // Note, StorageKey.Deserialized was removed in Neo 3.3.0
+            // Note, StorageKey.Deserialized was removed in EpicChain 3.3.0
             //       so VerifyProof has to deserialize StorageKey directly
             //       https://github.com/neo-project/neo/issues/2765
             var key = new StorageKey()

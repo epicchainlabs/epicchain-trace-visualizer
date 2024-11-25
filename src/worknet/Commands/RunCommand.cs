@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// RunCommand.cs file belongs to neo-express project and is free
+// RunCommand.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -11,12 +11,12 @@
 
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Configuration;
-using Neo;
-using Neo.BlockchainToolkit.Persistence;
-using Neo.BlockchainToolkit.Plugins;
-using Neo.Cryptography.ECC;
-using Neo.Persistence;
-using Neo.Plugins;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Persistence;
+using EpicChain.BlockchainToolkit.Plugins;
+using EpicChain.Cryptography.ECC;
+using EpicChain.Persistence;
+using EpicChain.Plugins;
 using NeoWorkNet.Models;
 using System.IO.Abstractions;
 using System.Net;
@@ -89,19 +89,19 @@ partial class RunCommand
 
                 using var persistencePlugin = new ToolkitPersistencePlugin(db);
                 using var logPlugin = new WorkNetLogPlugin(console, Utility.GetDiagnosticWriter(console));
-                using var dbftPlugin = new Neo.Consensus.DBFTPlugin(GetConsensusSettings(worknet));
+                using var dbftPlugin = new EpicChain.Consensus.DBFTPlugin(GetConsensusSettings(worknet));
                 using var rpcServerPlugin = new WorknetRpcServerPlugin(GetRpcServerSettings(worknet), persistencePlugin, worknet.Uri);
                 using var neoSystem = new NeoSystem(protocolSettings, storeProvider.Name);
 
-                neoSystem.StartNode(new Neo.Network.P2P.ChannelsConfig
+                neoSystem.StartNode(new EpicChain.Network.P2P.ChannelsConfig
                 {
                     Tcp = new IPEndPoint(IPAddress.Loopback, 30333)
                 });
                 dbftPlugin.Start(worknet.ConsensusWallet);
 
-                // DevTracker looks for a string that starts with "Neo express is running" to confirm that the instance has started
+                // DevTracker looks for a string that starts with "EpicChain express is running" to confirm that the instance has started
                 // Do not remove or re-word this console output:
-                console.Out.WriteLine($"Neo worknet is running");
+                console.Out.WriteLine($"EpicChain worknet is running");
 
                 var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(token, rpcServerPlugin.CancellationToken);
                 linkedToken.Token.WaitHandle.WaitOne();
@@ -117,7 +117,7 @@ partial class RunCommand
         }, CancellationToken.None);
         await tcs.Task.ConfigureAwait(false);
 
-        static Neo.Consensus.Settings GetConsensusSettings(WorknetFile worknet)
+        static EpicChain.Consensus.Settings GetConsensusSettings(WorknetFile worknet)
         {
             var settings = new Dictionary<string, string>()
             {
@@ -127,7 +127,7 @@ partial class RunCommand
             };
 
             var config = new ConfigurationBuilder().AddInMemoryCollection(settings!).Build();
-            return new Neo.Consensus.Settings(config.GetSection("PluginConfiguration"));
+            return new EpicChain.Consensus.Settings(config.GetSection("PluginConfiguration"));
         }
 
         static RpcServerSettings GetRpcServerSettings(WorknetFile worknet)

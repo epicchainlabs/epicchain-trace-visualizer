@@ -1,15 +1,15 @@
 {
-  "name": "neo3-visual-tracker",
+  "name": "epicchain-visual-tracker",
   "publisher": "ngd-seattle",
-  "displayName": "Neo N3 Visual DevTracker",
-  "description": "A Neo N3 blockchain explorer that is directly available within Visual Studio Code",
+  "displayName": "EpicChain Visual DevTracker",
+  "description": "A EpicChain blockchain explorer that is directly available within Visual Studio Code",
   "version": "0.0.0",
   "icon": "resources/neo-logo.png",
   "galleryBanner": {
     "color": "#242424",
     "theme": "dark"
   },
-  "author": "Neo Project",
+  "author": "EpicChain Project",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -17,11 +17,11 @@
     "Other"
   ],
   "bugs": {
-    "url": "https://github.com/ngdseattle/neo3-visual-tracker/issues"
+    "url": "https://github.com/ngdseattle/epicchain-visual-tracker/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ngdseattle/neo3-visual-tracker.git"
+    "url": "https://github.com/ngdseattle/epicchain-visual-tracker.git"
   },
   "capabilities": {
     "untrustedWorkspaces": {
@@ -30,30 +30,30 @@
     }
   },
   "activationEvents": [
-    "onCommand:neo3-visual-devtracker.customizeServerList",
-    "onCommand:neo3-visual-devtracker.express.contractDeploy",
-    "onCommand:neo3-visual-devtracker.express.create",
-    "onCommand:neo3-visual-devtracker.express.createCheckpoint",
-    "onCommand:neo3-visual-devtracker.express.exploreStorage",
-    "onCommand:neo3-visual-devtracker.express.reset",
-    "onCommand:neo3-visual-devtracker.express.restoreCheckpoint",
-    "onCommand:neo3-visual-devtracker.express.run",
-    "onCommand:neo3-visual-devtracker.express.runAdvanced",
-    "onCommand:neo3-visual-devtracker.express.transfer",
-    "onCommand:neo3-visual-devtracker.express.walletCreate",
-    "onCommand:neo3-visual-devtracker.neo.contractDeploy",
-    "onCommand:neo3-visual-devtracker.neo.invokeContract",
-    "onCommand:neo3-visual-devtracker.neo.newContract",
-    "onCommand:neo3-visual-devtracker.neo.walletCreate",
-    "onCommand:neo3-visual-devtracker.tracker.openContract",
-    "onCommand:neo3-visual-devtracker.tracker.openTracker",
-    "onCommand:neo3-visual-devtracker.tracker.openWallet",
-    "onCustomEditor:neo3-visual-devtracker.express.neo-invoke-json",
-    "onView:neo3-visual-devtracker.views.blockchains",
-    "onView:neo3-visual-devtracker.views.quickStart",
+    "onCommand:epicchain-visual-devtracker.customizeServerList",
+    "onCommand:epicchain-visual-devtracker.express.contractDeploy",
+    "onCommand:epicchain-visual-devtracker.express.create",
+    "onCommand:epicchain-visual-devtracker.express.createCheckpoint",
+    "onCommand:epicchain-visual-devtracker.express.exploreStorage",
+    "onCommand:epicchain-visual-devtracker.express.reset",
+    "onCommand:epicchain-visual-devtracker.express.restoreCheckpoint",
+    "onCommand:epicchain-visual-devtracker.express.run",
+    "onCommand:epicchain-visual-devtracker.express.runAdvanced",
+    "onCommand:epicchain-visual-devtracker.express.transfer",
+    "onCommand:epicchain-visual-devtracker.express.walletCreate",
+    "onCommand:epicchain-visual-devtracker.neo.contractDeploy",
+    "onCommand:epicchain-visual-devtracker.neo.invokeContract",
+    "onCommand:epicchain-visual-devtracker.neo.newContract",
+    "onCommand:epicchain-visual-devtracker.neo.walletCreate",
+    "onCommand:epicchain-visual-devtracker.tracker.openContract",
+    "onCommand:epicchain-visual-devtracker.tracker.openTracker",
+    "onCommand:epicchain-visual-devtracker.tracker.openWallet",
+    "onCustomEditor:epicchain-visual-devtracker.express.neo-invoke-json",
+    "onView:epicchain-visual-devtracker.views.blockchains",
+    "onView:epicchain-visual-devtracker.views.quickStart",
     "workspaceContains:**/*.nef",
     "workspaceContains:**/*.avm",
-    "workspaceContains:**/*.neo-express",
+    "workspaceContains:**/*.epicchain-express",
     "workspaceContains:**/*.neo-invoke.json",
     "workspaceContains:**/*.neo-wallet.json"
   ],
@@ -65,8 +65,8 @@
   "contributes": {
     "customEditors": [
       {
-        "viewType": "neo3-visual-devtracker.neo.neo-invoke-json",
-        "displayName": "Neo Express Contract Invoke File Editor",
+        "viewType": "epicchain-visual-devtracker.neo.neo-invoke-json",
+        "displayName": "EpicChain Express Contract Invoke File Editor",
         "selector": [
           {
             "filenamePattern": "*.neo-invoke.json"
@@ -77,238 +77,238 @@
     ],
     "commands": [
       {
-        "command": "neo3-visual-devtracker.express.contractDeploy",
-        "title": "Deploy contract to Neo Express",
-        "category": "Neo Express N3"
+        "command": "epicchain-visual-devtracker.express.contractDeploy",
+        "title": "Deploy contract to EpicChain Express",
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.create",
+        "command": "epicchain-visual-devtracker.express.create",
         "title": "Create private blockchain",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.createCheckpoint",
+        "command": "epicchain-visual-devtracker.express.createCheckpoint",
         "title": "Create checkpoint",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.customCommand",
-        "title": "Run custom Neo Express command",
-        "category": "Neo Express N3"
+        "command": "epicchain-visual-devtracker.express.customCommand",
+        "title": "Run custom EpicChain Express command",
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.exploreStorage",
+        "command": "epicchain-visual-devtracker.express.exploreStorage",
         "title": "Explore contract storage",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.reset",
+        "command": "epicchain-visual-devtracker.express.reset",
         "title": "Reset blockchain",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.restoreCheckpoint",
+        "command": "epicchain-visual-devtracker.express.restoreCheckpoint",
         "title": "Restore checkpoint",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.run",
+        "command": "epicchain-visual-devtracker.express.run",
         "title": "Start blockchain",
-        "category": "Neo Express N3",
+        "category": "EpicChain Express N3",
         "icon": {
           "light": "resources/light/play.svg",
           "dark": "resources/dark/play.svg"
         }
       },
       {
-        "command": "neo3-visual-devtracker.express.runAdvanced",
+        "command": "epicchain-visual-devtracker.express.runAdvanced",
         "title": "Start blockchain (with custom options)...",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.stop",
+        "command": "epicchain-visual-devtracker.express.stop",
         "title": "Stop blockchain",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.transfer",
+        "command": "epicchain-visual-devtracker.express.transfer",
         "title": "Transfer assets",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.express.walletCreate",
+        "command": "epicchain-visual-devtracker.express.walletCreate",
         "title": "Create wallet",
-        "category": "Neo Express N3"
+        "category": "EpicChain Express N3"
       },
       {
-        "command": "neo3-visual-devtracker.neo.contractDeploy",
+        "command": "epicchain-visual-devtracker.neo.contractDeploy",
         "title": "Deploy contract",
-        "category": "Neo N3"
+        "category": "EpicChain N3"
       },
       {
-        "command": "neo3-visual-devtracker.neo.invokeContract",
+        "command": "epicchain-visual-devtracker.neo.invokeContract",
         "title": "Invoke contract",
-        "category": "Neo N3"
+        "category": "EpicChain N3"
       },
       {
-        "command": "neo3-visual-devtracker.neo.newContract",
+        "command": "epicchain-visual-devtracker.neo.newContract",
         "title": "Create contract",
-        "category": "Neo N3"
+        "category": "EpicChain N3"
       },
       {
-        "command": "neo3-visual-devtracker.neo.walletCreate",
+        "command": "epicchain-visual-devtracker.neo.walletCreate",
         "title": "Create wallet",
-        "category": "Neo N3"
+        "category": "EpicChain N3"
       },
       {
-        "command": "neo3-visual-devtracker.tracker.openContract",
+        "command": "epicchain-visual-devtracker.tracker.openContract",
         "title": "Show smart contract information",
-        "category": "Neo N3 Visual DevTracker"
+        "category": "EpicChain Visual DevTracker"
       },
       {
-        "command": "neo3-visual-devtracker.tracker.openTracker",
-        "title": "Open Neo N3 Visual DevTracker",
-        "category": "Neo N3 Visual DevTracker",
+        "command": "epicchain-visual-devtracker.tracker.openTracker",
+        "title": "Open EpicChain Visual DevTracker",
+        "category": "EpicChain Visual DevTracker",
         "icon": {
           "light": "resources/light/open.svg",
           "dark": "resources/dark/open.svg"
         }
       },
       {
-        "command": "neo3-visual-devtracker.tracker.openWallet",
+        "command": "epicchain-visual-devtracker.tracker.openWallet",
         "title": "Show wallet",
-        "category": "Neo N3 Visual DevTracker"
+        "category": "EpicChain Visual DevTracker"
       },
       {
-        "command": "neo3-visual-devtracker.connect",
-        "title": "Connect to a Neo N3 blockchain",
-        "category": "Neo N3 Extension"
+        "command": "epicchain-visual-devtracker.connect",
+        "title": "Connect to a EpicChain blockchain",
+        "category": "EpicChain Extension"
       },
       {
-        "command": "neo3-visual-devtracker.customizeServerList",
+        "command": "epicchain-visual-devtracker.customizeServerList",
         "title": "Customize blockchain list",
-        "category": "Neo N3 Extension"
+        "category": "EpicChain Extension"
       },
       {
-        "command": "neo3-visual-devtracker.disconnect",
-        "title": "Disconnect from current Neo blockchain",
-        "category": "Neo N3 Extension"
+        "command": "epicchain-visual-devtracker.disconnect",
+        "title": "Disconnect from current EpicChain blockchain",
+        "category": "EpicChain Extension"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "neo3-visual-devtracker.express.contractDeploy",
+          "command": "epicchain-visual-devtracker.express.contractDeploy",
           "when": "isFileSystemResource && resourceExtname == .nef"
         },
         {
-          "command": "neo3-visual-devtracker.neo.contractDeploy",
+          "command": "epicchain-visual-devtracker.neo.contractDeploy",
           "when": "isFileSystemResource && resourceExtname == .nef"
         }
       ],
       "view/item/context": [
         {
-          "command": "neo3-visual-devtracker.express.contractDeploy",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.contractDeploy",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.customCommand",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.customCommand",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.createCheckpoint",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.createCheckpoint",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.exploreStorage",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.exploreStorage",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.reset",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.reset",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.restoreCheckpoint",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.restoreCheckpoint",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.run",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express",
+          "command": "epicchain-visual-devtracker.express.run",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express",
           "group": "inline"
         },
         {
-          "command": "neo3-visual-devtracker.express.run",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.run",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.runAdvanced",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.runAdvanced",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.stop",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.stop",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.transfer",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.transfer",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.express.walletCreate",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.express.walletCreate",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.neo.contractDeploy",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem != express"
+          "command": "epicchain-visual-devtracker.neo.contractDeploy",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem != express"
         },
         {
-          "command": "neo3-visual-devtracker.neo.invokeContract",
-          "when": "view == neo3-visual-devtracker.views.blockchains && viewItem == express"
+          "command": "epicchain-visual-devtracker.neo.invokeContract",
+          "when": "view == epicchain-visual-devtracker.views.blockchains && viewItem == express"
         },
         {
-          "command": "neo3-visual-devtracker.tracker.openTracker",
-          "when": "view == neo3-visual-devtracker.views.blockchains",
+          "command": "epicchain-visual-devtracker.tracker.openTracker",
+          "when": "view == epicchain-visual-devtracker.views.blockchains",
           "group": "inline"
         },
         {
-          "command": "neo3-visual-devtracker.tracker.openTracker",
-          "when": "view == neo3-visual-devtracker.views.blockchains"
+          "command": "epicchain-visual-devtracker.tracker.openTracker",
+          "when": "view == epicchain-visual-devtracker.views.blockchains"
         }
       ],
       "view/title": [
         {
-          "command": "neo3-visual-devtracker.customizeServerList",
-          "when": "view == neo3-visual-devtracker.views.blockchains"
+          "command": "epicchain-visual-devtracker.customizeServerList",
+          "when": "view == epicchain-visual-devtracker.views.blockchains"
         },
         {
-          "command": "neo3-visual-devtracker.express.create",
-          "when": "view == neo3-visual-devtracker.views.blockchains"
+          "command": "epicchain-visual-devtracker.express.create",
+          "when": "view == epicchain-visual-devtracker.views.blockchains"
         },
         {
-          "command": "neo3-visual-devtracker.neo.newContract",
-          "when": "view == neo3-visual-devtracker.views.contracts"
+          "command": "epicchain-visual-devtracker.neo.newContract",
+          "when": "view == epicchain-visual-devtracker.views.contracts"
         },
         {
-          "command": "neo3-visual-devtracker.neo.walletCreate",
-          "when": "view == neo3-visual-devtracker.views.wallets"
+          "command": "epicchain-visual-devtracker.neo.walletCreate",
+          "when": "view == epicchain-visual-devtracker.views.wallets"
         }
       ]
     },
     "views": {
-      "neo3-visual-devtracker-mainView": [
+      "epicchain-visual-devtracker-mainView": [
         {
-          "id": "neo3-visual-devtracker.views.blockchains",
+          "id": "epicchain-visual-devtracker.views.blockchains",
           "name": "Blockchains"
         },
         {
-          "id": "neo3-visual-devtracker.views.wallets",
+          "id": "epicchain-visual-devtracker.views.wallets",
           "name": "Wallets"
         },
         {
-          "id": "neo3-visual-devtracker.views.contracts",
+          "id": "epicchain-visual-devtracker.views.contracts",
           "name": "Smart contracts"
         },
         {
-          "id": "neo3-visual-devtracker.views.quickStart",
+          "id": "epicchain-visual-devtracker.views.quickStart",
           "name": "Quick Start",
           "type": "webview"
         }
@@ -317,8 +317,8 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "neo3-visual-devtracker-mainView",
-          "title": "Neo N3 Visual DevTracker",
+          "id": "epicchain-visual-devtracker-mainView",
+          "title": "EpicChain Visual DevTracker",
           "icon": "resources/n3-logo.png"
         }
       ]

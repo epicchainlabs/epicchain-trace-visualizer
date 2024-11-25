@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// RpcClientExtensionsTest.cs file belongs to neo-express project and is free
+// RpcClientExtensionsTest.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -16,7 +16,7 @@
 //         [Fact]
 //         public void get_state_returns_expected()
 //         {
-//             using var store = new Neo.Persistence.MemoryStore();
+//             using var store = new EpicChain.Persistence.MemoryStore();
 //             var trie = Utility.GetTestTrie(store);
 //             var key = BitConverter.GetBytes(42);
 //             Assert.True(trie.TryGetValue(key, out var expected));
@@ -65,7 +65,7 @@
 //             using var rpcClient = new TestableRpcClient();
 //             rpcClient.QueueResource("getproof.json");
 
-//             var key = Neo.Utility.StrictUTF8.GetBytes("sample.domain");
+//             var key = EpicChain.Utility.StrictUTF8.GetBytes("sample.domain");
 //             var expected = UInt160.Parse("0x06cb35134fce60a8c6445a608b5e43fe827d349e");
 //             var state = StateServiceStore.GetProvenState(rpcClient, rootHash, contractHash, key);
 //             Assert.NotNull(state);

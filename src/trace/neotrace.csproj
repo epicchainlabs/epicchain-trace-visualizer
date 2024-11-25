@@ -3,7 +3,7 @@
         <AssemblyName>neotrace</AssemblyName>
         <Description>neotrace generates debug trace files for existing blocks and/or transactions</Description>
         <OutputType>Exe</OutputType>
-        <PackageId>Neo.Trace</PackageId>
+        <PackageId>EpicChain.Trace</PackageId>
         <PackAsTool>true</PackAsTool>
         <RootNamespace>NeoTrace</RootNamespace>
     </PropertyGroup>

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// NeoCsc.cs file belongs to neo-express project and is free
+// NeoCsc.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -16,12 +16,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Neo.BuildTasks
+namespace EpicChain.BuildTasks
 {
     public class NeoCsc : DotNetToolTask
     {
         readonly static NugetPackageVersion REQUIRED_VERSION = new NugetPackageVersion(3, 3, 0);
-        const string PACKAGE_ID = "Neo.Compiler.CSharp";
+        const string PACKAGE_ID = "EpicChain.Compiler.CSharp";
         const string COMMAND = "nccs";
         const byte DEFAULT_ADDRESS_VERSION = 53;
 

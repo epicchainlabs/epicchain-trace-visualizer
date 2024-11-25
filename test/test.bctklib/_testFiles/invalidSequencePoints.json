@@ -55,7 +55,7 @@
             ]
         },
         {
-            "id": "DevHawk.Contracts.Registrar.Register(string, Neo.UInt160)",
+            "id": "DevHawk.Contracts.Registrar.Register(string, Chain.UInt160)",
             "name": "DevHawk.Contracts.Registrar,Register",
             "range": "244-401",
             "params": [
@@ -88,7 +88,7 @@
             ]
         },
         {
-            "id": "DevHawk.Contracts.DomainStorage.Put(string, Neo.UInt160)",
+            "id": "DevHawk.Contracts.DomainStorage.Put(string, Chain.UInt160)",
             "name": "DevHawk.Contracts.DomainStorage,Put",
             "range": "408-430",
             "params": [
@@ -102,8 +102,8 @@
             ]
         },
         {
-            "id": "Neo.SmartContract.Framework.Services.StorageMap.Put\u003CNeo.UInt160\u003E(Neo.SmartContract.Framework.ByteString, Neo.UInt160)",
-            "name": "Neo.SmartContract.Framework.Services.StorageMap,Put",
+            "id": "Chain.SmartContract.Framework.Services.StorageMap.Put3CEpicChain.UI0\u003E(EpicChain.SmartContract.Framk.ByteString, EpicChain.UInt160)",
+            "name": "Chain.SmartContract.Framework.Services.StorageMap,Put",
             "range": "446-470",
             "params": [
                 "key,ByteArray",
@@ -118,7 +118,7 @@
             ]
         },
         {
-            "id": "DevHawk.Contracts.Registrar.Transfer(string, Neo.UInt160)",
+            "id": "DevHawk.Contracts.Registrar.Transfer(string, Chain.UInt160)",
             "name": "DevHawk.Contracts.Registrar,Transfer",
             "range": "475-683",
             "params": [
@@ -216,7 +216,7 @@
             ]
         },
         {
-            "id": "DevHawk.Contracts.Registrar.Update(Neo.SmartContract.Framework.ByteString, string)",
+            "id": "DevHawk.Contracts.Registrar.Update(Chain.SmartContract.Framework.ByteString, string)",
             "name": "DevHawk.Contracts.Registrar,Update",
             "range": "924-1026",
             "params": [

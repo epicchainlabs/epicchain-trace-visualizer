@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Extensions.cs file belongs to neo-express project and is free
+// Extensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,20 +9,20 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BlockchainToolkit.Models;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using Newtonsoft.Json;
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 using System.Numerics;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
-using StackItem = Neo.VM.Types.StackItem;
+using StackItem = EpicChain.VM.Types.StackItem;
 
-namespace Neo.BlockchainToolkit
+namespace EpicChain.BlockchainToolkit
 {
     public static class Extensions
     {
@@ -49,7 +49,7 @@ namespace Neo.BlockchainToolkit
             using var streamReader = new System.IO.StreamReader(stream);
             using var reader = new JsonTextReader(streamReader);
             return serializer.Deserialize<ExpressChain>(reader)
-                ?? throw new Exception($"Cannot load Neo-Express instance information from {path}");
+                ?? throw new Exception($"Cannot load EpicChain-Express instance information from {path}");
         }
 
         public static void SaveChain(this IFileSystem fileSystem, ExpressChain chain, string path)
@@ -65,7 +65,7 @@ namespace Neo.BlockchainToolkit
         {
             if (fileSystem.TryFindChain(out var chain, fileName, searchFolder))
                 return chain;
-            throw new Exception($"{fileName} Neo-Express file not found");
+            throw new Exception($"{fileName} EpicChain-Express file not found");
         }
 
         public static bool TryFindChain(this IFileSystem fileSystem, [MaybeNullWhen(false)] out ExpressChain chain, string fileName = Constants.DEFAULT_EXPRESS_FILENAME, string? searchFolder = null)
@@ -101,7 +101,7 @@ namespace Neo.BlockchainToolkit
 
         public static ReadOnlySpan<byte> AsSpan(this Script script) => ((ReadOnlyMemory<byte>)script).Span;
 
-        public static UInt160 CalculateScriptHash(this Script script) => Neo.SmartContract.Helper.ToScriptHash(script.AsSpan());
+        public static UInt160 CalculateScriptHash(this Script script) => EpicChain.SmartContract.Helper.ToScriptHash(script.AsSpan());
 
         public static string GetInstructionAddressPadding(this Script script)
         {

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ContractGenerator.cs file belongs to neo-express project and is free
+// ContractGenerator.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -12,9 +12,9 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using static Neo.BuildTasks.CSharpHelpers;
+using static EpicChain.BuildTasks.CSharpHelpers;
 
-namespace Neo.BuildTasks
+namespace EpicChain.BuildTasks
 {
     public static class ContractGenerator
     {
@@ -49,7 +49,7 @@ namespace Neo.BuildTasks
                 builder.IncrementIndent();
             }
             builder.AppendLines($@"#if NETSTANDARD || NETFRAMEWORK || NETCOREAPP
-[System.CodeDom.Compiler.GeneratedCode(""Neo.BuildTasks"",""{ThisAssembly.AssemblyFileVersion}"")]
+[System.CodeDom.Compiler.GeneratedCode(""EpicChain.BuildTasks"",""{ThisAssembly.AssemblyFileVersion}"")]
 #endif
 ");
             builder.AppendLine($"[System.ComponentModel.Description(@\"{manifestName}\")]");
@@ -103,25 +103,25 @@ namespace Neo.BuildTasks
                 case "Any":
                     return "object";
                 case "Array":
-                    return "Neo.VM.Types.Array";
+                    return "EpicChain.VM.Types.Array";
                 case "Boolean":
                     return "bool";
                 case "ByteArray":
                     return "byte[]";
                 case "Hash160":
-                    return "Neo.UInt160";
+                    return "EpicChain.UInt160";
                 case "Hash256":
-                    return "Neo.UInt256";
+                    return "EpicChain.UInt256";
                 case "Integer":
                     return "System.Numerics.BigInteger";
                 case "InteropInterface":
-                    return "Neo.VM.Types.InteropInterface";
+                    return "EpicChain.VM.Types.InteropInterface";
                 case "PublicKey":
-                    return "Neo.Cryptography.ECC.ECPoint";
+                    return "EpicChain.Cryptography.ECC.ECPoint";
                 case "Map":
-                    return "Neo.VM.Types.Map";
+                    return "EpicChain.VM.Types.Map";
                 case "Signature":
-                    return "Neo.VM.Types.ByteString";
+                    return "EpicChain.VM.Types.ByteString";
                 case "String":
                     return "string";
                 case "Void":

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// FileNameUtilities.cs file belongs to neo-express project and is free
+// FileNameUtilities.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,7 +9,7 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-namespace Neo.BlockchainToolkit
+namespace EpicChain.BlockchainToolkit
 {
     // This Library contains logic that need to handle both Windows and Unix style paths. For example, debug info can be created on Windows and read
     // on Mac/Linux or vis versa. So the standard Path.GetFileName/GetDirectoryName method will not work.

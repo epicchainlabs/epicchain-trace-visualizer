@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// CodeCoverageTests.cs file belongs to neo-express project and is free
+// CodeCoverageTests.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,10 +10,10 @@
 // modifications are permitted.
 
 using FluentAssertions;
-using Neo.BlockchainToolkit.SmartContract;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.VM;
+using EpicChain.BlockchainToolkit.SmartContract;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.VM;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using Xunit;

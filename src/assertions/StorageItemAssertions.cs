@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// StorageItemAssertions.cs file belongs to neo-express project and is free
+// StorageItemAssertions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -12,10 +12,10 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
-using Neo.SmartContract;
+using EpicChain.SmartContract;
 using System.Numerics;
 
-namespace Neo.Assertions
+namespace EpicChain.Assertions
 {
     public class StorageItemAssertions : ReferenceTypeAssertions<StorageItem, StorageItemAssertions>
     {

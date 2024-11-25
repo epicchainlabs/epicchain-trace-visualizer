@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressPersistencePlugin.cs file belongs to neo-express project and is free
+// ExpressPersistencePlugin.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,17 +9,17 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.IO;
-using Neo.Json;
-using Neo.Ledger;
-using Neo.Network.P2P.Payloads;
-using Neo.Persistence;
-using Neo.Plugins;
-using Neo.VM;
+using EpicChain;
+using EpicChain.IO;
+using EpicChain.Json;
+using EpicChain.Ledger;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Persistence;
+using EpicChain.Plugins;
+using EpicChain.VM;
 using NeoExpress.Models;
 using System.Buffers.Binary;
-using ApplicationExecuted = Neo.Ledger.Blockchain.ApplicationExecuted;
+using ApplicationExecuted = EpicChain.Ledger.Blockchain.ApplicationExecuted;
 
 namespace NeoExpress.Node
 {
@@ -68,7 +68,7 @@ namespace NeoExpress.Node
                 throw new NullReferenceException(nameof(appLogsStore));
             var value = appLogsStore.TryGet(hash.ToArray());
             return value is not null && value.Length != 0
-                ? JToken.Parse(Neo.Utility.StrictUTF8.GetString(value)) as JObject
+                ? JToken.Parse(EpicChain.Utility.StrictUTF8.GetString(value)) as JObject
                 : null;
         }
 
@@ -140,7 +140,7 @@ namespace NeoExpress.Node
                     continue;
 
                 var txJson = TxLogToJson(appExec);
-                appLogsSnapshot.Put(appExec.Transaction.Hash.ToArray(), Neo.Utility.StrictUTF8.GetBytes(txJson.ToString()));
+                appLogsSnapshot.Put(appExec.Transaction.Hash.ToArray(), EpicChain.Utility.StrictUTF8.GetBytes(txJson.ToString()));
 
                 if (appExec.VMState != VMState.FAULT)
                 {
@@ -163,7 +163,7 @@ namespace NeoExpress.Node
             var blockJson = BlockLogToJson(block, applicationExecutedList);
             if (blockJson is not null)
             {
-                appLogsSnapshot.Put(block.Hash.ToArray(), Neo.Utility.StrictUTF8.GetBytes(blockJson.ToString()));
+                appLogsSnapshot.Put(block.Hash.ToArray(), EpicChain.Utility.StrictUTF8.GetBytes(blockJson.ToString()));
             }
         }
 
@@ -173,7 +173,7 @@ namespace NeoExpress.Node
             notificationsSnapshot?.Commit();
         }
 
-        // TxLogToJson and BlockLogToJson copied from Neo.Plugins.LogReader in the ApplicationLogs plugin
+        // TxLogToJson and BlockLogToJson copied from EpicChain.Plugins.LogReader in the ApplicationLogs plugin
         // to avoid dependency on LevelDBStore package
 
         static JObject TxLogToJson(ApplicationExecuted appExec)

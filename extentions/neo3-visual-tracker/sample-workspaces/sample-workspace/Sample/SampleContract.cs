@@ -2,8 +2,8 @@
 using System.ComponentModel;
 using System.Numerics;
 
-using Neo.SmartContract.Framework;
-using Neo.SmartContract.Framework.Services;
+using Chain.SmartContract.Framework;
+using Chain.SmartContract.Framework.Services;
 
 namespace Sample
 {
@@ -16,7 +16,7 @@ namespace Sample
         const string MAP_NAME = "SampleContract";
 
         [DisplayName("NumberChanged")]
-        public static event Action<Neo.UInt160, BigInteger> OnNumberChanged;
+        public static event Action<Chain.UInt160, BigInteger> OnNumberChanged;
 
         public static bool ChangeNumber(BigInteger positiveNumber)
         {

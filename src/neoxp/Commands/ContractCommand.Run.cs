@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ContractCommand.Run.cs file belongs to neo-express project and is free
+// ContractCommand.Run.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,7 +9,7 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Network.P2P.Payloads;
+using EpicChain.Network.P2P.Payloads;
 using System.ComponentModel.DataAnnotations;
 
 namespace NeoExpress.Commands
@@ -53,7 +53,7 @@ namespace NeoExpress.Commands
             [Option("--gas|-g", CommandOptionType.SingleValue, Description = "Additional GAS to apply to the contract invocation")]
             internal decimal AdditionalGas { get; init; } = 0;
 
-            [Option(Description = "password to use for NEP-2/NEP-6 account")]
+            [Option(Description = "password to use for XEP-2/XEP-6 account")]
             internal string Password { get; init; } = string.Empty;
 
             [Option(Description = "Enable contract execution tracing")]
@@ -62,7 +62,7 @@ namespace NeoExpress.Commands
             [Option(Description = "Output as JSON")]
             internal bool Json { get; init; } = false;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
             internal async Task<int> OnExecuteAsync(CommandLineApplication app, IConsole console)

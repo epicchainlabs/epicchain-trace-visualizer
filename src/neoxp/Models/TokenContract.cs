@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TokenContract.cs file belongs to neo-express project and is free
+// TokenContract.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.Json;
-using Neo.Persistence;
-using Neo.SmartContract.Native;
+using EpicChain;
+using EpicChain.Json;
+using EpicChain.Persistence;
+using EpicChain.SmartContract.Native;
 
 namespace NeoExpress.Models
 {
@@ -66,17 +66,17 @@ namespace NeoExpress.Models
                 var standards = contract.Manifest.SupportedStandards;
                 for (var i = 0; i < standards.Length; i++)
                 {
-                    if (standards[i] == "NEP-11")
+                    if (standards[i] == "XEP-11")
                         nep11 = true;
-                    if (standards[i] == "NEP-17")
+                    if (standards[i] == "XEP-17")
                         nep17 = true;
                 }
 
-                // Return contracts that declare either NEP-11 or NEP-17 but not both. Obviously, if
+                // Return contracts that declare either XEP-11 or XEP-17 but not both. Obviously, if
                 // the contract doesn't specify that either standard is supported, skip it. However,
-                // we also skip contracts that specify they support both NEP-11 and NEP-17. The transfer
-                // operation has a different number of parameters for NEP-17, divisible NEP-11 and
-                // non-divisible NEP-11 tokens, so it is impossible to implement NEP-11 and NEP-17
+                // we also skip contracts that specify they support both XEP-11 and XEP-17. The transfer
+                // operation has a different number of parameters for XEP-17, divisible XEP-11 and
+                // non-divisible XEP-11 tokens, so it is impossible to implement XEP-11 and XEP-17
                 // in the same contract
 
                 if (nep11 != nep17)

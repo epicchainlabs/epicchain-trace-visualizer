@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// WalletCommand.Export.cs file belongs to neo-express project and is free
+// WalletCommand.Export.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -18,7 +18,7 @@ namespace NeoExpress.Commands
 {
     partial class WalletCommand
     {
-        [Command("export", Description = "Export neo-express wallet in NEP-6 format")]
+        [Command("export", Description = "Exportepicchain-express wallet in XEP-6 format")]
         internal class Export
         {
             readonly ExpressChainManagerFactory chainManagerFactory;
@@ -34,10 +34,10 @@ namespace NeoExpress.Commands
             [Required]
             internal string Name { get; init; } = string.Empty;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
-            [Option(Description = "NEP-6 wallet name (Defaults to Neo-Express name if unspecified)")]
+            [Option(Description = "XEP-6 wallet name (Defaults toepicchain-express name if unspecified)")]
             internal string Output { get; init; } = string.Empty;
 
             [Option(Description = "Overwrite existing data")]

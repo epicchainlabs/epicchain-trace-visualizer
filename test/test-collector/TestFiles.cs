@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TestFiles.cs file belongs to neo-express project and is free
+// TestFiles.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,8 +9,8 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Collector;
-using Neo.Collector.Models;
+using EpicChain.Collector;
+using EpicChain.Collector.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,14 +24,14 @@ static class TestFiles
     {
         var debugInfo = GetResource(debugInfoFileName, stream =>
         {
-            if (debugInfoFileName.EndsWith(NeoDebugInfo.NEF_DBG_NFO_EXTENSION))
+            if (debugInfoFileName.EndsWith(EpicChainDebugInfo.NEF_DBG_NFO_EXTENSION))
             {
-                return NeoDebugInfo.TryLoadCompressed(stream, out var debugInfo)
-                    ? debugInfo : throw new Exception("NeoDebugInfo.TryLoadCompressed failed");
+                return EpicChainDebugInfo.TryLoadCompressed(stream, out var debugInfo)
+                    ? debugInfo : throw new Exception("EpicChainDebugInfo.TryLoadCompressed failed");
             }
-            else if (debugInfoFileName.EndsWith(NeoDebugInfo.DEBUG_JSON_EXTENSION))
+            else if (debugInfoFileName.EndsWith(EpicChainDebugInfo.DEBUG_JSON_EXTENSION))
             {
-                return NeoDebugInfo.Load(stream);
+                return EpicChainDebugInfo.Load(stream);
             }
             else
             {

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// WorkNetChain.cs file belongs to neo-express project and is free
+// WorkNetChain.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -12,7 +12,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Neo.BlockchainToolkit.Models
+namespace EpicChain.BlockchainToolkit.Models
 {
     public record WorknetChain(
         Uri Uri,
@@ -89,7 +89,7 @@ namespace Neo.BlockchainToolkit.Models
 
         public void WriteJson(JsonWriter writer)
         {
-            // write out network as magic + address version for neo express file compat
+            // write out network as magic + address version for EpicChain express file compat
             writer.WriteStartObject();
             writer.WriteProperty("magic", BranchInfo.Network);
             writer.WriteProperty("address-version", BranchInfo.AddressVersion);

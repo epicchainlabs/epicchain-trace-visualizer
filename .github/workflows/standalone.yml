@@ -34,7 +34,7 @@ jobs:
 
     - name: Build (${{ matrix.runtime }})
       run: |
-        dotnet publish ./src/neoxp \
+        dotnet publish ./src/epicchain \
         --framework net8.0 \
         --configuration ${{ env.CONFIGURATION }} \
         --runtime ${{ matrix.runtime }} \
@@ -61,21 +61,21 @@ jobs:
       if: ${{ startsWith(matrix.runtime, 'osx') }}
       working-directory: ${{ env.OUTPUT_PATH }}/${{ matrix.runtime }}
       env:
-        TAR_FILE: ${{ format('{0}/Neo.Express-{1}-{2}.tar.xz', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
+        TAR_FILE: ${{ format('{0}/EpicChain.Express-{1}-{2}.tar.xz', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
       run: tar -cJf ${{ env.TAR_FILE }} .
 
     - name: Tarball (linux)
       if: ${{ startsWith(matrix.runtime, 'linux') }}
       working-directory: ${{ env.OUTPUT_PATH }}/${{ matrix.runtime }}
       env:
-        TAR_FILE: ${{ format('{0}/Neo.Express-{1}-{2}.tar.gz', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
+        TAR_FILE: ${{ format('{0}/EpicChain.Express-{1}-{2}.tar.gz', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
       run: tar -czvf ${{ env.TAR_FILE }} .
 
     - name: Zipball (win)
       if: ${{ startsWith(matrix.runtime, 'win') }}
       working-directory: ${{ env.OUTPUT_PATH }}/${{ matrix.runtime }}
       env:
-        ZIP_FILE: ${{ format('{0}/Neo.Express-{1}-{2}.zip', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
+        ZIP_FILE: ${{ format('{0}/EpicChain.Express-{1}-{2}.zip', env.DIST_PATH, matrix.runtime, steps.nbgv.outputs.NuGetPackageVersion) }}
       run: zip ${{ env.ZIP_FILE }} -r *
 
     - name: Cache Files

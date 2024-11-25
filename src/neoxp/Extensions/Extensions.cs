@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Extensions.cs file belongs to neo-express project and is free
+// Extensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,14 +10,14 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.Network.RPC.Models;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.Network.RPC.Models;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.Wallets;
 using NeoExpress.Models;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -45,7 +45,7 @@ namespace NeoExpress
             return value;
         }
 
-        public static void WriteJson(this IConsole console, Neo.Json.JObject json)
+        public static void WriteJson(this IConsole console, EpicChain.Json.JObject json)
         {
             using var writer = new Newtonsoft.Json.JsonTextWriter(console.Out)
             {
@@ -166,23 +166,23 @@ namespace NeoExpress
             return char.IsControl(c) || char.IsHighSurrogate(c) || char.IsLowSurrogate(c);
         }
 
-        public static void WriteJson(this Newtonsoft.Json.JsonWriter writer, Neo.Json.JToken? json)
+        public static void WriteJson(this Newtonsoft.Json.JsonWriter writer, EpicChain.Json.JToken? json)
         {
             switch (json)
             {
                 case null:
                     writer.WriteNull();
                     break;
-                case Neo.Json.JBoolean boolean:
+                case EpicChain.Json.JBoolean boolean:
                     writer.WriteValue(boolean.Value);
                     break;
-                case Neo.Json.JNumber number:
+                case EpicChain.Json.JNumber number:
                     writer.WriteValue(new BigInteger(number.Value));
                     break;
-                case Neo.Json.JString @string:
+                case EpicChain.Json.JString @string:
                     writer.WriteValue(@string.Value);
                     break;
-                case Neo.Json.JArray @array:
+                case EpicChain.Json.JArray @array:
                     writer.WriteStartArray();
                     foreach (var value in @array)
                     {
@@ -190,7 +190,7 @@ namespace NeoExpress
                     }
                     writer.WriteEndArray();
                     break;
-                case Neo.Json.JObject @object:
+                case EpicChain.Json.JObject @object:
                     writer.WriteStartObject();
                     foreach (var (key, value) in @object.Properties)
                     {
@@ -221,14 +221,14 @@ namespace NeoExpress
             }
         }
 
-        public static bool IsMultiSigContract(this WalletAccount @this) => Neo.SmartContract.Helper.IsMultiSigContract(@this.Contract.Script);
+        public static bool IsMultiSigContract(this WalletAccount @this) => EpicChain.SmartContract.Helper.IsMultiSigContract(@this.Contract.Script);
 
         public static IEnumerable<WalletAccount> GetMultiSigAccounts(this Wallet wallet) => wallet.GetAccounts().Where(IsMultiSigContract);
 
-        public static ApplicationEngine Invoke(this Neo.VM.ScriptBuilder builder, ProtocolSettings settings, DataCache snapshot, IVerifiable? container = null)
+        public static ApplicationEngine Invoke(this EpicChain.VM.ScriptBuilder builder, ProtocolSettings settings, DataCache snapshot, IVerifiable? container = null)
             => Invoke(builder.ToArray(), settings, snapshot, container);
 
-        public static ApplicationEngine Invoke(this Neo.VM.Script script, ProtocolSettings settings, DataCache snapshot, IVerifiable? container = null)
+        public static ApplicationEngine Invoke(this EpicChain.VM.Script script, ProtocolSettings settings, DataCache snapshot, IVerifiable? container = null)
             => ApplicationEngine.Run(
                 script: script,
                 snapshot: snapshot,
@@ -353,12 +353,12 @@ namespace NeoExpress
             {
                 try
                 {
-                    var nep6wallet = new Neo.Wallets.NEP6.NEP6Wallet(path, password, settings);
+                    var nep6wallet = new EpicChain.Wallets.NEP6.NEP6Wallet(path, password, settings);
                     var nep6account = nep6wallet.GetAccounts().SingleOrDefault(a => a.IsDefault)
                         ?? nep6wallet.GetAccounts().SingleOrDefault()
-                        ?? throw new InvalidOperationException("Neo-express only supports NEP-6 wallets with a single default account or a single account");
+                        ?? throw new InvalidOperationException("EpicChain-express only supports XEP-6 wallets with a single default account or a single account");
                     if (nep6account.IsMultiSigContract())
-                        throw new Exception("Neo-express doesn't supports multi-sig NEP-6 accounts");
+                        throw new Exception("EpicChain-express doesn't supports multi-sig XEP-6 accounts");
                     var keyPair = nep6account.GetKey() ?? throw new Exception("account.GetKey() returned null");
                     CreateWallet(keyPair.PrivateKey, settings, out wallet, out accountHash);
                     return true;

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// CreateCommand.cs file belongs to neo-express project and is free
+// CreateCommand.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,26 +10,26 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
-using Neo.BlockchainToolkit.Models;
-using Neo.BlockchainToolkit.Persistence;
-using Neo.Cryptography;
-using Neo.IO;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
-using Neo.VM;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.BlockchainToolkit.Persistence;
+using EpicChain.Cryptography;
+using EpicChain.IO;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
+using EpicChain.Wallets;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.IO.Abstractions;
-using static Neo.BlockchainToolkit.Constants;
-using static Neo.BlockchainToolkit.Utility;
-using NeoArray = Neo.VM.Types.Array;
-using NeoStruct = Neo.VM.Types.Struct;
+using static EpicChain.BlockchainToolkit.Constants;
+using static EpicChain.BlockchainToolkit.Utility;
+using NeoArray = EpicChain.VM.Types.Array;
+using NeoStruct = EpicChain.VM.Types.Struct;
 
 namespace NeoWorkNet.Commands;
 
@@ -43,7 +43,7 @@ class CreateCommand
         this.fs = fileSystem;
     }
 
-    [Argument(0, Description = "URL of Neo JSON-RPC Node. Specify MainNet, TestNet or JSON-RPC URL")]
+    [Argument(0, Description = "URL of EpicChain JSON-RPC Node. Specify MainNet, TestNet or JSON-RPC URL")]
     [Required]
     internal string RpcUri { get; } = string.Empty;
 
@@ -144,23 +144,23 @@ class CreateCommand
 
         using var snapshot = new SnapshotCache(store.GetSnapshot());
 
-        // replace the Neo Committee with express consensus nodes
-        // Prefix_Committee stores array of structs containing PublicKey / vote count 
+        // replace the EpicChain Committee with express consensus nodes
+        // Prefix_Committee stores array of structs containing PublicKey / vote count
         var members = consensusAccounts.Select(a => new NeoStruct { a.GetKey().PublicKey.ToArray(), 0 });
         var committee = new NeoArray(members);
-        var committeeKeyBuilder = new KeyBuilder(NativeContract.NEO.Id, Prefix_Committee);
+        var committeeKeyBuilder = new KeyBuilder(NativeContract.EpicChain.Id, Prefix_Committee);
         var committeeItem = snapshot.GetAndChange(committeeKeyBuilder);
         committeeItem.Value = BinarySerializer.Serialize(committee, ExecutionEngineLimits.Default with { MaxItemSize = 1024 * 1024 });
 
-        // remove existing candidates (Prefix_Candidate) to ensure that 
+        // remove existing candidates (Prefix_Candidate) to ensure that
         // worknet node account doesn't get outvoted
-        var candidateKeyBuilder = new KeyBuilder(NativeContract.NEO.Id, Prefix_Candidate);
+        var candidateKeyBuilder = new KeyBuilder(NativeContract.EpicChain.Id, Prefix_Candidate);
         foreach (var (key, value) in snapshot.Find(candidateKeyBuilder.ToArray()))
         {
             snapshot.Delete(key);
         }
 
-        // create an *UNSIGNED* block that will be appended to the chain 
+        // create an *UNSIGNED* block that will be appended to the chain
         // with updated NextConsensus field.
         var prevHash = NativeContract.Ledger.CurrentHash(snapshot);
         var prevBlock = NativeContract.Ledger.GetHeader(snapshot, prevHash);
@@ -172,7 +172,7 @@ class CreateCommand
                 Version = 0,
                 PrevHash = prevBlock.Hash,
                 MerkleRoot = MerkleTree.ComputeRoot(Array.Empty<UInt256>()),
-                Timestamp = Math.Max(Neo.Helper.ToTimestampMS(DateTime.UtcNow), prevBlock.Timestamp + 1),
+                Timestamp = Math.Max(EpicChain.Helper.ToTimestampMS(DateTime.UtcNow), prevBlock.Timestamp + 1),
                 Index = prevBlock.Index + 1,
                 PrimaryIndex = 0,
                 NextConsensus = consensusContract.ScriptHash,
@@ -195,7 +195,7 @@ class CreateCommand
 
         // update Prefix_CurrentBlock (struct containing current block hash + index)
         var curBlockKey = new KeyBuilder(NativeContract.Ledger.Id, Prefix_CurrentBlock);
-        var currentBlock = new Neo.VM.Types.Struct() { trimmedBlock.Hash.ToArray(), trimmedBlock.Index };
+        var currentBlock = new EpicChain.VM.Types.Struct() { trimmedBlock.Hash.ToArray(), trimmedBlock.Index };
         var currentBlockItem = snapshot.GetAndChange(curBlockKey);
         currentBlockItem.Value = BinarySerializer.Serialize(currentBlock, ExecutionEngineLimits.Default with { MaxItemSize = 1024 * 1024 });
 

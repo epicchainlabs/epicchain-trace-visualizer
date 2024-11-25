@@ -1,16 +1,16 @@
 using FluentAssertions;
-using Neo.Assertions;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
-using Neo.BlockchainToolkit.SmartContract;
-using Neo.VM;
+using EpicChain.Assertions;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.BlockchainToolkit.SmartContract;
+using EpicChain.VM;
 using NeoTestHarness;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace ContractTests
 {
-    [CheckpointPath("checkpoints/contract-deployed.neoxp-checkpoint")]
+    [CheckpointPath("checkpoints/contract-deployed.epicchain-checkpoint")]
     public class ContractDeployedTests : IClassFixture<CheckpointFixture<ContractDeployedTests>>
     {
         readonly CheckpointFixture fixture;

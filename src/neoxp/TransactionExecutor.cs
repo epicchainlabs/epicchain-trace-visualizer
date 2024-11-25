@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TransactionExecutor.cs file belongs to neo-express project and is free
+// TransactionExecutor.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,15 +9,15 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.Cryptography.ECC;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.SmartContract;
-using Neo.SmartContract.Iterators;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.Cryptography.ECC;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Iterators;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using NeoExpress.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -25,8 +25,8 @@ using OneOf;
 using OneOf.Types;
 using System.IO.Abstractions;
 using System.Numerics;
-using static Neo.BlockchainToolkit.Constants;
-using static Neo.BlockchainToolkit.Utility;
+using static EpicChain.BlockchainToolkit.Constants;
+using static EpicChain.BlockchainToolkit.Utility;
 
 namespace NeoExpress
 {
@@ -107,12 +107,12 @@ namespace NeoExpress
                     throw new Exception($"Contract named {manifest.Name} already deployed. Use --force to deploy contract with conflicting name.");
                 }
 
-                if (manifest.SupportedStandards.Contains("NEP-11") && manifest.SupportedStandards.Contains("NEP-17"))
+                if (manifest.SupportedStandards.Contains("XEP-11") && manifest.SupportedStandards.Contains("XEP-17"))
                 {
-                    throw new Exception($"{manifest.Name} Contract declares support for both NEP-11 and NEP-17 standards. Use --force to deploy contract with invalid supported standards declarations.");
+                    throw new Exception($"{manifest.Name} Contract declares support for both XEP-11 and XEP-17 standards. Use --force to deploy contract with invalid supported standards declarations.");
                 }
 
-                if (manifest.SupportedStandards.Contains("NEP-17"))
+                if (manifest.SupportedStandards.Contains("XEP-17"))
                 {
                     var nep17CompliantErrors = manifest.Nep17CompliantErrors();
                     if (nep17CompliantErrors.Count > 0)
@@ -121,11 +121,11 @@ namespace NeoExpress
                         {
                             Console.WriteLine(error);
                         }
-                        throw new Exception($"{manifest.Name} Contract declares support for NEP-17 standards. However is not NEP-17 compliant. Invalid methods/events.");
+                        throw new Exception($"{manifest.Name} Contract declares support for XEP-17 standards. However is not XEP-17 compliant. Invalid methods/events.");
                     }
                 }
 
-                if (manifest.SupportedStandards.Contains("NEP-11"))
+                if (manifest.SupportedStandards.Contains("XEP-11"))
                 {
                     var nep11CompliantErrors = manifest.Nep11CompliantErrors();
                     if (nep11CompliantErrors.Count() > 0)
@@ -134,11 +134,11 @@ namespace NeoExpress
                         {
                             Console.WriteLine(error);
                         }
-                        throw new Exception($"{manifest.Name} Contract declares support for NEP-11 standards. However is not NEP-11 compliant. Invalid methods/events.");
+                        throw new Exception($"{manifest.Name} Contract declares support for XEP-11 standards. However is not XEP-11 compliant. Invalid methods/events.");
                     }
                 }
 
-                if (manifest.SupportedStandards.Contains("NEP-24"))
+                if (manifest.SupportedStandards.Contains("XEP-24"))
                 {
                     var nep24CompliantErrors = manifest.Nep24CompliantErrors();
                     if (nep24CompliantErrors.Count() > 0)
@@ -147,11 +147,11 @@ namespace NeoExpress
                         {
                             Console.WriteLine(error);
                         }
-                        throw new Exception($"{manifest.Name} Contract declares support for NEP-24 standards. However is not NEP-24 compliant. Invalid methods/events.");
+                        throw new Exception($"{manifest.Name} Contract declares support for XEP-24 standards. However is not XEP-24 compliant. Invalid methods/events.");
                     }
                 }
 
-                if (manifest.SupportedStandards.Contains("NEP-26"))
+                if (manifest.SupportedStandards.Contains("XEP-26"))
                 {
                     var nep26CompliantErrors = manifest.Nep26CompliantErrors();
                     if (nep26CompliantErrors.Count() > 0)
@@ -160,11 +160,11 @@ namespace NeoExpress
                         {
                             Console.WriteLine(error);
                         }
-                        throw new Exception($"{manifest.Name} Contract declares support for NEP-26 standards. However is not NEP-26 compliant. Invalid methods/events.");
+                        throw new Exception($"{manifest.Name} Contract declares support for XEP-26 standards. However is not XEP-26 compliant. Invalid methods/events.");
                     }
                 }
 
-                if (manifest.SupportedStandards.Contains("NEP-27"))
+                if (manifest.SupportedStandards.Contains("XEP-27"))
                 {
                     var nep27CompliantErrors = manifest.Nep27CompliantErrors();
                     if (nep27CompliantErrors.Count() > 0)
@@ -173,7 +173,7 @@ namespace NeoExpress
                         {
                             Console.WriteLine(error);
                         }
-                        throw new Exception($"{manifest.Name} Contract declares support for NEP-27 standards. However is not NEP-27 compliant. Invalid methods/events.");
+                        throw new Exception($"{manifest.Name} Contract declares support for XEP-27 standards. However is not XEP-27 compliant. Invalid methods/events.");
                     }
                 }
             }
@@ -193,7 +193,7 @@ namespace NeoExpress
                 .DeployAsync(nefFile, manifest, wallet, accountHash, witnessScope, dataParam)
                 .ConfigureAwait(false);
 
-            var contractHash = Neo.SmartContract.Helper.GetContractHash(accountHash, nefFile.CheckSum, manifest.Name);
+            var contractHash = EpicChain.SmartContract.Helper.GetContractHash(accountHash, nefFile.CheckSum, manifest.Name);
             if (json)
             {
                 using var jsonWriter = new JsonTextWriter(writer) { Formatting = Formatting.Indented };
@@ -302,7 +302,7 @@ namespace NeoExpress
                     Account = accountHash,
                     Scopes = witnessScope,
                     AllowedContracts = Array.Empty<UInt160>(),
-                    AllowedGroups = Array.Empty<Neo.Cryptography.ECC.ECPoint>()
+                    AllowedGroups = Array.Empty<EpicChain.Cryptography.ECC.ECPoint>()
                 }
                 : null;
 
@@ -330,34 +330,34 @@ namespace NeoExpress
                 }
             }
 
-            static async Task WriteStackItemAsync(System.IO.TextWriter writer, Neo.VM.Types.StackItem item, int indent = 1, string prefix = "")
+            static async Task WriteStackItemAsync(System.IO.TextWriter writer, EpicChain.VM.Types.StackItem item, int indent = 1, string prefix = "")
             {
                 switch (item)
                 {
-                    case Neo.VM.Types.Boolean _:
+                    case EpicChain.VM.Types.Boolean _:
                         await WriteLineAsync(item.GetBoolean() ? "true" : "false").ConfigureAwait(false);
                         break;
-                    case Neo.VM.Types.Integer @int:
+                    case EpicChain.VM.Types.Integer @int:
                         await WriteLineAsync(@int.GetInteger().ToString()).ConfigureAwait(false);
                         break;
-                    case Neo.VM.Types.Buffer buffer:
-                        await WriteLineAsync(Neo.Helper.ToHexString(buffer.GetSpan())).ConfigureAwait(false);
+                    case EpicChain.VM.Types.Buffer buffer:
+                        await WriteLineAsync(EpicChain.Helper.ToHexString(buffer.GetSpan())).ConfigureAwait(false);
                         break;
-                    case Neo.VM.Types.ByteString byteString:
+                    case EpicChain.VM.Types.ByteString byteString:
                         if (byteString.GetSpan().TryGetUtf8String(out var text))
                         {
-                            await WriteLineAsync($"{Neo.Helper.ToHexString(byteString.GetSpan())}({text.EscapeString()})").ConfigureAwait(false);
+                            await WriteLineAsync($"{EpicChain.Helper.ToHexString(byteString.GetSpan())}({text.EscapeString()})").ConfigureAwait(false);
                         }
                         else
                         {
-                            await WriteLineAsync(Neo.Helper.ToHexString(byteString.GetSpan())).ConfigureAwait(false);
+                            await WriteLineAsync(EpicChain.Helper.ToHexString(byteString.GetSpan())).ConfigureAwait(false);
                         }
                         break;
-                    case Neo.VM.Types.Null _:
+                    case EpicChain.VM.Types.Null _:
                         await WriteLineAsync("<null>").ConfigureAwait(false);
                         break;
-                    case Neo.VM.Types.Array array:
-                        if (item is Neo.VM.Types.Struct)
+                    case EpicChain.VM.Types.Array array:
+                        if (item is EpicChain.VM.Types.Struct)
                             await WriteLineAsync($"Struct: ({array.Count})").ConfigureAwait(false);
                         else
                             await WriteLineAsync($"Array: ({array.Count})").ConfigureAwait(false);
@@ -366,7 +366,7 @@ namespace NeoExpress
                             await WriteStackItemAsync(writer, array[i], indent + 1).ConfigureAwait(false);
                         }
                         break;
-                    case Neo.VM.Types.Map map:
+                    case EpicChain.VM.Types.Map map:
                         await WriteLineAsync($"Map: ({map.Count})").ConfigureAwait(false);
                         foreach (var m in map)
                         {
@@ -374,7 +374,7 @@ namespace NeoExpress
                             await WriteStackItemAsync(writer, m.Value, indent + 1, "value: ").ConfigureAwait(false);
                         }
                         break;
-                    case Neo.VM.Types.InteropInterface iop:
+                    case EpicChain.VM.Types.InteropInterface iop:
                         if (iop.GetInterface<object>() is IIterator iter)
                         {
                             await WriteLineAsync($"{iop.Type}: ({iter.GetType().Name})").ConfigureAwait(false);
@@ -540,7 +540,7 @@ namespace NeoExpress
             }
             var publicKey = wallet.GetAccount(accountHash).GetKey()?.PublicKey;
             using var builder = new ScriptBuilder();
-            builder.EmitDynamicCall(NativeContract.NEO.Hash, "registerCandidate", publicKey);
+            builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "registerCandidate", publicKey);
 
             var txHash = await expressNode.ExecuteAsync(wallet, accountHash, WitnessScope.CalledByEntry, builder.ToArray()).ConfigureAwait(false);
             await writer.WriteTxHashAsync(txHash, $"Register Candidate", json).ConfigureAwait(false);
@@ -554,7 +554,7 @@ namespace NeoExpress
             }
             var publicKey = wallet.GetAccount(accountHash).GetKey()?.PublicKey;
             using var builder = new ScriptBuilder();
-            builder.EmitDynamicCall(NativeContract.NEO.Hash, "unregisterCandidate", publicKey);
+            builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "unregisterCandidate", publicKey);
 
             var txHash = await expressNode.ExecuteAsync(wallet, accountHash, WitnessScope.CalledByEntry, builder.ToArray()).ConfigureAwait(false);
             await writer.WriteTxHashAsync(txHash, $"Unregister Candidate", json).ConfigureAwait(false);
@@ -574,11 +574,11 @@ namespace NeoExpress
                 {
                     throw new Exception($"PublicKey is not valid.");
                 }
-                builder.EmitDynamicCall(NativeContract.NEO.Hash, "vote", accountHash, point);
+                builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "vote", accountHash, point);
             }
             else
             {
-                builder.EmitDynamicCall(NativeContract.NEO.Hash, "vote", accountHash, null);
+                builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "vote", accountHash, null);
             }
 
             var txHash = await expressNode.ExecuteAsync(wallet, accountHash, WitnessScope.CalledByEntry, builder.ToArray()).ConfigureAwait(false);
@@ -588,7 +588,7 @@ namespace NeoExpress
         public async Task<List<string>> ListCandidatesAsync()
         {
             using var builder = new ScriptBuilder();
-            builder.EmitDynamicCall(NativeContract.NEO.Hash, "getCandidates");
+            builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "getCandidates");
 
             var result = await expressNode.InvokeAsync(builder.ToArray()).ConfigureAwait(false);
             var stack = result.Stack;
@@ -597,12 +597,12 @@ namespace NeoExpress
             {
                 if (result.State != VMState.FAULT
                         && result.Stack.Length >= 1
-                        && result.Stack[0] is Neo.VM.Types.Array array)
+                        && result.Stack[0] is EpicChain.VM.Types.Array array)
                 {
                     for (var i = 0; i < array.Count; i++)
                     {
-                        var value = (Neo.VM.Types.Array)array[i];
-                        list.Add($"{((Neo.VM.Types.ByteString?)value?[0])?.GetSpan().ToHexString(),-67}{((Neo.VM.Types.Integer?)value?[1])?.GetInteger()}");
+                        var value = (EpicChain.VM.Types.Array)array[i];
+                        list.Add($"{((EpicChain.VM.Types.ByteString?)value?[0])?.GetSpan().ToHexString(),-67}{((EpicChain.VM.Types.Integer?)value?[1])?.GetInteger()}");
                     }
                 }
             }
@@ -632,7 +632,7 @@ namespace NeoExpress
                 using var stream = fileSystem.File.OpenRead(filename);
                 using var reader = new StreamReader(stream);
                 var text = await reader.ReadToEndAsync().ConfigureAwait(false);
-                var json = (Neo.Json.JObject)Neo.Json.JObject.Parse(text)!;
+                var json = (EpicChain.Json.JObject)EpicChain.Json.JObject.Parse(text)!;
                 try
                 {
                     return PolicyValues.FromJson(json!);
@@ -651,9 +651,9 @@ namespace NeoExpress
             }
 
             using var builder = new ScriptBuilder();
-            builder.EmitDynamicCall(NativeContract.NEO.Hash, "setGasPerBlock", policyValues.GasPerBlock.Value);
+            builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "setGasPerBlock", policyValues.GasPerBlock.Value);
             builder.EmitDynamicCall(NativeContract.ContractManagement.Hash, "setMinimumDeploymentFee", policyValues.MinimumDeploymentFee.Value);
-            builder.EmitDynamicCall(NativeContract.NEO.Hash, "setRegisterPrice", policyValues.CandidateRegistrationFee.Value);
+            builder.EmitDynamicCall(NativeContract.EpicChain.Hash, "setRegisterPrice", policyValues.CandidateRegistrationFee.Value);
             builder.EmitDynamicCall(NativeContract.Oracle.Hash, "setPrice", policyValues.OracleRequestFee.Value);
             builder.EmitDynamicCall(NativeContract.Policy.Hash, "setFeePerByte", policyValues.NetworkFeePerByte.Value);
             builder.EmitDynamicCall(NativeContract.Policy.Hash, "setStoragePrice", policyValues.StorageFeeFactor);
@@ -672,9 +672,9 @@ namespace NeoExpress
 
             var (hash, operation) = policy switch
             {
-                PolicySettings.GasPerBlock => (NativeContract.NEO.Hash, "setGasPerBlock"),
+                PolicySettings.GasPerBlock => (NativeContract.EpicChain.Hash, "setGasPerBlock"),
                 PolicySettings.MinimumDeploymentFee => (NativeContract.ContractManagement.Hash, "setMinimumDeploymentFee"),
-                PolicySettings.CandidateRegistrationFee => (NativeContract.NEO.Hash, "setRegisterPrice"),
+                PolicySettings.CandidateRegistrationFee => (NativeContract.EpicChain.Hash, "setRegisterPrice"),
                 PolicySettings.OracleRequestFee => (NativeContract.Oracle.Hash, "setPrice"),
                 PolicySettings.NetworkFeePerByte => (NativeContract.Policy.Hash, "setFeePerByte"),
                 PolicySettings.StorageFeeFactor => (NativeContract.Policy.Hash, "setStoragePrice"),

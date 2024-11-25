@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ContractCommand.Storage.cs file belongs to neo-express project and is free
+// ContractCommand.Storage.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,9 +10,9 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.SmartContract.Manifest;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.SmartContract.Manifest;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Numerics;
@@ -42,7 +42,7 @@ namespace NeoExpress.Commands
                 [Required]
                 internal string Contract { get; init; } = string.Empty;
 
-                [Option(Description = "Path to neo-express data file")]
+                [Option(Description = "Path toepicchain-express data file")]
                 internal string Input { get; init; } = string.Empty;
 
                 [Option(Description = "Output as JSON")]
@@ -159,7 +159,7 @@ namespace NeoExpress.Commands
                 [Required]
                 internal string Value { get; init; } = string.Empty;
 
-                [Option(Description = "Path to neo-express data file")]
+                [Option(Description = "Path toepicchain-express data file")]
                 internal string Input { get; init; } = string.Empty;
 
                 internal static async Task ExecuteAsync(ExpressChainManager chainManager, string contract, string key, string value, TextWriter writer)

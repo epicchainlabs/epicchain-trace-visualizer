@@ -14,8 +14,8 @@ const LOG_PREFIX = "ServerListDetector";
 const SEARCH_PATTERN = "**/neo-servers.json";
 
 const DEFAULT_FILE = {
-  "neo-rpc-uris": ["http://localhost:20332"],
-  "neo-blockchain-names": {
+  "neo-rpc-uris": ["http://localhost:20111"],
+  "epicchain-blockchain-names": {
     "0x0000000000000000000000000000000000000000000000000000000000000000":
       "My Private Blockchain",
   },
@@ -30,10 +30,10 @@ const UNKNOWN_BLOCKCHAIN =
 // names the user has supplied through neo-servers.json file(s) in the
 // current workspace):
 const WELL_KNOWN_BLOCKCHAINS: { [genesisHash: string]: string } = {
-  "0x1f4d1defa46faa5e7b9b8d3f79a06bec777d7c26c4aa5f6f5899a291daa87c15":
-    "Neo N3 MainNet",
-  "0x9d3276785e7306daf59a3f3b9e31912c095598bbfb8a4476b821b0e59be4c57a":
-    "Neo N3 TestNet",
+  "0xa30609d477c023fd7bc3ee38d80f4d06f92bfe9b771a30addcb7a214352c43ca":
+    "EpicChain MainNet",
+  "0x86bad159d6e943fa108d22be45cbd40d7c6188b524301bd14c15d7ba5bdb0fe6":
+    "EpicChain TestNet",
 };
 
 // These are the RPC URLs made available to users who do not have their
@@ -43,17 +43,17 @@ const SEED_URLS: { [url: string]: boolean } = {
   // TODO: Add alternative TestNet endpoints.
   //
   // V3 MainNet:
-  "http://seed1.neo.org:10332": true,
-  "http://seed2.neo.org:10332": true,
-  "http://seed3.neo.org:10332": true,
-  "http://seed4.neo.org:10332": true,
-  "http://seed5.neo.org:10332": true,
+  "http://mainnet1-seed.epic-chain.org:10111": true,
+  "http://mainnet2-seed.epic-chain.org:10111": true,
+  "http://mainnet3-seed.epic-chain.org:10111": true,
+  "http://mainnet4-seed.epic-chain.org:10111": true,
+  "http://mainnet5-seed.epic-chain.org:10111": true,
   // V3 TestNet:
-  "http://seed1t4.neo.org:20332": true,
-  "http://seed2t4.neo.org:20332": true,
-  "http://seed3t4.neo.org:20332": true,
-  "http://seed4t4.neo.org:20332": true,
-  "http://seed5t4.neo.org:20332": true,
+  "http://testnet1-seed.epic-chain.org:20111": true,
+  "http://testnet2-seed.epic-chain.org:20111": true,
+  "http://testnet3-seed.epic-chain.org:20111": true,
+  "http://testnet4-seed.epic-chain.org:20111": true,
+  "http://testnet5-seed.epic-chain.org:20111": true,
 };
 
 export default class ServerListDetector extends DetectorBase {
@@ -149,7 +149,7 @@ export default class ServerListDetector extends DetectorBase {
       } catch (e : any) {
         Log.log(
           LOG_PREFIX,
-          "Error parsing Neo Express config",
+          "Error parsing EpicChain Express config",
           file,
           e.message
         );

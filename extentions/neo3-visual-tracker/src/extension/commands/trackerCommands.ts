@@ -31,7 +31,7 @@ export default class TrackerCommands {
         }
       } else {
         vscode.window.showInformationMessage(
-          "No N3 contracts are available to display"
+          "No contracts are available to display"
         );
       }
     }

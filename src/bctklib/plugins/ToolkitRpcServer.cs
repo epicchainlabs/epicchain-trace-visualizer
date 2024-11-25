@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ToolkitRpcServer.cs file belongs to neo-express project and is free
+// ToolkitRpcServer.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,31 +9,31 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.IO;
-using Neo.Network.P2P.Payloads;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Iterators;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain.IO;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Iterators;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using System.Diagnostics;
 using System.Numerics;
-using Buffer = Neo.VM.Types.Buffer;
-using ByteString = Neo.VM.Types.ByteString;
-using Integer = Neo.VM.Types.Integer;
-using InteropInterface = Neo.VM.Types.InteropInterface;
-using Map = Neo.VM.Types.Map;
-using PrimitiveType = Neo.VM.Types.PrimitiveType;
-using StackItem = Neo.VM.Types.StackItem;
-using StackItemType = Neo.VM.Types.StackItemType;
+using Buffer = EpicChain.VM.Types.Buffer;
+using ByteString = EpicChain.VM.Types.ByteString;
+using Integer = EpicChain.VM.Types.Integer;
+using InteropInterface = EpicChain.VM.Types.InteropInterface;
+using Map = EpicChain.VM.Types.Map;
+using PrimitiveType = EpicChain.VM.Types.PrimitiveType;
+using StackItem = EpicChain.VM.Types.StackItem;
+using StackItemType = EpicChain.VM.Types.StackItemType;
 
-namespace Neo.BlockchainToolkit.Plugins
+namespace EpicChain.BlockchainToolkit.Plugins
 {
     public static partial class ToolkitRpcServer
     {
         const string TRANSFER = "Transfer";
-        const string NEP_11 = "NEP-11";
-        const string NEP_17 = "NEP-17";
+        const string NEP_11 = "XEP-11";
+        const string NEP_17 = "XEP-17";
 
         static readonly Lazy<IReadOnlyList<string>> nep11PropertyNames = new(() => new List<string>
         {
@@ -199,7 +199,7 @@ namespace Neo.BlockchainToolkit.Plugins
                         if (from != address && to != address)
                             continue;
                         // if the specified account was the sender or receiver of the current transfer,
-                        // record the update index. Stop the iteration if indexes for all the assets are 
+                        // record the update index. Stop the iteration if indexes for all the assets are
                         // have been recorded
                         updateIndexes.Add(notification.ScriptHash, blockIndex);
                         if (updateIndexes.Count == addressBalances.Count)
@@ -298,7 +298,7 @@ namespace Neo.BlockchainToolkit.Plugins
             using var engine = builder.Invoke(settings, snapshot);
             if (engine.State != VMState.FAULT
                 && engine.ResultStack.Count >= 1
-                && engine.ResultStack.Pop() is Neo.VM.Types.Integer integer)
+                && engine.ResultStack.Pop() is EpicChain.VM.Types.Integer integer)
             {
                 balance = integer.GetInteger();
                 return true;

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ContractCommand.Update.cs file belongs to neo-express project and is free
+// ContractCommand.Update.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,7 +9,7 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Network.P2P.Payloads;
+using EpicChain.Network.P2P.Payloads;
 using System.ComponentModel.DataAnnotations;
 
 namespace NeoExpress.Commands
@@ -18,7 +18,7 @@ namespace NeoExpress.Commands
 
     partial class ContractCommand
     {
-        [Command("update", Description = "update a contract that has been deployed to a neo-express instance")]
+        [Command("update", Description = "update a contract that has been deployed to aepicchain-express instance")]
         internal class Update
         {
             readonly ExpressChainManagerFactory chainManagerFactory;
@@ -49,10 +49,10 @@ namespace NeoExpress.Commands
             [AllowedValues(StringComparison.OrdinalIgnoreCase, "None", "CalledByEntry", "Global")]
             internal WitnessScope WitnessScope { get; init; } = WitnessScope.CalledByEntry;
 
-            [Option(Description = "Password to use for NEP-2/NEP-6 account")]
+            [Option(Description = "Password to use for XEP-2/XEP-6 account")]
             internal string Password { get; init; } = string.Empty;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
             [Option(Description = "Enable contract execution tracing")]

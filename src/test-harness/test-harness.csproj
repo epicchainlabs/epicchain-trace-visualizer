@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>neo-test-harness</AssemblyName>
     <Nullable>enable</Nullable>
-    <PackageId>Neo.Test.Harness</PackageId>
+    <PackageId>Chain.Test.Harness</PackageId>
     <RootNamespace>NeoTestHarness</RootNamespace>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>portable</DebugType>
@@ -15,5 +15,5 @@
   <ItemGroup>
     <ProjectReference Include="..\bctklib\bctklib.csproj" />
   </ItemGroup>
-    
+
 </Project>

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Extensions.cs file belongs to neo-express project and is free
+// Extensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,7 +9,7 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.BuildTasks;
+using EpicChain.BuildTasks;
 using System;
 using System.IO;
 using System.Linq;
@@ -98,7 +98,7 @@ namespace build_tasks
         //     var buildTasksPath = typeof(NeoCsc).Assembly.Location;
         //     var testBuildAssmblyDirectory = Path.GetDirectoryName(typeof(TestBuild).Assembly.Location)
         //         ?? throw new Exception("Couldn't get directory name of TestBuild assembly");
-        //     var targetsPath = Path.Combine(testBuildAssmblyDirectory, "build", "Neo.BuildTasks.targets");
+        //     var targetsPath = Path.Combine(testBuildAssmblyDirectory, "build", "EpicChain.BuildTasks.targets");
 
         //     return @this
         //         .Property("NeoBuildTasksAssembly", buildTasksPath)
@@ -112,7 +112,7 @@ namespace build_tasks
 
         // public static ProjectCreator ReferenceNeoScFx(this ProjectCreator @this, string version)
         // {
-        //     return @this.ItemPackageReference("Neo.SmartContract.Framework", version: version);
+        //     return @this.ItemPackageReference("EpicChain.SmartContract.Framework", version: version);
         // }
     }
 }

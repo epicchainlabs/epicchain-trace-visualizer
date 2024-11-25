@@ -1,3 +1,3 @@
-# Neo-Express Installation
+# EpicChain-Express Installation
 
-This is the eventual home of docs for installing Neo Express
+This is the eventual home of docs for installing EpicChain Express

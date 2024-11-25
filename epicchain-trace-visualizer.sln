@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BCED0811-9E4F-4034-B297-D21311F81F98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "neoxp", "src\neoxp\neoxp.csproj", "{986BE47B-F7EF-4FE1-A0BF-42D81D9FBC59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "epicchain", "src\epicchain\epicchain.csproj", "{986BE47B-F7EF-4FE1-A0BF-42D81D9FBC59}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "neotrace", "src\trace\neotrace.csproj", "{C6E71FEE-8BE0-42AF-AE03-C4523F2C1213}"
 EndProject

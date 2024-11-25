@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// BatchCommand.cs file belongs to neo-express project and is free
+// BatchCommand.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,14 +10,14 @@
 // modifications are permitted.
 
 using McMaster.Extensions.CommandLineUtils;
-using Neo;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.Wallets;
 using System.IO.Abstractions;
-using static Neo.BlockchainToolkit.Constants;
+using static EpicChain.BlockchainToolkit.Constants;
 
 namespace NeoExpress.Commands
 {
-    [Command("batch", Description = "Execute a series of offline Neo-Express operations")]
+    [Command("batch", Description = "Execute a series of offline EpicChain-Express operations")]
     partial class BatchCommand
     {
         readonly ExpressChainManagerFactory chainManagerFactory;

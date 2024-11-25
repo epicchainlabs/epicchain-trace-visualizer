@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ReadWriteStoreTests.cs file belongs to neo-express project and is free
+// ReadWriteStoreTests.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,8 +10,8 @@
 // modifications are permitted.
 
 using FluentAssertions;
-using Neo.BlockchainToolkit.Persistence;
-using Neo.Persistence;
+using EpicChain.BlockchainToolkit.Persistence;
+using EpicChain.Persistence;
 using System;
 using System.Linq;
 using Xunit;
@@ -22,7 +22,7 @@ using static Utility;
 
 public class ReadWriteStoreTests : IDisposable
 {
-    // include Neo.Persistence MemoryStore and Neo.Plugins.Storage.RocksDBStore for comparison
+    // include EpicChain.Persistence MemoryStore and EpicChain.Plugins.Storage.RocksDBStore for comparison
     public enum StoreType { Memory, NeoRocksDb, RocksDb }
 
     readonly CleanupPath path = new CleanupPath();
@@ -315,12 +315,12 @@ public class ReadWriteStoreTests : IDisposable
             RocksDbFixture.Populate(db);
         }
 
-        var storeType = typeof(Neo.Plugins.Storage.RocksDBStore).Assembly
-            .GetType("Neo.Plugins.Storage.Store");
+        var storeType = typeof(EpicChain.Plugins.Storage.RocksDBStore).Assembly
+            .GetType("EpicChain.Plugins.Storage.Store");
         var storeCtor = storeType?.GetConstructor(new[] { typeof(string) });
         var store = storeCtor?.Invoke(new object[] { path }) as IStore;
         if (store is null)
-            throw new NullReferenceException(nameof(Neo.Plugins.Storage.RocksDBStore));
+            throw new NullReferenceException(nameof(EpicChain.Plugins.Storage.RocksDBStore));
         return store;
     }
 }

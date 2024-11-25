@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// NeoManifest.cs file belongs to neo-express project and is free
+// NeoManifest.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -15,9 +15,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Neo.BuildTasks
+namespace EpicChain.BuildTasks
 {
-    // Parse Manifest ABI JSON manually using SimpleJSON to avoid taking dependency on neo.dll or a JSON parsing package
+    // Parse Manifest ABI JSON manually using SimpleJSON to avoid taking dependency on EpicChain.dll or a JSON parsing package
     public class NeoManifest
     {
         public class Method

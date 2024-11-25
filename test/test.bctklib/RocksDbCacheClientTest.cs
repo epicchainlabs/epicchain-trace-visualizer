@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// RocksDbCacheClientTest.cs file belongs to neo-express project and is free
+// RocksDbCacheClientTest.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -20,7 +20,7 @@
 //     [Fact]
 //     public void cached_get_state_returns_expected()
 //     {
-//         using var store = new Neo.Persistence.MemoryStore();
+//         using var store = new EpicChain.Persistence.MemoryStore();
 //         var trie = GetTestTrie(store);
 //         var key = BitConverter.GetBytes(42);
 //         var proof = trie.GetSerializedProof(key);
@@ -46,7 +46,7 @@
 //     [InlineData(-100, "Unknown value")]
 //     public void cached_get_state_returns_null_for_key_not_found_exception(int code, string msg)
 //     {
-//         var key = Neo.Utility.StrictUTF8.GetBytes("key");
+//         var key = EpicChain.Utility.StrictUTF8.GetBytes("key");
 
 //         using var rpcClient = new TestableRpcClient(() => throw new RpcException(code, msg));
 
@@ -65,7 +65,7 @@
 //     // [Fact]
 //     // public void cached_get_state_returns_null_for_key_not_found_exception_workaround()
 //     // {
-//     //     var key = Neo.Utility.StrictUTF8.GetBytes("key");
+//     //     var key = EpicChain.Utility.StrictUTF8.GetBytes("key");
 
 //     //     using var rpcClient = new TestableRpcClient(() => throw new RpcException(-2146232969, "The given key was not present in the dictionary."));
 

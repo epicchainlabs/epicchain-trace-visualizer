@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// StackItemFormatter.cs file belongs to neo-express project and is free
+// StackItemFormatter.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,22 +10,22 @@
 // modifications are permitted.
 
 using System.Numerics;
-using NeoArray = Neo.VM.Types.Array;
-using NeoBoolean = Neo.VM.Types.Boolean;
-using NeoBuffer = Neo.VM.Types.Buffer;
-using NeoByteString = Neo.VM.Types.ByteString;
-using NeoInteger = Neo.VM.Types.Integer;
-using NeoInteropInterface = Neo.VM.Types.InteropInterface;
-using NeoMap = Neo.VM.Types.Map;
-using NeoNull = Neo.VM.Types.Null;
-using NeoPointer = Neo.VM.Types.Pointer;
-using NeoStruct = Neo.VM.Types.Struct;
-using PrimitiveType = Neo.VM.Types.PrimitiveType;
-using StackItem = Neo.VM.Types.StackItem;
-using StackItemType = Neo.VM.Types.StackItemType;
-using TraceInteropInterface = Neo.BlockchainToolkit.TraceDebug.TraceInteropInterface;
+using NeoArray = EpicChain.VM.Types.Array;
+using NeoBoolean = EpicChain.VM.Types.Boolean;
+using NeoBuffer = EpicChain.VM.Types.Buffer;
+using NeoByteString = EpicChain.VM.Types.ByteString;
+using NeoInteger = EpicChain.VM.Types.Integer;
+using NeoInteropInterface = EpicChain.VM.Types.InteropInterface;
+using NeoMap = EpicChain.VM.Types.Map;
+using NeoNull = EpicChain.VM.Types.Null;
+using NeoPointer = EpicChain.VM.Types.Pointer;
+using NeoStruct = EpicChain.VM.Types.Struct;
+using PrimitiveType = EpicChain.VM.Types.PrimitiveType;
+using StackItem = EpicChain.VM.Types.StackItem;
+using StackItemType = EpicChain.VM.Types.StackItemType;
+using TraceInteropInterface = EpicChain.BlockchainToolkit.TraceDebug.TraceInteropInterface;
 
-namespace MessagePack.Formatters.Neo.BlockchainToolkit
+namespace MessagePack.Formatters.EpicChain.BlockchainToolkit
 {
     public class StackItemFormatter : IMessagePackFormatter<StackItem>
     {

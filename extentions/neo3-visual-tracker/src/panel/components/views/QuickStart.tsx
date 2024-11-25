@@ -9,7 +9,7 @@ import DeployContract from "../quickStart/DeployContract";
 import OpenBlockchainExplorer from "../quickStart/OpenBlockchainExplorer";
 import QuickStartViewRequest from "../../../shared/messages/quickStartViewRequest";
 import QuickStartViewState from "../../../shared/viewState/quickStartViewState";
-import StartNeoExpress from "../quickStart/StartNeoExpress";
+import startEpicChainExpress from "../quickStart/startEpicChainExpress";
 import InvokeContract from "../quickStart/InvokeContract";
 
 type Props = {
@@ -23,10 +23,10 @@ export default function QuickStart({ viewState, postMessage }: Props) {
     if (viewState.hasNeoExpressInstance) {
       if (!viewState.neoExpressIsRunning) {
         actions.push(
-          <StartNeoExpress
-            key="startNeoExpress"
+          <startEpicChainExpress
+            key="startEpicChainExpress"
             onStart={() =>
-              postMessage({ command: "neo3-visual-devtracker.express.run" })
+              postMessage({ command: "epicchain-visual-devtracker.express.run" })
             }
           />
         );
@@ -36,7 +36,7 @@ export default function QuickStart({ viewState, postMessage }: Props) {
         <CreateNeoExpressInstance
           key="createNeoExpressInstance"
           onCreate={() =>
-            postMessage({ command: "neo3-visual-devtracker.express.create" })
+            postMessage({ command: "epicchain-visual-devtracker.express.create" })
           }
         />
       );
@@ -46,7 +46,7 @@ export default function QuickStart({ viewState, postMessage }: Props) {
         <CreateContract
           key="createContract"
           onCreate={() =>
-            postMessage({ command: "neo3-visual-devtracker.neo.newContract" })
+            postMessage({ command: "epicchain-visual-devtracker.neo.newContract" })
           }
         />
       );
@@ -59,7 +59,7 @@ export default function QuickStart({ viewState, postMessage }: Props) {
             connectionName={viewState.connectionName}
             onDeploy={() =>
               postMessage({
-                command: "neo3-visual-devtracker.express.contractDeploy",
+                command: "epicchain-visual-devtracker.express.contractDeploy",
               })
             }
           />
@@ -71,7 +71,7 @@ export default function QuickStart({ viewState, postMessage }: Props) {
             connectionName={viewState.connectionName}
             onDeploy={() =>
               postMessage({
-                command: "neo3-visual-devtracker.neo.contractDeploy",
+                command: "epicchain-visual-devtracker.neo.contractDeploy",
               })
             }
           />
@@ -82,7 +82,7 @@ export default function QuickStart({ viewState, postMessage }: Props) {
             key="invokeContract"
             onInvoke={() =>
               postMessage({
-                command: "neo3-visual-devtracker.neo.invokeContract",
+                command: "epicchain-visual-devtracker.neo.invokeContract",
               })
             }
           />
@@ -93,7 +93,7 @@ export default function QuickStart({ viewState, postMessage }: Props) {
         <ConnectToBlockchain
           key="connectToBlockchain"
           onConnect={() =>
-            postMessage({ command: "neo3-visual-devtracker.connect" })
+            postMessage({ command: "epicchain-visual-devtracker.connect" })
           }
         />
       );
@@ -104,16 +104,16 @@ export default function QuickStart({ viewState, postMessage }: Props) {
           key="createWallet"
           onCreate={() =>
             postMessage({
-              command: "neo3-visual-devtracker.neo.walletCreate",
+              command: "epicchain-visual-devtracker.neo.walletCreate",
             })
           }
         />
       );
     }
-    // TODO: Offer to create NEP-6 wallets if there is not one in the workspace
-    // TODO: Offer to create Neo Express wallets if only genesis exists
-    // TODO: Offter to transfer assets between Neo Express wallets if only genesis has funds but other wallets exist
-    // TODO: Offer to create a checkpoint if neo-express is running and sufficiently "interesting"
+    // TODO: Offer to create XEP-6 wallets if there is not one in the workspace
+    // TODO: Offer to create EpicChain Express wallets if only genesis exists
+    // TODO: Offter to transfer assets between EpicChain Express wallets if only genesis has funds but other wallets exist
+    // TODO: Offer to create a checkpoint ifepicchain-express is running and sufficiently "interesting"
     // TODO: Offer to restore a checkpoint if any are present in the workspace
   } else {
     actions.push(
@@ -127,7 +127,7 @@ export default function QuickStart({ viewState, postMessage }: Props) {
     <OpenBlockchainExplorer
       key="openBlockchainExplorer"
       onOpen={() =>
-        postMessage({ command: "neo3-visual-devtracker.tracker.openTracker" })
+        postMessage({ command: "epicchain-visual-devtracker.tracker.openTracker" })
       }
     />
   );

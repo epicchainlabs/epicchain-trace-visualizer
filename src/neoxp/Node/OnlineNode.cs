@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// OnlineNode.cs file belongs to neo-express project and is free
+// OnlineNode.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,19 +9,19 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit.Models;
-using Neo.Cryptography.ECC;
-using Neo.IO;
-using Neo.Json;
-using Neo.Network.P2P.Payloads;
-using Neo.Network.RPC;
-using Neo.Network.RPC.Models;
-using Neo.SmartContract;
-using Neo.SmartContract.Manifest;
-using Neo.SmartContract.Native;
-using Neo.VM;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.Cryptography.ECC;
+using EpicChain.IO;
+using EpicChain.Json;
+using EpicChain.Network.P2P.Payloads;
+using EpicChain.Network.RPC;
+using EpicChain.Network.RPC.Models;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Manifest;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
+using EpicChain.Wallets;
 using NeoExpress.Commands;
 using NeoExpress.Models;
 using System.Numerics;
@@ -147,7 +147,7 @@ namespace NeoExpress.Node
             return rpcBlock.Block;
         }
 
-        public async Task<(Transaction tx, Neo.Network.RPC.Models.RpcApplicationLog? appLog)> GetTransactionAsync(UInt256 txHash)
+        public async Task<(Transaction tx, EpicChain.Network.RPC.Models.RpcApplicationLog? appLog)> GetTransactionAsync(UInt256 txHash)
         {
             var hash = txHash.ToString();
             var response = await rpcClient.GetRawTransactionAsync(hash).ConfigureAwait(false);
@@ -319,7 +319,7 @@ namespace NeoExpress.Node
                     var eventName = v["event-name"]!.AsString();
                     var invType = (InventoryType)(byte)v["inventory-type"]!.AsNumber();
                     var invHash = UInt256.Parse(v["inventory-hash"]!.AsString());
-                    var state = (Neo.VM.Types.Array)Neo.Network.RPC.Utility.StackItemFromJson((JObject)v["state"]!);
+                    var state = (EpicChain.VM.Types.Array)EpicChain.Network.RPC.Utility.StackItemFromJson((JObject)v["state"]!);
                     var notification = new NotificationRecord(scriptHash, eventName, state, invType, invHash);
                     yield return (blockIndex, notification);
                 }

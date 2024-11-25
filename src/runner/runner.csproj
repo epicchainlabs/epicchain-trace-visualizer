@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <AssemblyName>neo-test-runner</AssemblyName>
-        <Description>neo-test-runner is a utility for executing contract unit tests in an emulated Neo blockchain environment</Description>
+        <Description>neo-test-runner is a utility for executing contract unit tests in an emulated EpicChain blockchain environment</Description>
         <Nullable>enable</Nullable>
         <OutputType>Exe</OutputType>
-        <PackageId>Neo.Test.Runner</PackageId>
+        <PackageId>EpicChain.Test.Runner</PackageId>
         <PackAsTool>true</PackAsTool>
-        <RootNamespace>Neo.Test.Runner</RootNamespace>
+        <RootNamespace>EpicChain.Test.Runner</RootNamespace>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
     </PropertyGroup>
 

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressChainTest.cs file belongs to neo-express project and is free
+// ExpressChainTest.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,9 +10,9 @@
 // modifications are permitted.
 
 using FluentAssertions;
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Text.Json;
@@ -22,7 +22,7 @@ namespace test.bctklib
 {
     public class ExpressChainTest
     {
-        const string FILENAME = "default.neo-express";
+        const string FILENAME = "default.epicchain-express";
         const string TEST_SETTING = "test.setting";
         const string TEST_SETTING_VALUE = "some value";
 

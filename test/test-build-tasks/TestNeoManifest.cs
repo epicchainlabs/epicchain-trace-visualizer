@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TestNeoManifest.cs file belongs to neo-express project and is free
+// TestNeoManifest.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -20,7 +20,7 @@ namespace build_tasks
         public void parse_sample_manifest()
         {
             var json = SimpleJSON.JSON.Parse(MANIFEST) ?? throw new InvalidOperationException();
-            var manifest = Neo.BuildTasks.NeoManifest.FromManifestJson(json);
+            var manifest = EpicChain.BuildTasks.NeoManifest.FromManifestJson(json);
             Assert.Equal("DevHawk.Contracts.ApocToken", manifest.Name);
             Assert.Equal(13, manifest.Methods.Count);
             Assert.Single(manifest.Events);

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// ExpressChainManagerFactory.cs file belongs to neo-express project and is free
+// ExpressChainManagerFactory.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,14 +9,14 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Models;
-using Neo.SmartContract;
-using Neo.Wallets;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Models;
+using EpicChain.SmartContract;
+using EpicChain.Wallets;
 using NeoExpress.Models;
 using System.IO.Abstractions;
-using static Neo.BlockchainToolkit.Constants;
+using static EpicChain.BlockchainToolkit.Constants;
 
 namespace NeoExpress
 {
@@ -33,7 +33,7 @@ namespace NeoExpress
         {
 
             var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile, Environment.SpecialFolderOption.DoNotVerify);
-            var folder = fileSystem.Path.Combine(homeDir, ".neo-express");
+            var folder = fileSystem.Path.Combine(homeDir, ".epicchain-express");
 
             if (!fileSystem.Path.Exists(folder))
                 fileSystem.Directory.CreateDirectory(folder);
@@ -127,14 +127,14 @@ namespace NeoExpress
 
             var chain = fileSystem.LoadChain(path);
 
-            // validate neo-express file by ensuring stored node zero default account SignatureRedeemScript matches a generated script
+            // validateepicchain-express file by ensuring stored node zero default account SignatureRedeemScript matches a generated script
             var account = chain.ConsensusNodes[0].Wallet.DefaultAccount ?? throw new InvalidOperationException("consensus node 0 missing default account");
             var keyPair = new KeyPair(account.PrivateKey.HexToBytes());
             var contractScript = account.Contract?.Script.HexToBytes() ?? Array.Empty<byte>();
 
             if (!Contract.CreateSignatureRedeemScript(keyPair.PublicKey).AsSpan().SequenceEqual(contractScript))
             {
-                throw new Exception("Invalid Signature Redeem Script. Was this neo-express file created before RC1?");
+                throw new Exception("Invalid Signature Redeem Script. Was thisepicchain-express file created before RC1?");
             }
 
             return (new ExpressChainManager(fileSystem, chain, secondsPerBlock), path);

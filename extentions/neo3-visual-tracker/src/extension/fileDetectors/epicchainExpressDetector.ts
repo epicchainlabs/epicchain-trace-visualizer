@@ -1,7 +1,7 @@
 import BlockchainIdentifier from "../blockchainIdentifier";
 import DetectorBase from "./detectorBase";
 
-const SEARCH_PATTERN = "**/*.neo-express";
+const SEARCH_PATTERN = "**/*.epicchain-express";
 
 export default class NeoExpressDetector extends DetectorBase {
   private blockchainsSnapshot: BlockchainIdentifier[] = [];

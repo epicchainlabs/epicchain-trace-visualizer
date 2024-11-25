@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// Extensions.cs file belongs to neo-express project and is free
+// Extensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,18 +9,18 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.BlockchainToolkit;
-using Neo.BlockchainToolkit.Utilities;
-using Neo.Persistence;
-using Neo.SmartContract;
-using Neo.SmartContract.Native;
-using Neo.VM;
+using EpicChain;
+using EpicChain.BlockchainToolkit;
+using EpicChain.BlockchainToolkit.Utilities;
+using EpicChain.Persistence;
+using EpicChain.SmartContract;
+using EpicChain.SmartContract.Native;
+using EpicChain.VM;
 using System.Buffers;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
-using static Neo.Utility;
+using static EpicChain.Utility;
 
 namespace NeoTestHarness
 {
@@ -179,10 +179,10 @@ namespace NeoTestHarness
         }
 
         public static bool TryGetValue(this NeoStorage storage, UInt160 key, [MaybeNullWhen(false)] out StorageItem item)
-            => storage.TryGetValue(Neo.IO.Helper.ToArray(key), out item);
+            => storage.TryGetValue(EpicChain.IO.Helper.ToArray(key), out item);
 
         public static bool TryGetValue(this NeoStorage storage, UInt256 key, [MaybeNullWhen(false)] out StorageItem item)
-            => storage.TryGetValue(Neo.IO.Helper.ToArray(key), out item);
+            => storage.TryGetValue(EpicChain.IO.Helper.ToArray(key), out item);
 
         public static UInt160 GetContractScriptHash<T>(this ApplicationEngine engine)
             where T : class
@@ -228,7 +228,7 @@ namespace NeoTestHarness
         {
             foreach (var contractState in NativeContract.ContractManagement.ListContracts(snapshot))
             {
-                var name = contractState.Id >= 0 ? contractState.Manifest.Name : "Neo.SmartContract.Native." + contractState.Manifest.Name;
+                var name = contractState.Id >= 0 ? contractState.Manifest.Name : "EpicChain.SmartContract.Native." + contractState.Manifest.Name;
                 if (string.Equals(contractName, name))
                 {
                     return contractState;

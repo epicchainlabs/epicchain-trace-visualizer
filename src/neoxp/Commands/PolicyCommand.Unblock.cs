@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// PolicyCommand.Unblock.cs file belongs to neo-express project and is free
+// PolicyCommand.Unblock.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -36,10 +36,10 @@ namespace NeoExpress.Commands
             [Required]
             internal string Account { get; init; } = string.Empty;
 
-            [Option(Description = "password to use for NEP-2/NEP-6 sender")]
+            [Option(Description = "password to use for XEP-2/XEP-6 sender")]
             internal string Password { get; init; } = string.Empty;
 
-            [Option(Description = "Path to neo-express data file")]
+            [Option(Description = "Path toepicchain-express data file")]
             internal string Input { get; init; } = string.Empty;
 
             [Option(Description = "Enable contract execution tracing")]

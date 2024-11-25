@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// RpcClientExtensions.cs file belongs to neo-express project and is free
+// RpcClientExtensions.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,10 +9,10 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo.Network.RPC;
-using Neo.Network.RPC.Models;
+using EpicChain.Network.RPC;
+using EpicChain.Network.RPC.Models;
 
-namespace Neo.BlockchainToolkit.Persistence
+namespace EpicChain.BlockchainToolkit.Persistence
 {
     static class RpcClientExtensions
     {
@@ -54,12 +54,12 @@ namespace Neo.BlockchainToolkit.Persistence
             }
             catch (RpcException ex) when (ex.HResult == -100 && ex.Message == "Unknown value")
             {
-                // Prior to Neo 3.3.0, StateService GetProof method threw a custom exception 
+                // Prior to EpicChain 3.3.0, StateService GetProof method threw a custom exception
                 // instead of KeyNotFoundException like GetState. This catch clause detected
-                // the custom exception that GetProof used to throw. 
+                // the custom exception that GetProof used to throw.
 
-                // TODO: remove this clause once deployed StateService for Neo N3 MainNet and
-                //       TestNet has been verified to be running Neo 3.3.0 or later.
+                // TODO: remove this clause once deployed StateService for EpicChain MainNet and
+                //       TestNet has been verified to be running EpicChain 3.3.0 or later.
 
                 return null;
             }

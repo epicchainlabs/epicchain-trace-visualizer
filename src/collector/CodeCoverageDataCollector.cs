@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// CodeCoverageDataCollector.cs file belongs to neo-express project and is free
+// CodeCoverageDataCollector.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,16 +10,16 @@
 // modifications are permitted.
 
 using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
-using Neo.Collector.Formats;
+using EpicChain.Collector.Formats;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 
-namespace Neo.Collector
+namespace EpicChain.Collector
 {
-    [DataCollectorFriendlyName("Neo code coverage")]
+    [DataCollectorFriendlyName("EpicChain code coverage")]
     [DataCollectorTypeUri("datacollector://Neo/ContractCodeCoverage/1.0")]
     public partial class CodeCoverageDataCollector : DataCollector, ITestExecutionEnvironmentSpecifier
     {

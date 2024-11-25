@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// PolicyValues.cs file belongs to neo-express project and is free
+// PolicyValues.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -9,9 +9,9 @@
 // Redistribution and use in source and binary forms with or without
 // modifications are permitted.
 
-using Neo;
-using Neo.Json;
-using Neo.SmartContract.Native;
+using EpicChain;
+using EpicChain.Json;
+using EpicChain.SmartContract.Native;
 using System.Numerics;
 
 namespace NeoExpress.Models
@@ -28,7 +28,7 @@ namespace NeoExpress.Models
 
         public JObject ToJson()
         {
-            var decimals = Neo.SmartContract.Native.NativeContract.GAS.Decimals;
+            var decimals = EpicChain.SmartContract.Native.NativeContract.GAS.Decimals;
 
             var json = new JObject();
             json[nameof(GasPerBlock)] = $"{GasPerBlock.ChangeDecimals(decimals).Value}";

@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// TestDotNetToolTask.cs file belongs to neo-express project and is free
+// TestDotNetToolTask.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -10,7 +10,7 @@
 // modifications are permitted.
 
 using Moq;
-using Neo.BuildTasks;
+using EpicChain.BuildTasks;
 using System;
 using Xunit;
 
@@ -21,7 +21,7 @@ namespace build_tasks
         class TestTask : DotNetToolTask
         {
             protected override string Command => "nccs";
-            protected override string PackageId => "Neo.Compiler.CSharp";
+            protected override string PackageId => "EpicChain.Compiler.CSharp";
 
             readonly Func<NugetPackageVersion, bool> validator;
 
@@ -40,7 +40,7 @@ namespace build_tasks
         public void contains_package()
         {
             var output = localOutput.Split(Environment.NewLine);
-            Assert.True(DotNetToolTask.ContainsPackage(output, "Neo.Compiler.CSharp", out var version));
+            Assert.True(DotNetToolTask.ContainsPackage(output, "EpicChain.Compiler.CSharp", out var version));
             Assert.Equal(new NugetPackageVersion(3, 3, 0), version);
         }
 
@@ -54,7 +54,7 @@ namespace build_tasks
             taskItem.Setup(item => item.ItemSpec).Returns("fakePath");
 
             var task = new TestTask(processRunner.Object, validate);
-            Assert.False(task.FindTool("neo.compiler.csharp", taskItem.Object, out var type, out var version));
+            Assert.False(task.FindTool("EpicChain.compiler.csharp", taskItem.Object, out var type, out var version));
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace build_tasks
             taskItem.Setup(item => item.ItemSpec).Returns("fakePath");
 
             var task = new TestTask(processRunner.Object, validate);
-            Assert.True(task.FindTool("neo.compiler.csharp", taskItem.Object, out var type, out var version));
+            Assert.True(task.FindTool("EpicChain.compiler.csharp", taskItem.Object, out var type, out var version));
             Assert.Equal(DotNetToolType.Global, type);
             Assert.Equal(expectedVersion, version);
         }
@@ -85,7 +85,7 @@ namespace build_tasks
             taskItem.Setup(item => item.ItemSpec).Returns("fakePath");
 
             var task = new TestTask(processRunner.Object, validate);
-            Assert.True(task.FindTool("neo.compiler.csharp", taskItem.Object, out var type, out var version));
+            Assert.True(task.FindTool("EpicChain.compiler.csharp", taskItem.Object, out var type, out var version));
             Assert.Equal(DotNetToolType.Local, type);
             Assert.Equal(expectedVersion, version);
         }
@@ -101,7 +101,7 @@ namespace build_tasks
             taskItem.Setup(item => item.ItemSpec).Returns("fakePath");
 
             var task = new TestTask(processRunner.Object, validate);
-            Assert.True(task.FindTool("neo.compiler.csharp", taskItem.Object, out var type, out var version));
+            Assert.True(task.FindTool("EpicChain.compiler.csharp", taskItem.Object, out var type, out var version));
             Assert.Equal(DotNetToolType.Local, type);
             Assert.Equal(expectedVersion, version);
         }
@@ -120,17 +120,17 @@ namespace build_tasks
 
         const string sspOutput = @"Package Id               Version                              Commands      Manifest
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
-neo.express              3.1.46                               neoxp         C:\Users\harry\Source\neo\seattle\samples\nft-sample\.config\dotnet-tools.json
-neo.compiler.csharp      3.3.1037-storage-schema-preview      nccs          C:\Users\harry\Source\neo\seattle\samples\nft-sample\.config\dotnet-tools.json";
+EpicChain.express              3.1.46                               epicchain         C:\Users\harry\Source\neo\seattle\samples\nft-sample\.config\dotnet-tools.json
+EpicChain.compiler.csharp      3.3.1037-storage-schema-preview      nccs          C:\Users\harry\Source\neo\seattle\samples\nft-sample\.config\dotnet-tools.json";
 
         const string localOutput = @"Package Id               Version            Commands             Manifest
 -----------------------------------------------------------------------------------------------------------------------------------------------------
-neo.express              3.3.7-preview      neoxp                C:\Users\harry\Source\neo\seattle\samples\registrar-sample\.config\dotnet-tools.json
-neo.compiler.csharp      3.3.0              nccs                 C:\Users\harry\Source\neo\seattle\samples\registrar-sample\.config\dotnet-tools.json
-neo.trace                3.3.7-preview      neotrace             C:\Users\harry\Source\neo\seattle\samples\registrar-sample\.config\dotnet-tools.json
-neo.test.runner          3.3.4-preview      neo-test-runner      C:\Users\harry\Source\neo\seattle\samples\registrar-sample\.config\dotnet-tools.json";
+EpicChain.express              3.3.7-preview      epicchain                C:\Users\harry\Source\neo\seattle\samples\registrar-sample\.config\dotnet-tools.json
+EpicChain.compiler.csharp      3.3.0              nccs                 C:\Users\harry\Source\neo\seattle\samples\registrar-sample\.config\dotnet-tools.json
+EpicChain.trace                3.3.7-preview      neotrace             C:\Users\harry\Source\neo\seattle\samples\registrar-sample\.config\dotnet-tools.json
+EpicChain.test.runner          3.3.4-preview      neo-test-runner      C:\Users\harry\Source\neo\seattle\samples\registrar-sample\.config\dotnet-tools.json";
 
-        const string globalOutput = @"Package Id                Version            Commands       
+        const string globalOutput = @"Package Id                Version            Commands
 ------------------------------------------------------------
 devhawk.dumpnef           3.2.8-preview      dumpnef
 dotnet-outdated-tool      4.1.0              dotnet-outdated
@@ -138,8 +138,8 @@ dotnet-script             1.3.1              dotnet-script
 dotnet-t4                 2.2.1              t4
 fornax                    0.14.0             fornax
 nbgv                      3.4.255            nbgv
-neo.compiler.csharp       3.1.0              nccs
-neo.express               3.1.49             neoxp
+EpicChain.compiler.csharp       3.1.0              nccs
+EpicChain.express               3.1.49             epicchain
 sleet                     5.0.1              sleet";
     }
 }

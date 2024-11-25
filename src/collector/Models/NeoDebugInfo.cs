@@ -1,6 +1,6 @@
-// Copyright (C) 2015-2024 The Neo Project.
+// Copyright (C) 2015-2024 The EpicChain Project.
 //
-// NeoDebugInfo.cs file belongs to neo-express project and is free
+// EpicChainDebugInfo.cs file belongs toepicchain-express project and is free
 // software distributed under the MIT software license, see the
 // accompanying file LICENSE in the main directory of the
 // repository or http://www.opensource.org/licenses/mit-license.php
@@ -17,9 +17,9 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Neo.Collector.Models
+namespace EpicChain.Collector.Models
 {
-    public partial class NeoDebugInfo
+    public partial class EpicChainDebugInfo
     {
         public const string MANIFEST_FILE_EXTENSION = ".manifest.json";
         public const string NEF_DBG_NFO_EXTENSION = ".nefdbgnfo";
@@ -30,7 +30,7 @@ namespace Neo.Collector.Models
         public readonly IReadOnlyList<string> Documents;
         public readonly IReadOnlyList<Method> Methods;
 
-        public NeoDebugInfo(Hash160 hash, string documentRoot, IReadOnlyList<string> documents, IReadOnlyList<Method> methods)
+        public EpicChainDebugInfo(Hash160 hash, string documentRoot, IReadOnlyList<string> documents, IReadOnlyList<Method> methods)
         {
             Hash = hash;
             DocumentRoot = documentRoot;
@@ -38,7 +38,7 @@ namespace Neo.Collector.Models
             Methods = methods;
         }
 
-        public static bool TryLoad(string path, [MaybeNullWhen(false)] out NeoDebugInfo debugInfo)
+        public static bool TryLoad(string path, [MaybeNullWhen(false)] out EpicChainDebugInfo debugInfo)
         {
             if (path.EndsWith(NEF_DBG_NFO_EXTENSION))
             {
@@ -55,7 +55,7 @@ namespace Neo.Collector.Models
             }
         }
 
-        public static bool TryLoadManifestDebugInfo(string manifestPath, [MaybeNullWhen(false)] out NeoDebugInfo debugInfo)
+        public static bool TryLoadManifestDebugInfo(string manifestPath, [MaybeNullWhen(false)] out EpicChainDebugInfo debugInfo)
         {
             if (string.IsNullOrEmpty(manifestPath))
             {
@@ -75,7 +75,7 @@ namespace Neo.Collector.Models
             return TryLoadUncompressed(debugJsonPath, out debugInfo);
         }
 
-        static bool TryLoadCompressed(string debugInfoPath, [MaybeNullWhen(false)] out NeoDebugInfo debugInfo)
+        static bool TryLoadCompressed(string debugInfoPath, [MaybeNullWhen(false)] out EpicChainDebugInfo debugInfo)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace Neo.Collector.Models
             return false;
         }
 
-        internal static bool TryLoadCompressed(Stream stream, [MaybeNullWhen(false)] out NeoDebugInfo debugInfo)
+        internal static bool TryLoadCompressed(Stream stream, [MaybeNullWhen(false)] out EpicChainDebugInfo debugInfo)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace Neo.Collector.Models
             return false;
         }
 
-        static bool TryLoadUncompressed(string debugInfoPath, [MaybeNullWhen(false)] out NeoDebugInfo debugInfo)
+        static bool TryLoadUncompressed(string debugInfoPath, [MaybeNullWhen(false)] out EpicChainDebugInfo debugInfo)
         {
             try
             {
@@ -140,7 +140,7 @@ namespace Neo.Collector.Models
             return false;
         }
 
-        internal static NeoDebugInfo Load(Stream stream)
+        internal static EpicChainDebugInfo Load(Stream stream)
         {
             using (var reader = new StreamReader(stream))
             {
@@ -150,7 +150,7 @@ namespace Neo.Collector.Models
             }
         }
 
-        public static NeoDebugInfo FromDebugInfoJson(SimpleJSON.JSONNode json)
+        public static EpicChainDebugInfo FromDebugInfoJson(SimpleJSON.JSONNode json)
         {
             var hash = Hash160.TryParse(json["hash"].Value, out var _hash)
                 ? _hash
@@ -161,7 +161,7 @@ namespace Neo.Collector.Models
             var methods = json["methods"].Linq.Select(kvp => MethodFromJson(kvp.Value));
             // TODO: parse events and static variables
 
-            return new NeoDebugInfo(hash, docRoot, documents.ToList(), methods.ToList());
+            return new EpicChainDebugInfo(hash, docRoot, documents.ToList(), methods.ToList());
         }
 
         static Method MethodFromJson(SimpleJSON.JSONNode json)
